@@ -14,8 +14,6 @@
 @property(nonatomic,strong)UIImageView *iconIV;
 //* 题目标签 */
 @property(nonatomic,strong)UILabel *titleLb;
-//* 长题目标签 */
-@property(nonatomic,strong)UILabel *subTitleLb;
 //* 来源标签 */
 @property(nonatomic,strong)UILabel *sourceLb;
 //* 赞标签 */

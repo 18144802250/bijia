@@ -31,14 +31,6 @@
     return _titleLb;
 }
 
--(UILabel *)subTitleLb{
-    if (_subTitleLb == nil) {
-        _subTitleLb = [[UILabel alloc] init];
-        _subTitleLb.font = [UIFont systemFontOfSize:17];
-        _subTitleLb.textColor = [UIColor redColor];
-    }
-    return _subTitleLb;
-}
 -(UILabel *)sourceLb
 {
     if (!_sourceLb) {
@@ -55,6 +47,7 @@
         _supportLb = [[UILabel alloc] init];
         _supportLb.textColor = [UIColor lightGrayColor];
         _supportLb.font = [UIFont systemFontOfSize:13];
+        _supportLb.textAlignment = NSTextAlignmentRight;
     }
     return _sourceLb;
 }
@@ -65,8 +58,48 @@
         _commentLb = [[UILabel alloc] init];
         _commentLb.textColor = [UIColor lightGrayColor];
         _commentLb.font = [UIFont systemFontOfSize:13];
+        _commentLb.textAlignment = NSTextAlignmentRight;
     }
     return _commentLb;
+}
+
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self.contentView addSubview:self.iconIV];
+        [self.contentView addSubview:self.titleLb];
+        [self.contentView addSubview:self.sourceLb];
+        [self.contentView addSubview:self.supportLb];
+        [self.contentView addSubview:self.commentLb];
+        //图片 左10,宽高92,70,竖向居中
+        [self.iconIV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(10);
+            make.size.mas_equalTo(CGSizeMake(92, 70));
+            make.centerY.mas_equalTo(0);
+        }];
+        //题目 距离图片右边缘8,右边缘10,上边缘笔图片上边缘矮3
+        [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(_iconIV.mas_right).mas_equalTo(8);
+            make.right.mas_equalTo(-10);
+            make.topMargin.mas_equalTo(_iconIV.mas_topMargin).mas_equalTo(3);
+        }];
+        //来源 与图片相邻
+        [self.sourceLb mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(_iconIV.mas_right).mas_equalTo(8);
+            make.width.mas_equalTo(80);
+            make.bottomMargin.mas_equalTo(_iconIV.mas_bottomMargin).mas_equalTo(-3);
+        }];
+        //评论数
+        [self.commentLb mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(-10);
+            make.bottomMargin.mas_equalTo(_iconIV.mas_bottomMargin).mas_equalTo(0);
+        }];
+        [self.supportLb mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(_commentLb.mas_left).mas_equalTo(0);
+            make.bottomMargin.mas_equalTo(_iconIV.mas_bottomMargin).mas_equalTo(0);
+        }];
+    }
+    return self;
 }
 
 @end
