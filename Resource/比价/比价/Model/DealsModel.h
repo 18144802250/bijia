@@ -26,8 +26,10 @@
 @property (nonatomic, assign) NSInteger supports_count;
 /** 标题 */
 @property (nonatomic, copy) NSString *title;
-
+/** 发布时间 */
 @property (nonatomic, copy) NSString *pub_time;
+/** 根据判断发布时间，返回与今天相差的天数 */
+@property (nonatomic, assign) NSDateComponents *daysFromToday;
 
 @property (nonatomic, strong) NSArray *items;
 

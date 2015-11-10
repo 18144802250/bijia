@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TimeView.h"
+#import "DealsModel.h"
 
 @interface DealsCell : UITableViewCell
 
+@property (nonatomic, strong) DealsDataModel *dataModel;
+//* 时间标签 */
+@property(nonatomic,strong)TimeView *timeView;
 //* 左侧图片 */
 @property(nonatomic,strong)UIImageView *iconIV;
 //* 题目标签 */

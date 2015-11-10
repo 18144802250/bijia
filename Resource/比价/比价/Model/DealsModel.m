@@ -17,7 +17,19 @@
 @end
 @implementation DealsDataModel
 
-
+- (void)setPub_time:(NSString *)pub_time
+{
+    
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.dateFormat = @"EEE MMM d HH:mm:ss z yyyy";
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en-us"];
+    NSDate *pulishDate = [formatter dateFromString:pub_time];
+    
+    NSCalendar *calendar = [NSCalendar new];
+    int unit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+    
+    _daysFromToday = [calendar components:unit fromDate:pulishDate toDate:[NSDate date] options:0];
+}
 
 @end
 

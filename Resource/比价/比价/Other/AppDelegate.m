@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "AppDelegate+Category.h"
 #import "WRCompareViewController.h"
+#import "WRLeftViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,17 +17,31 @@
 
 @implementation AppDelegate
 
+- (UIWindow *)window {
+    if(_window == nil) {
+        _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        [_window makeKeyAndVisible];
+    }
+    return _window;
+}
+
+- (RESideMenu *)sideMenu {
+    if(_sideMenu == nil) {
+        
+        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[[WRCompareViewController alloc] initWithType:0]];
+        
+        _sideMenu = [[RESideMenu alloc] initWithContentViewController:navi leftMenuViewController:[WRLeftViewController new] rightMenuViewController:nil];
+    }
+    return _sideMenu;
+}
+
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = self.sideMenu;
     
-    _window.backgroundColor = [UIColor whiteColor];
-    
-    WRCompareViewController *vc = [WRCompareViewController new];
-    _window.rootViewController = vc;
-    
-    [_window makeKeyAndVisible];
     
     return YES;
 }

@@ -8,8 +8,27 @@
 
 #import "BaseNetManager.h"
 
+typedef NS_ENUM(NSUInteger, CategoryType) {
+    /** 全部类别 */
+    CategoryTypeInland,
+    /** 日用百货 */
+    CategoryTypeDaily,
+    /** 生鲜食品 */
+    CategoryTypeFood,
+    /** 服饰鞋包 */
+    CategoryTypeDresses,
+    /** 美妆个护 */
+    CategoryTypeCosmetics,
+    /** 运动健康 */
+    CategoryTypeSport,
+    /** 数码家电 */
+    CategoryTypeDigital,
+    /** 母婴玩具 */
+    CategoryTypeBaby
+};
+
 @interface DealsNetManager : BaseNetManager
 
-+ (id)getDealsDataWithSec:(NSString*)secStr completionHandle:(void(^)(id responseObj,NSError *error))completion;
++ (id)getDealsDataWithType:(CategoryType)type Sec:(NSString*)secStr completionHandle:(void(^)(id model,NSError *error))completion;
 
 @end

@@ -15,7 +15,9 @@
 - (void)initializeWithApplication:(UIApplication *)application{
     //    电池条显示网络活动
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
 }
 
 

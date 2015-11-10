@@ -7,21 +7,33 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseViewModel.h"
+#import "DealsNetManager.h"
+#import "DealsModel.h"
 
-@interface DealsViewModel : NSObject
+@interface DealsViewModel : BaseViewModel
+
+- (instancetype)initWithType:(CategoryType)type;
+
+@property (nonatomic, assign) CategoryType type;
 
 @property (nonatomic, assign) NSInteger rowNumber;
 
 /** 时间Str */
 @property (nonatomic, strong) NSString *secStr;
 
+
+/** 时间 */
+- (NSString *)timeWithRow:(NSInteger)row;
 /** 图片URL */
 - (NSURL *)picURLWithRow:(NSInteger)row;
 /** 题目 */
-- (NSString *)titleWithRow:(NSInteger)row;
-/** 描述 */
-- (NSString *)descWithRow:(NSInteger)row;
-/** 集数 */
-- (NSString *)numWithRow:(NSInteger)row;
+- (NSMutableAttributedString *)titleWithRow:(NSInteger)row;
+/** 来源 */
+- (NSString *)sourceWithRow:(NSInteger)row;
+/** 赞 */
+- (NSString *)supportWithRow:(NSInteger)row;
+/** 评论数 */
+- (NSString *)commentWithRow:(NSInteger)row;
 
 @end
