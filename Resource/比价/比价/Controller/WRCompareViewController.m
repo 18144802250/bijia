@@ -13,6 +13,7 @@
 #import "DealsViewModel.h"
 #import "WRNaviTool.h"
 #import "WRTool.h"
+#import "DealsDetailViewController.h"
 
 @interface WRCompareViewController () <UITableViewDataSource,UITableViewDelegate>
 
@@ -134,6 +135,10 @@ kRemoveCellSeparator
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    DealsDetailViewController *vc = [[DealsDetailViewController alloc] initWithIdStr:[self.dealsVM idStrWithRow:indexPath.row]];
+    
+//    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

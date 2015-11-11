@@ -28,7 +28,12 @@ typedef NS_ENUM(NSUInteger, CategoryType) {
 };
 
 @interface DealsNetManager : BaseNetManager
-
+/** 获取国内 */
 + (id)getDealsDataWithType:(CategoryType)type Sec:(NSString*)secStr completionHandle:(void(^)(id model,NSError *error))completion;
+
+/** 获取国内详细 */
++ (id)getDealsDetailDataWithContentId:(NSString*)contentId completionHandle:(void(^)(id model,NSError *error))completion;
+/** 获取国内详细比价信息 */
++ (id)getDealsDataPriceWithPurchaseURL:(NSString*)URL completionHandle:(void (^)(id model,NSError *error))completion;
 
 @end

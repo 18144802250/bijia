@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) NSArray *itemsName;
 
+@property (nonatomic, strong) NSArray *contros;
+
 @end
 
 @implementation WRLeftViewController
@@ -25,6 +27,20 @@
        _itemsName = @[@"全部类别",@"日用百货",@"生鲜食品",@"服饰鞋包",@"美妆个护",@"运动健康",@"数码家电",@"母婴玩具"];
     }
     return _itemsName;
+}
+
+- (NSArray *)contros {
+    if(_contros == nil) {
+        
+        NSMutableArray *arr = [NSMutableArray new];
+        for (int i = 0; i < self.itemsName.count; i++) {
+            WRCompareViewController *vc = [[WRCompareViewController alloc] initWithType:i];
+            UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
+            [arr addObject:navi];
+        }
+        _contros = [arr copy];
+    }
+    return _contros;
 }
 
 - (UITableView *)tableView {
@@ -74,11 +90,10 @@ kRemoveCellSeparator
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[[WRCompareViewController alloc] initWithType:indexPath.row]];
-    
-    [self.sideMenuViewController setContentViewController:navi animated:YES];
+    [self.sideMenuViewController setContentViewController:self.contros[indexPath.row] animated:YES];
     [self.sideMenuViewController hideMenuViewController];
 }
+
+
 
 @end

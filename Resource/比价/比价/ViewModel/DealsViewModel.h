@@ -35,5 +35,9 @@
 - (NSString *)supportWithRow:(NSInteger)row;
 /** 评论数 */
 - (NSString *)commentWithRow:(NSInteger)row;
+/** id */
+- (NSString *)idStrWithRow:(NSInteger)row;
+
+
 
 @end

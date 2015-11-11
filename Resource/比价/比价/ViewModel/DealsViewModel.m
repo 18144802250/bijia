@@ -136,7 +136,11 @@
 {
     return [NSString stringWithFormat:@"%ld",[self modelWithRow:row].comments_count];
 }
-
+/** id */
+- (NSString *)idStrWithRow:(NSInteger)row
+{
+    return [NSString stringWithFormat:@"%ld",[self modelWithRow:row].content_id];
+}
 
 
 @end

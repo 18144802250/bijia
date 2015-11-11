@@ -8,6 +8,9 @@
 
 #import "DealsNetManager.h"
 #import "DealsModel.h"
+#import "DealsDetailModel.h"
+#import "DealsPriceInfoModel.h"
+#import "NSString+WREncode.h"
 
 @implementation DealsNetManager
 //http://app.huihui.cn/deals/category.json?category=inland&with_user=1&with_merchant=1&since_time=0&max_time=0&app_version=3.3.1&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=youdao&appname=deals_app&system_version=4.4.4
@@ -64,6 +67,39 @@
     return [self GET:@"http://app.huihui.cn/deals/category.json" paramters:params completionHandle:^(id responseObj, NSError *error) {
         
         completion([DealsModel mj_objectWithKeyValues:responseObj],error);
+    }];
+}
+
++ (id)getDealsDetailDataWithContentId:(NSString *)contentId completionHandle:(void (^)(id, NSError *))completion
+{
+    NSString *path = [NSString stringWithFormat:@"http://app.huihui.cn/deals/deal/%@.json",contentId];
+    return [self GET:path paramters:@{@"with_detail":@"1"} completionHandle:^(id responseObj, NSError *error) {
+        completion([DealsDetailModel mj_objectWithKeyValues:responseObj],error);
+    }];
+}
+//http://app.huihui.cn/price_inf o.json?product_url=https%3A%2F%2Fdetail.tmall.com%2Fitem.htm%3Fid%3D522566419672%26skuId%3D3111058407674&app_version=3.3.1&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=youdao&appname=deals_app&system_version=4.4.4
+//http://app.huihui.cn/ price_info.json?product_url=https%3A%2F%2Fdetail.tmall.com%2Fitem.htm%3Fspm%3D608.7065813.ne.1.lil56w%26id%3D20878779465&app_version=3.3.1&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=youdao&appname=deals_app&system_version=4.4.4
++ (id)getDealsDataPriceWithPurchaseURL:(NSString*)URL completionHandle:(void (^)(id, NSError *))completion
+{
+    
+    NSString *purchaseUrl = [URL encodeToPercentEscapeString:URL];
+    NSString *path = [NSString stringWithFormat:@"http://app.huihui.cn/price_info.json?product_url=%@&app_version=3.3.1&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=youdao&appname=deals_app&system_version=4.4.4",purchaseUrl];
+//
+//    NSMutableDictionary *params = [NSMutableDictionary new];
+//    
+//    params[@"product_url"] = @"https%3A%2F%2Fdetail.tmall.com%2Fitem.htm%3Fspm%3D608.7065813.ne.1.lil56w%26id%3D20878779465";
+//
+//    params[@"app_version"] = @"3.3.1";
+//    params[@"platform"] = @"android";
+//    params[@"device_id"] = @"99000629739444";
+//    params[@"model"] = @"HM+NOTE+1S";
+//    params[@"vendor"] = @"youdao";
+//    params[@"appname"] = @"deals_app";
+//    params[@"system_version"] = @"4.4.4";
+    
+    return [self GET:path paramters:nil completionHandle:^(id responseObj, NSError *error) {
+        
+        completion([DealsPriceInfoModel mj_objectWithKeyValues:responseObj],error);
     }];
 }
 
