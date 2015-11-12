@@ -29,6 +29,7 @@
 		C3B3FC501BF3131500879635 /* DealsPriceInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B3FC4F1BF3131500879635 /* DealsPriceInfoModel.m */; };
 		C3B3FC531BF31E9900879635 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B3FC521BF31E9900879635 /* NSString+Extension.m */; };
 		C3B3FC591BF3647D00879635 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B3FC581BF3647D00879635 /* UIView+Extension.m */; };
+		C3CCB57E1BF42C46005A0660 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CCB57D1BF42C46005A0660 /* CommentCell.m */; };
 		C3F788861BF03DD800B48C4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F788851BF03DD800B48C4D /* main.m */; };
 		C3F788911BF03DD800B48C4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F788901BF03DD800B48C4D /* Assets.xcassets */; };
 		FD0E76D6B255495A729E3E81 /* libPods-比价.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AB0C584EE8147836C219A3 /* libPods-比价.a */; };
@@ -84,6 +85,8 @@
 		C3B3FC521BF31E9900879635 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		C3B3FC571BF3647D00879635 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		C3B3FC581BF3647D00879635 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		C3CCB57C1BF42C46005A0660 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		C3CCB57D1BF42C46005A0660 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		C3F788811BF03DD800B48C4D /* 比价.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "比价.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3F788851BF03DD800B48C4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C3F788901BF03DD800B48C4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,6 +123,8 @@
 				C376DDC11BF1E44A0027610D /* TimeView.m */,
 				C3B3FC451BF2EC4B00879635 /* DealsDetailView.h */,
 				C3B3FC461BF2EC4B00879635 /* DealsDetailView.m */,
+				C3CCB57C1BF42C46005A0660 /* CommentCell.h */,
+				C3CCB57D1BF42C46005A0660 /* CommentCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 				C376DDC81BF21F6A0027610D /* DealsDetailModel.m in Sources */,
 				C35C84A21BF0B11C005ED3B9 /* BaseModel.m in Sources */,
 				C376DDC51BF20A990027610D /* WRTool.m in Sources */,
+				C3CCB57E1BF42C46005A0660 /* CommentCell.m in Sources */,
 				C3B3FC591BF3647D00879635 /* UIView+Extension.m in Sources */,
 				C35C849F1BF096BE005ED3B9 /* WRCompareViewController.m in Sources */,
 				C3282AFE1BF0CCFC00331012 /* DealsCell.m in Sources */,

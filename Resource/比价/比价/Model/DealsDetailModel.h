@@ -50,7 +50,7 @@
 
 
 
-@interface DdealDetailDataHotCommentsModel : NSObject
+@interface DealsDetailDataHotCommentsModel : NSObject
 
 @property (nonatomic, assign) long long id;
 

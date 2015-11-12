@@ -45,7 +45,6 @@
 	if(_dealsDetailView == nil) {
 		_dealsDetailView = [[DealsDetailView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, kWindowH)];
         _dealsDetailView.bounces = NO;
-        _dealsDetailView.contentSize = CGSizeMake(0, kWindowH+200);
 	}
 	return _dealsDetailView;
 }

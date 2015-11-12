@@ -7,8 +7,9 @@
 //
 
 #import "DealsDetailView.h"
+#import "UIView+Extension.h"
 
-@interface DealsDetailView ()
+@interface DealsDetailView ()<UIWebViewDelegate>
 
 /** 头部图片 680*332 */
 @property (nonatomic, strong) UIImageView *headIcon;
@@ -21,6 +22,8 @@
 /** 热门评论 */
 @property (nonatomic, strong) UITableView *hotCommentTv;
 
+@property (nonatomic) CGFloat contentH;
+
 
 @end
 
@@ -32,6 +35,8 @@
         _headIcon.backgroundColor = [UIColor redColor];
         _headIcon.contentMode = UIViewContentModeScaleAspectFill;
         _headIcon.clipsToBounds = YES;
+        
+        [_headIcon addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:nil];
 	}
 	return _headIcon;
 }
@@ -40,7 +45,7 @@
 	if(_contentWebView == nil) {
 		_contentWebView = [[UIWebView alloc] init];
         _contentWebView.backgroundColor = [UIColor purpleColor];
-
+        _contentWebView.delegate = self;
 	}
 	return _contentWebView;
 }
@@ -55,6 +60,10 @@
 - (UITableView *)hotCommentTv {
 	if(_hotCommentTv == nil) {
 		_hotCommentTv = [[UITableView alloc] init];
+        _hotCommentTv.dataSource = self;
+        _hotCommentTv.delegate = self;
+        
+        _hotCommentTv registerClass:<#(nullable Class)#> forCellReuseIdentifier:<#(nonnull NSString *)#>
 	}
 	return _hotCommentTv;
 }
@@ -72,14 +81,9 @@
         
         [self.headIcon mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.mas_equalTo(0);
-            make.size.mas_equalTo(CGSizeMake(kWindowW, 200));
+            make.size.mas_equalTo(CGSizeMake(kWindowW, 150));
         }];
-        
-        [self.contentWebView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_headIcon.mas_bottom).mas_equalTo(0);
-            make.left.right.mas_equalTo(0);
-            make.height.mas_equalTo(400);
-        }];
+    
     }
     return self;
 }
@@ -95,13 +99,51 @@
     UIScrollView *sv = (UIScrollView*)[[_contentWebView subviews] objectAtIndex:0];
     sv.bounces = NO;
     
-    self.contentSize = CGSizeMake(0, sv.contentSize.height + _headIcon.)
 }
 
 - (void)setPm:(DealsPriceInfoDataModel *)pm
 {
     _pm = pm;
     
+    
+}
+
+#pragma mark - webView代理方法  计算webView的高度
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    CGRect frame = webView.frame;
+    frame.size.width = 768;
+    frame.size.height = 1;
+    webView.scrollView.scrollEnabled = NO;
+    webView.frame = frame;
+    _contentH = webView.scrollView.contentSize.height + 200;
+    [_contentWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_headIcon.mas_bottom).mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(_contentH);
+    }];
+    self.contentSize = CGSizeMake(0, _contentH + _headIcon.height);
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    CGFloat headHeight = _headIcon.image.size.height;
+    CGFloat headWidth = _headIcon.image.size.width;
+    CGFloat h = kWindowW/(headWidth/headHeight);
+    
+    if (h > 10) {
+        [_headIcon mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
+            make.top.left.right.mas_equalTo(0);
+            make.size.mas_equalTo(CGSizeMake(kWindowW, h));
+        }];
+        self.contentSize = CGSizeMake(0, _contentH + h);
+    }
+}
+
+- (void)dealloc
+{
+    [_headIcon removeObserver:self forKeyPath:@"image"];
     
 }
 
