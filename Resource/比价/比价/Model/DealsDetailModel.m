@@ -7,6 +7,7 @@
 //
 
 #import "DealsDetailModel.h"
+#import "NSDate+Extension.h"
 
 @implementation DealsDetailModel
 
@@ -14,7 +15,7 @@
 @implementation DealsDetailDataModel
 
 + (NSDictionary *)objectClassInArray{
-    return @{@"hot_comments" : [DdealDetailDataHotCommentsModel class]};
+    return @{@"hot_comments" : [DealsDetailDataHotCommentsModel class]};
 }
 
 - (void)setPage:(NSString *)page
@@ -31,19 +32,49 @@
     _page = [preStr stringByAppendingString:lasStr];
 }
 
+- (void)setPurchase_url:(NSString *)purchase_url
+{
+    _purchase_url = [purchase_url componentsSeparatedByString:@"purl="][1];
+}
+
 @end
 
 
 @implementation DealsDetailDataHotCommentsModel
 
-
+- (NSString *)pub_time
+{
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.dateFormat = @"EEE MMM d HH:mm:ss z yyyy";
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en-us"];
+    NSDate *publishDate = [formatter dateFromString:_pub_time];
+    
+    if ([publishDate isToday]) {
+        NSDateComponents *cmp = [publishDate intervalFromNow];
+        if (cmp.hour > 1) {
+            return [NSString stringWithFormat:@"%ld小时之前",cmp.hour];
+        } else if (cmp.minute > 1) {
+            return [NSString stringWithFormat:@"%ld分钟之前",cmp.minute];
+        } else {
+            return [NSString stringWithFormat:@"刚刚"];
+        }
+        
+    } else {
+        formatter.dateFormat = @"MM:dd HH:mm";
+        
+        return [NSString stringWithFormat:@"%@",[formatter stringFromDate:publishDate]];
+    }
+}
 
 @end
 
 
 @implementation DealsDetailDataUserModel
 
-
+- (void)setPhoto:(NSString *)photo
+{
+    _photo = [NSString stringWithFormat:@"%@.jpg",photo];
+}
 
 @end
 

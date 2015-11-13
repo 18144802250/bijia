@@ -12,4 +12,13 @@
 
 - (CGSize)textSizeWithFontMaxSize:(CGSize)size Size:(CGFloat)fontSize;
 
+
+- (NSInteger)myDays:(NSInteger)i ,...;
+
+- (NSDateComponents*)dateCmpFormStr;
+
+- (NSDate*)strToDate;
+
+- (NSInteger)daysToDate:(NSString*)dateStr;
+
 @end

@@ -24,4 +24,10 @@
 
 @implementation DealsPriceHistoryModel
 
+
 @end
+@implementation DealsPriceInfoDataOtherQuotesModel
+
+@end
+
+

@@ -8,43 +8,58 @@
 
 #import "BaseModel.h"
 
-@class DealsPriceInfoDataModel,DealsPriceHistoryModel;
-
+@class DealsPriceInfoDataModel,DealsPriceHistoryModel,DealsPriceInfoDataOtherQuotesModel;
 @interface DealsPriceInfoModel : BaseModel
 
 @property (nonatomic, copy) NSString *status;
 
 @property (nonatomic, strong) DealsPriceInfoDataModel *data;
 
+
 @end
 
 
 @interface DealsPriceInfoDataModel : NSObject
-
+/** 卖家数组 */
 @property (nonatomic, strong) NSArray *other_quotes;
-
+/** 结束时间 */
 @property (nonatomic, copy) NSString *end;
-
+/** 开始时间 */
 @property (nonatomic, copy) NSString *start;
-
+/** 历史价格数组 */
 @property (nonatomic, strong) NSArray<DealsPriceHistoryModel *> *price_history;
-
+/** 题目 */
 @property (nonatomic, copy) NSString *title;
 
 @property (nonatomic, assign) NSInteger price_trend;
-
+/** 卖家名 */
 @property (nonatomic, copy) NSString *merchant_name;
-
+/** 价格趋势描述 */
 @property (nonatomic, copy) NSString *price_trend_desc;
 
 @end
 
 
 @interface DealsPriceHistoryModel : NSObject
+/** 价格 */
+@property (nonatomic, copy) NSString *price;
+/** 时间 */
+@property (nonatomic, copy) NSString *time;
+
+@end
+
+
+@interface DealsPriceInfoDataOtherQuotesModel : NSObject
+
+@property (nonatomic, copy) NSString *purchase_url;
+
+@property (nonatomic, copy) NSString *merchant_name;
 
 @property (nonatomic, copy) NSString *price;
 
-@property (nonatomic, copy) NSString *time;
+@property (nonatomic, assign) BOOL available;
+
+@property (nonatomic, assign) BOOL recommend;
 
 @end
 

@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DealsDetailModel.h"
 
 
 @interface CommentCell : UITableViewCell
+
+@property (nonatomic, strong) DealsDetailDataHotCommentsModel *commontModel;
 
 @end

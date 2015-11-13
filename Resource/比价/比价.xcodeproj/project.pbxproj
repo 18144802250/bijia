@@ -30,6 +30,8 @@
 		C3B3FC531BF31E9900879635 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B3FC521BF31E9900879635 /* NSString+Extension.m */; };
 		C3B3FC591BF3647D00879635 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B3FC581BF3647D00879635 /* UIView+Extension.m */; };
 		C3CCB57E1BF42C46005A0660 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CCB57D1BF42C46005A0660 /* CommentCell.m */; };
+		C3CCB5811BF4354B005A0660 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CCB5801BF4354B005A0660 /* NSDate+Extension.m */; };
+		C3CCB5841BF444AC005A0660 /* PriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CCB5831BF444AC005A0660 /* PriceView.m */; };
 		C3F788861BF03DD800B48C4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F788851BF03DD800B48C4D /* main.m */; };
 		C3F788911BF03DD800B48C4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F788901BF03DD800B48C4D /* Assets.xcassets */; };
 		FD0E76D6B255495A729E3E81 /* libPods-比价.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AB0C584EE8147836C219A3 /* libPods-比价.a */; };
@@ -87,6 +89,10 @@
 		C3B3FC581BF3647D00879635 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		C3CCB57C1BF42C46005A0660 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		C3CCB57D1BF42C46005A0660 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		C3CCB57F1BF4354B005A0660 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		C3CCB5801BF4354B005A0660 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		C3CCB5821BF444AC005A0660 /* PriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceView.h; sourceTree = "<group>"; };
+		C3CCB5831BF444AC005A0660 /* PriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceView.m; sourceTree = "<group>"; };
 		C3F788811BF03DD800B48C4D /* 比价.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "比价.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3F788851BF03DD800B48C4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C3F788901BF03DD800B48C4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +131,8 @@
 				C3B3FC461BF2EC4B00879635 /* DealsDetailView.m */,
 				C3CCB57C1BF42C46005A0660 /* CommentCell.h */,
 				C3CCB57D1BF42C46005A0660 /* CommentCell.m */,
+				C3CCB5821BF444AC005A0660 /* PriceView.h */,
+				C3CCB5831BF444AC005A0660 /* PriceView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,6 +199,8 @@
 				C3B3FC521BF31E9900879635 /* NSString+Extension.m */,
 				C3B3FC571BF3647D00879635 /* UIView+Extension.h */,
 				C3B3FC581BF3647D00879635 /* UIView+Extension.m */,
+				C3CCB57F1BF4354B005A0660 /* NSDate+Extension.h */,
+				C3CCB5801BF4354B005A0660 /* NSDate+Extension.m */,
 			);
 			path = Catetory;
 			sourceTree = "<group>";
@@ -410,6 +420,7 @@
 				C3B3FC4A1BF2EE9B00879635 /* DealsDetailViewController.m in Sources */,
 				C3282B051BF0D14D00331012 /* DealsNetManager.m in Sources */,
 				C3282B041BF0D14D00331012 /* BaseNetManager.m in Sources */,
+				C3CCB5841BF444AC005A0660 /* PriceView.m in Sources */,
 				C3282B0B1BF0D41700331012 /* BaseViewModel.m in Sources */,
 				C3B3FC531BF31E9900879635 /* NSString+Extension.m in Sources */,
 				C35C84991BF08637005ED3B9 /* AppDelegate+Category.m in Sources */,
@@ -422,6 +433,7 @@
 				C3B3FC501BF3131500879635 /* DealsPriceInfoModel.m in Sources */,
 				C35C84A51BF0B130005ED3B9 /* DealsModel.m in Sources */,
 				C376DDBB1BF1C46E0027610D /* WRLeftViewController.m in Sources */,
+				C3CCB5811BF4354B005A0660 /* NSDate+Extension.m in Sources */,
 				C376DDC81BF21F6A0027610D /* DealsDetailModel.m in Sources */,
 				C35C84A21BF0B11C005ED3B9 /* BaseModel.m in Sources */,
 				C376DDC51BF20A990027610D /* WRTool.m in Sources */,

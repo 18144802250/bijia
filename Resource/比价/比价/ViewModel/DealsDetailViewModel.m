@@ -60,19 +60,4 @@
 }
 
 
-
-#pragma mark - 设置frame
-
-- (void)setDetailDataModel:(DealsDetailDataModel *)detailDataModel
-{
-    _detailDataModel = detailDataModel;
-    
-    //计算webView 的frame
-}
-
-- (void)setPriceInfoModel:(DealsPriceInfoDataModel *)priceInfoModel
-{
-    _priceInfoModel = priceInfoModel;
-    
-}
 @end

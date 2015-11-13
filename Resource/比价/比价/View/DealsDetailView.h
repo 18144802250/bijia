@@ -16,4 +16,6 @@
 
 @property (nonatomic, strong) DealsPriceInfoDataModel *pm;
 
+@property (nonatomic) CGFloat contentH;
+
 @end

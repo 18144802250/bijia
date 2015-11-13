@@ -43,7 +43,7 @@
 
 - (DealsDetailView *)dealsDetailView {
 	if(_dealsDetailView == nil) {
-		_dealsDetailView = [[DealsDetailView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, kWindowH)];
+		_dealsDetailView = [[DealsDetailView alloc] init];
         _dealsDetailView.bounces = NO;
 	}
 	return _dealsDetailView;

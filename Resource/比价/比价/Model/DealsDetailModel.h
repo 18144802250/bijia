@@ -53,9 +53,9 @@
 @interface DealsDetailDataHotCommentsModel : NSObject
 
 @property (nonatomic, assign) long long id;
-
+/** 评论 */
 @property (nonatomic, copy) NSString *comment_content;
-
+/** 发布时间 */
 @property (nonatomic, copy) NSString *pub_time;
 
 @property (nonatomic, assign) NSInteger supports_count;
@@ -68,12 +68,12 @@
 
 @property (nonatomic, copy) NSString *email;
 
-@property (nonatomic, assign) NSInteger id;
 
+/** 匿名 */
 @property (nonatomic, copy) NSString *nickname;
 
 @property (nonatomic, assign) NSInteger level;
-
+/** 头像 */
 @property (nonatomic, copy) NSString *photo;
 
 @end

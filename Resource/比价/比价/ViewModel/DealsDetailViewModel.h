@@ -24,12 +24,6 @@
 
 
 
-/* --------------- Frame ------------------  */
-/** webview的frame */
-@property (nonatomic, assign) CGRect webViewFrame;
-/** 价格趋势的frame */
-@property (nonatomic, assign) CGRect priceViewFrame;
-/** 热门评论的frame */
-@property (nonatomic, assign) CGRect hotCommentFrame;
+
 
 @end
