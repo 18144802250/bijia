@@ -31,4 +31,23 @@
     
 }
 
++ (void)addBackItemAtVC:(UIViewController *)vc
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [btn setBackgroundImage:[UIImage imageNamed:@"navigationbar_back"] forState:UIControlStateNormal];
+    
+    btn.frame = CGRectMake(0, 0, 35, 35);
+    
+    [btn bk_addEventHandler:^(id sender) {
+        [vc dismissViewControllerAnimated:YES completion:nil];
+    } forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceItem.width = -10;
+    vc.navigationItem.leftBarButtonItems = @[spaceItem,leftItem];
+    
+}
+
 @end

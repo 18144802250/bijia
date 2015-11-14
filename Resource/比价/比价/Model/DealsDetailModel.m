@@ -34,7 +34,11 @@
 
 - (void)setPurchase_url:(NSString *)purchase_url
 {
-    _purchase_url = [purchase_url componentsSeparatedByString:@"purl="][1];
+    NSArray *strArr = [purchase_url componentsSeparatedByString:@"purl="];
+    if ([purchase_url isEqualToString:@""] || strArr.count == 0) {
+        return;
+    }
+    _purchase_url = strArr[1];
 }
 
 @end

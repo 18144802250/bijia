@@ -11,6 +11,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+
+#import "UIImage+Extension.h"
+#import "UIView+Extension.h"
+#import "WRNaviTool.h"
+
 //用于存放全局宏定义 或者 静态字符串
 #import "Constants.h"
 #import <AFNetworking.h>        //Github排名第一的第三方网络请求类库，封装了系统的NSURLSession+NSOperation

@@ -32,6 +32,17 @@
 		C3CCB57E1BF42C46005A0660 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CCB57D1BF42C46005A0660 /* CommentCell.m */; };
 		C3CCB5811BF4354B005A0660 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CCB5801BF4354B005A0660 /* NSDate+Extension.m */; };
 		C3CCB5841BF444AC005A0660 /* PriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CCB5831BF444AC005A0660 /* PriceView.m */; };
+		C3F459601BF5BB160044850E /* WRTitleBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4595F1BF5BB160044850E /* WRTitleBarButton.m */; };
+		C3F459671BF5BFA70044850E /* WRSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F459661BF5BFA70044850E /* WRSearchBar.m */; };
+		C3F4596A1BF5C0880044850E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F459691BF5C0880044850E /* UIImage+Extension.m */; };
+		C3F4596E1BF5C9A20044850E /* ShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4596D1BF5C9A20044850E /* ShopModel.m */; };
+		C3F459721BF5CA280044850E /* SearchNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F459711BF5CA280044850E /* SearchNetManager.m */; };
+		C3F459761BF5CB0E0044850E /* SearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F459751BF5CB0E0044850E /* SearchViewModel.m */; };
+		C3F459791BF5CB400044850E /* ShopViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F459781BF5CB400044850E /* ShopViewModel.m */; };
+		C3F4597C1BF5D7140044850E /* WRShopListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4597B1BF5D7140044850E /* WRShopListView.m */; };
+		C3F459801BF5F68D0044850E /* WRShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4597F1BF5F68D0044850E /* WRShopViewController.m */; };
+		C3F459831BF5FB100044850E /* WRSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F459821BF5FB100044850E /* WRSearchViewController.m */; };
+		C3F459861BF6050E0044850E /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F459851BF6050E0044850E /* SearchModel.m */; };
 		C3F788861BF03DD800B48C4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F788851BF03DD800B48C4D /* main.m */; };
 		C3F788911BF03DD800B48C4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F788901BF03DD800B48C4D /* Assets.xcassets */; };
 		FD0E76D6B255495A729E3E81 /* libPods-比价.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AB0C584EE8147836C219A3 /* libPods-比价.a */; };
@@ -93,6 +104,28 @@
 		C3CCB5801BF4354B005A0660 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		C3CCB5821BF444AC005A0660 /* PriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceView.h; sourceTree = "<group>"; };
 		C3CCB5831BF444AC005A0660 /* PriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceView.m; sourceTree = "<group>"; };
+		C3F4595E1BF5BB160044850E /* WRTitleBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRTitleBarButton.h; sourceTree = "<group>"; };
+		C3F4595F1BF5BB160044850E /* WRTitleBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRTitleBarButton.m; sourceTree = "<group>"; };
+		C3F459651BF5BFA70044850E /* WRSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRSearchBar.h; sourceTree = "<group>"; };
+		C3F459661BF5BFA70044850E /* WRSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRSearchBar.m; sourceTree = "<group>"; };
+		C3F459681BF5C0880044850E /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
+		C3F459691BF5C0880044850E /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		C3F4596C1BF5C9A20044850E /* ShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopModel.h; sourceTree = "<group>"; };
+		C3F4596D1BF5C9A20044850E /* ShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopModel.m; sourceTree = "<group>"; };
+		C3F459701BF5CA280044850E /* SearchNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchNetManager.h; sourceTree = "<group>"; };
+		C3F459711BF5CA280044850E /* SearchNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchNetManager.m; sourceTree = "<group>"; };
+		C3F459741BF5CB0E0044850E /* SearchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewModel.h; sourceTree = "<group>"; };
+		C3F459751BF5CB0E0044850E /* SearchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewModel.m; sourceTree = "<group>"; };
+		C3F459771BF5CB400044850E /* ShopViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewModel.h; sourceTree = "<group>"; };
+		C3F459781BF5CB400044850E /* ShopViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewModel.m; sourceTree = "<group>"; };
+		C3F4597A1BF5D7140044850E /* WRShopListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRShopListView.h; sourceTree = "<group>"; };
+		C3F4597B1BF5D7140044850E /* WRShopListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRShopListView.m; sourceTree = "<group>"; };
+		C3F4597E1BF5F68D0044850E /* WRShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRShopViewController.h; sourceTree = "<group>"; };
+		C3F4597F1BF5F68D0044850E /* WRShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRShopViewController.m; sourceTree = "<group>"; };
+		C3F459811BF5FB100044850E /* WRSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRSearchViewController.h; sourceTree = "<group>"; };
+		C3F459821BF5FB100044850E /* WRSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRSearchViewController.m; sourceTree = "<group>"; };
+		C3F459841BF6050E0044850E /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
+		C3F459851BF6050E0044850E /* SearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
 		C3F788811BF03DD800B48C4D /* 比价.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "比价.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3F788851BF03DD800B48C4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C3F788901BF03DD800B48C4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -123,6 +156,8 @@
 		C3282AFB1BF0CCE400331012 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C3F459641BF5BE970044850E /* 搜索 */,
+				C3F4595D1BF5BAE70044850E /* 首页 */,
 				C3282AFC1BF0CCFC00331012 /* DealsCell.h */,
 				C3282AFD1BF0CCFC00331012 /* DealsCell.m */,
 				C376DDC01BF1E44A0027610D /* TimeView.h */,
@@ -140,6 +175,7 @@
 		C3282AFF1BF0D13200331012 /* NetManager */ = {
 			isa = PBXGroup;
 			children = (
+				C3F4596F1BF5CA100044850E /* 搜索 */,
 				C3282B001BF0D14D00331012 /* BaseNetManager.h */,
 				C3282B011BF0D14D00331012 /* BaseNetManager.m */,
 				C3282B021BF0D14D00331012 /* DealsNetManager.h */,
@@ -151,6 +187,7 @@
 		C35C848E1BF08602005ED3B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C3F4597D1BF5F67D0044850E /* 搜索 */,
 				C35C849D1BF096BE005ED3B9 /* WRCompareViewController.h */,
 				C35C849E1BF096BE005ED3B9 /* WRCompareViewController.m */,
 				C3B3FC481BF2EE9B00879635 /* DealsDetailViewController.h */,
@@ -164,6 +201,7 @@
 		C35C848F1BF08602005ED3B9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C3F4596B1BF5C9560044850E /* 搜索 */,
 				C35C84A01BF0B11C005ED3B9 /* BaseModel.h */,
 				C35C84A11BF0B11C005ED3B9 /* BaseModel.m */,
 				C35C84A31BF0B130005ED3B9 /* DealsModel.h */,
@@ -201,6 +239,8 @@
 				C3B3FC581BF3647D00879635 /* UIView+Extension.m */,
 				C3CCB57F1BF4354B005A0660 /* NSDate+Extension.h */,
 				C3CCB5801BF4354B005A0660 /* NSDate+Extension.m */,
+				C3F459681BF5C0880044850E /* UIImage+Extension.h */,
+				C3F459691BF5C0880044850E /* UIImage+Extension.m */,
 			);
 			path = Catetory;
 			sourceTree = "<group>";
@@ -208,6 +248,7 @@
 		C35C84951BF08602005ED3B9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C3F459731BF5CAFB0044850E /* 搜索 */,
 				C3282B061BF0D3F300331012 /* DealsViewModel.h */,
 				C3282B071BF0D3F300331012 /* DealsViewModel.m */,
 				C376DDC91BF222450027610D /* DealsDetailViewModel.h */,
@@ -243,6 +284,68 @@
 				C376DDBE1BF1C9D80027610D /* WRNaviTool.m */,
 			);
 			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		C3F4595D1BF5BAE70044850E /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				C3F4595E1BF5BB160044850E /* WRTitleBarButton.h */,
+				C3F4595F1BF5BB160044850E /* WRTitleBarButton.m */,
+			);
+			path = "首页";
+			sourceTree = "<group>";
+		};
+		C3F459641BF5BE970044850E /* 搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				C3F459651BF5BFA70044850E /* WRSearchBar.h */,
+				C3F459661BF5BFA70044850E /* WRSearchBar.m */,
+				C3F4597A1BF5D7140044850E /* WRShopListView.h */,
+				C3F4597B1BF5D7140044850E /* WRShopListView.m */,
+			);
+			path = "搜索";
+			sourceTree = "<group>";
+		};
+		C3F4596B1BF5C9560044850E /* 搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				C3F4596C1BF5C9A20044850E /* ShopModel.h */,
+				C3F4596D1BF5C9A20044850E /* ShopModel.m */,
+				C3F459841BF6050E0044850E /* SearchModel.h */,
+				C3F459851BF6050E0044850E /* SearchModel.m */,
+			);
+			path = "搜索";
+			sourceTree = "<group>";
+		};
+		C3F4596F1BF5CA100044850E /* 搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				C3F459701BF5CA280044850E /* SearchNetManager.h */,
+				C3F459711BF5CA280044850E /* SearchNetManager.m */,
+			);
+			path = "搜索";
+			sourceTree = "<group>";
+		};
+		C3F459731BF5CAFB0044850E /* 搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				C3F459741BF5CB0E0044850E /* SearchViewModel.h */,
+				C3F459751BF5CB0E0044850E /* SearchViewModel.m */,
+				C3F459771BF5CB400044850E /* ShopViewModel.h */,
+				C3F459781BF5CB400044850E /* ShopViewModel.m */,
+			);
+			path = "搜索";
+			sourceTree = "<group>";
+		};
+		C3F4597D1BF5F67D0044850E /* 搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				C3F459811BF5FB100044850E /* WRSearchViewController.h */,
+				C3F459821BF5FB100044850E /* WRSearchViewController.m */,
+				C3F4597E1BF5F68D0044850E /* WRShopViewController.h */,
+				C3F4597F1BF5F68D0044850E /* WRShopViewController.m */,
+			);
+			path = "搜索";
 			sourceTree = "<group>";
 		};
 		C3F788781BF03DD800B48C4D = {
@@ -417,23 +520,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				C376DDBF1BF1C9D80027610D /* WRNaviTool.m in Sources */,
+				C3F459761BF5CB0E0044850E /* SearchViewModel.m in Sources */,
 				C3B3FC4A1BF2EE9B00879635 /* DealsDetailViewController.m in Sources */,
 				C3282B051BF0D14D00331012 /* DealsNetManager.m in Sources */,
+				C3F459601BF5BB160044850E /* WRTitleBarButton.m in Sources */,
+				C3F459831BF5FB100044850E /* WRSearchViewController.m in Sources */,
 				C3282B041BF0D14D00331012 /* BaseNetManager.m in Sources */,
+				C3F459721BF5CA280044850E /* SearchNetManager.m in Sources */,
+				C3F4597C1BF5D7140044850E /* WRShopListView.m in Sources */,
 				C3CCB5841BF444AC005A0660 /* PriceView.m in Sources */,
 				C3282B0B1BF0D41700331012 /* BaseViewModel.m in Sources */,
 				C3B3FC531BF31E9900879635 /* NSString+Extension.m in Sources */,
 				C35C84991BF08637005ED3B9 /* AppDelegate+Category.m in Sources */,
+				C3F459791BF5CB400044850E /* ShopViewModel.m in Sources */,
 				C376DDCB1BF222450027610D /* DealsDetailViewModel.m in Sources */,
 				C3B3FC3E1BF2DB7500879635 /* NSString+WREncode.m in Sources */,
+				C3F459861BF6050E0044850E /* SearchModel.m in Sources */,
 				C3B3FC471BF2EC4B00879635 /* DealsDetailView.m in Sources */,
 				C35C84961BF08602005ED3B9 /* AppDelegate.m in Sources */,
 				C3282B081BF0D3F300331012 /* DealsViewModel.m in Sources */,
+				C3F459801BF5F68D0044850E /* WRShopViewController.m in Sources */,
+				C3F4596A1BF5C0880044850E /* UIImage+Extension.m in Sources */,
+				C3F459671BF5BFA70044850E /* WRSearchBar.m in Sources */,
 				C3F788861BF03DD800B48C4D /* main.m in Sources */,
 				C3B3FC501BF3131500879635 /* DealsPriceInfoModel.m in Sources */,
 				C35C84A51BF0B130005ED3B9 /* DealsModel.m in Sources */,
 				C376DDBB1BF1C46E0027610D /* WRLeftViewController.m in Sources */,
 				C3CCB5811BF4354B005A0660 /* NSDate+Extension.m in Sources */,
+				C3F4596E1BF5C9A20044850E /* ShopModel.m in Sources */,
 				C376DDC81BF21F6A0027610D /* DealsDetailModel.m in Sources */,
 				C35C84A21BF0B11C005ED3B9 /* BaseModel.m in Sources */,
 				C376DDC51BF20A990027610D /* WRTool.m in Sources */,

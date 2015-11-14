@@ -14,6 +14,8 @@
 #import "WRNaviTool.h"
 #import "WRTool.h"
 #import "DealsDetailViewController.h"
+#import "WRSearchViewController.h"
+#import "WRTitleBarButton.h"
 
 @interface WRCompareViewController () <UITableViewDataSource,UITableViewDelegate>
 
@@ -68,6 +70,21 @@
     [super viewDidLoad];
     
     [self.view addSubview:self.tableView];
+    
+    WRTitleBarButton *titleBtn = [WRTitleBarButton new];
+    
+#pragma mark - 点击开启全网搜索 跳转页面
+    [titleBtn bk_addEventHandler:^(id sender) {
+        
+        WRSearchViewController *vc = [WRSearchViewController standerSearchVC];
+        
+        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
+        
+        [self presentViewController:navi animated:NO completion:nil];
+        
+    } forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.titleView = titleBtn;
     
     [WRNaviTool addLeftNaviItemAtViewC:self];
     

@@ -14,4 +14,6 @@
 
 + (void)setUpNaviBar:(UINavigationController*)navi;
 
++ (void)addBackItemAtVC:(UIViewController*)vc;
+
 @end
