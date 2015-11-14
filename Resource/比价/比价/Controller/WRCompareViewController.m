@@ -78,6 +78,8 @@
         
         WRSearchViewController *vc = [WRSearchViewController standerSearchVC];
         
+        
+        
         UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
         
         [self presentViewController:navi animated:NO completion:nil];

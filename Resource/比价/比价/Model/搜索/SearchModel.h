@@ -8,12 +8,30 @@
 
 #import "BaseModel.h"
 
-@interface SearchModel : BaseModel
-/** 搜索相关商品名称 */
-@property (nonatomic, strong) NSString *name;
 
-/** 搜索相关商品链接 */
-@property (nonatomic, strong) NSString *shopUrl;
+
+@class SearchHuigoodsModel,SearchHuigoodsDataModel;
+@interface SearchModel : BaseModel
+
+@property (nonatomic, strong) SearchHuigoodsModel *huigoods;
 
 
 @end
+@interface SearchHuigoodsModel : BaseModel
+
+@property (nonatomic, copy) NSString *q;
+
+@property (nonatomic, strong) NSArray<SearchHuigoodsDataModel *> *r;
+
+@end
+
+@interface SearchHuigoodsDataModel : BaseModel
+
+@property (nonatomic, copy) NSString *lable;
+/** 搜索相关商品名称 */
+@property (nonatomic, copy) NSString *value;
+/** 搜索相关商品链接 */
+@property (nonatomic, copy) NSString *url;
+
+@end
+

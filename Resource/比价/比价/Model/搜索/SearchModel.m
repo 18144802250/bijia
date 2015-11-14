@@ -17,3 +17,21 @@
 }
 
 @end
+
+
+
+
+@implementation SearchHuigoodsModel
+
++ (NSDictionary *)objectClassInArray{
+    return @{@"r" : [SearchHuigoodsDataModel class]};
+}
+
+@end
+
+
+@implementation SearchHuigoodsDataModel
+
+@end
+
+

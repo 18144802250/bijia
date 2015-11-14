@@ -8,15 +8,15 @@
 
 #import "SearchViewModel.h"
 #import "SearchNetManager.h"
+#import "SearchModel.h"
 
 @implementation SearchViewModel
 
 - (void)getDataFromNetCompleteHandle:(CompletionHandle)completionHandle
 {
-    NSLog(@"text = %@",_textStr);
-    self.dataTask = [SearchNetManager getSearchValueWithTextStr:_textStr completionHandle:^(id model, NSError *error) {
-        
-        
+    [self.dataArr removeAllObjects];
+    self.dataTask = [SearchNetManager getSearchValueWithTextStr:_textStr completionHandle:^(SearchModel *model, NSError *error) {
+        [self.dataArr addObjectsFromArray:model.huigoods.r];
         
         completionHandle(error);
         
