@@ -8,10 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol WRSearchResultViewControllerDelegate <NSObject>
+
+@optional
+- (void)didClickedAtCellWithID:(NSString*)idStr;
+
+@end
+
+
 @interface WRSearchResultViewController : UIViewController
 
 - (instancetype)initWithQuest:(NSString*)quest;
 
 @property (nonatomic, strong) NSString *quest;
+
+@property (nonatomic, strong) id <WRSearchResultViewControllerDelegate> delegate;
 
 @end

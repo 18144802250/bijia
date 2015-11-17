@@ -14,8 +14,9 @@
 #import "SearchViewModel.h"
 #import "SearchModel.h"
 #import "WRSearchResultViewController.h"
+#import "WRShopPriceViewController.h"
 
-@interface WRSearchViewController () <UITableViewDataSource,UITableViewDelegate,WRShopListViewDelegate>
+@interface WRSearchViewController () <UITableViewDataSource,UITableViewDelegate,WRShopListViewDelegate,WRSearchResultViewControllerDelegate>
 
 @property (nonatomic, strong) WRSearchBar *searchBar;
 
@@ -50,12 +51,16 @@ static WRSearchViewController *searchVC = nil;
             
             WRSearchResultViewController *srVC = [[WRSearchResultViewController alloc] initWithQuest:_searchBar.text];
             
+            srVC.delegate = self;
+            
             [self.view addSubview:srVC.view];
             [srVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(UIEdgeInsetsMake(64, 0, 0, 0));
             }];
             _srVC = srVC;
+            //添加历史记录
             [self.historyArr addObject:_searchBar.text];
+            
 
         } forControlEvents:UIControlEventEditingDidEndOnExit];
         _searchBar = searchBar;
@@ -132,7 +137,7 @@ static WRSearchViewController *searchVC = nil;
     [super viewDidLoad];
     
     //添加返回item
-    [WRNaviTool addBackItemAtVC:self];
+    [self addBackItem];
     
     //添加搜索框
     [self addSearchBar];
@@ -151,6 +156,28 @@ static WRSearchViewController *searchVC = nil;
     }];
     //添加键盘弹起时 返回原界面
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardGetUp:) name:UIKeyboardWillShowNotification object:nil];
+    
+}
+
+#pragma mark -添加导航栏返回按钮
+
+- (void)addBackItem
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [btn setBackgroundImage:[UIImage imageNamed:@"navigationbar_back"] forState:UIControlStateNormal];
+    
+    btn.frame = CGRectMake(0, 0, 35, 35);
+    
+    [btn bk_addEventHandler:^(id sender) {
+        [_srVC.view removeFromSuperview];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceItem.width = -10;
+    self.navigationItem.leftBarButtonItems = @[spaceItem,leftItem];
     
 }
 
@@ -255,12 +282,17 @@ static WRSearchViewController *searchVC = nil;
     
 }
 
-#pragma mark - 点击历史记录Cell时
+#pragma mark - 点击历史记录Cell时 跳转到新SearchResultView 把键盘隐藏 把点击的
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     SearchHuigoodsDataModel *model = self.searchArr[indexPath.row];
+    
     WRSearchResultViewController *srVC = [[WRSearchResultViewController alloc] initWithQuest:model.value];
-
+    
+    srVC.delegate = self;
+    
     [self.view addSubview:srVC.view];
     [srVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsMake(64, 0, 0, 0));
@@ -315,11 +347,11 @@ static WRSearchViewController *searchVC = nil;
     
     self.searchArr = nil;
     
-    [_srVC.view removeFromSuperview];
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
+
+
 
 #pragma mark - 监听当键盘弹起时 把搜索结果页面remove
 - (void)keyboardGetUp:(NSNotification*)noti
@@ -327,6 +359,13 @@ static WRSearchViewController *searchVC = nil;
     [_srVC.view removeFromSuperview];
 }
 
-
+#pragma mark - WRSearchResultViewControllerDelegate 点击Cell 跳转详细页面
+- (void)didClickedAtCellWithID:(NSString *)idStr
+{
+    WRShopPriceViewController *spVC = [[WRShopPriceViewController alloc] initWithID:idStr];
+    spVC.title = @"商家比价";
+    
+    [self.navigationController pushViewController:spVC animated:YES];
+}
 
 @end

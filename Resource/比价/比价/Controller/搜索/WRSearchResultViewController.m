@@ -9,6 +9,7 @@
 #import "WRSearchResultViewController.h"
 #import "SearchResultCell.h"
 #import "SearchResultViewModel.h"
+#import "WRShopPriceViewController.h"
 
 @interface WRSearchResultViewController () <UITableViewDataSource,UITableViewDelegate>
 
@@ -106,6 +107,19 @@
     cell.resultModel = self.sResultVM.dataArr[indexPath.row];
     
     return cell;
+}
+
+#pragma mark - tableViewDelegate 点击Cell
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    SearchResultDataItemsModel *itemModel = self.sResultVM.dataArr[indexPath.row];
+    
+//    if ([_delegate respondsToSelector:@selector(didClickedAtCellWithID:)]) {
+        [_delegate didClickedAtCellWithID:itemModel.ID];
+//    }
+    
 }
 
 @end

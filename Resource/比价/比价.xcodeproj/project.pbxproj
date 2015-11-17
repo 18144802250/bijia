@@ -33,6 +33,9 @@
 		C3B3FC501BF3131500879635 /* DealsPriceInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B3FC4F1BF3131500879635 /* DealsPriceInfoModel.m */; };
 		C3B3FC531BF31E9900879635 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B3FC521BF31E9900879635 /* NSString+Extension.m */; };
 		C3B3FC591BF3647D00879635 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B3FC581BF3647D00879635 /* UIView+Extension.m */; };
+		C3B91A601BF9B30A006C3056 /* SearchDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B91A5F1BF9B30A006C3056 /* SearchDetailModel.m */; };
+		C3B91A631BF9B802006C3056 /* ItemsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B91A621BF9B802006C3056 /* ItemsCell.m */; };
+		C3B91AF21BF9F100006C3056 /* WRShopPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B91AF11BF9F100006C3056 /* WRShopPriceViewController.m */; };
 		C3CCB57E1BF42C46005A0660 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CCB57D1BF42C46005A0660 /* CommentCell.m */; };
 		C3CCB5811BF4354B005A0660 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CCB5801BF4354B005A0660 /* NSDate+Extension.m */; };
 		C3CCB5841BF444AC005A0660 /* PriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CCB5831BF444AC005A0660 /* PriceView.m */; };
@@ -110,6 +113,12 @@
 		C3B3FC521BF31E9900879635 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		C3B3FC571BF3647D00879635 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		C3B3FC581BF3647D00879635 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		C3B91A5E1BF9B30A006C3056 /* SearchDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDetailModel.h; sourceTree = "<group>"; };
+		C3B91A5F1BF9B30A006C3056 /* SearchDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDetailModel.m; sourceTree = "<group>"; };
+		C3B91A611BF9B802006C3056 /* ItemsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsCell.h; sourceTree = "<group>"; };
+		C3B91A621BF9B802006C3056 /* ItemsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsCell.m; sourceTree = "<group>"; };
+		C3B91AF01BF9F100006C3056 /* WRShopPriceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRShopPriceViewController.h; sourceTree = "<group>"; };
+		C3B91AF11BF9F100006C3056 /* WRShopPriceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRShopPriceViewController.m; sourceTree = "<group>"; };
 		C3CCB57C1BF42C46005A0660 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		C3CCB57D1BF42C46005A0660 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		C3CCB57F1BF4354B005A0660 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
@@ -316,6 +325,8 @@
 				C3F4597B1BF5D7140044850E /* WRShopListView.m */,
 				C3ADED131BF70AEC006E00BB /* SearchResultCell.h */,
 				C3ADED141BF70AEC006E00BB /* SearchResultCell.m */,
+				C3B91A611BF9B802006C3056 /* ItemsCell.h */,
+				C3B91A621BF9B802006C3056 /* ItemsCell.m */,
 			);
 			path = "搜索";
 			sourceTree = "<group>";
@@ -329,6 +340,8 @@
 				C3F459851BF6050E0044850E /* SearchModel.m */,
 				C3ADED101BF7085F006E00BB /* SearchResultModel.h */,
 				C3ADED111BF7085F006E00BB /* SearchResultModel.m */,
+				C3B91A5E1BF9B30A006C3056 /* SearchDetailModel.h */,
+				C3B91A5F1BF9B30A006C3056 /* SearchDetailModel.m */,
 			);
 			path = "搜索";
 			sourceTree = "<group>";
@@ -364,6 +377,8 @@
 				C3F4597F1BF5F68D0044850E /* WRShopViewController.m */,
 				C3ADED191BF713DD006E00BB /* WRSearchResultViewController.h */,
 				C3ADED1A1BF713DD006E00BB /* WRSearchResultViewController.m */,
+				C3B91AF01BF9F100006C3056 /* WRShopPriceViewController.h */,
+				C3B91AF11BF9F100006C3056 /* WRShopPriceViewController.m */,
 			);
 			path = "搜索";
 			sourceTree = "<group>";
@@ -566,16 +581,19 @@
 				C3F459671BF5BFA70044850E /* WRSearchBar.m in Sources */,
 				C3F788861BF03DD800B48C4D /* main.m in Sources */,
 				C3B3FC501BF3131500879635 /* DealsPriceInfoModel.m in Sources */,
+				C3B91AF21BF9F100006C3056 /* WRShopPriceViewController.m in Sources */,
 				C35C84A51BF0B130005ED3B9 /* DealsModel.m in Sources */,
 				C3ADED181BF7112D006E00BB /* SearchResultViewModel.m in Sources */,
 				C376DDBB1BF1C46E0027610D /* WRLeftViewController.m in Sources */,
 				C3CCB5811BF4354B005A0660 /* NSDate+Extension.m in Sources */,
 				C3F4596E1BF5C9A20044850E /* ShopModel.m in Sources */,
+				C3B91A601BF9B30A006C3056 /* SearchDetailModel.m in Sources */,
 				C376DDC81BF21F6A0027610D /* DealsDetailModel.m in Sources */,
 				C35C84A21BF0B11C005ED3B9 /* BaseModel.m in Sources */,
 				C376DDC51BF20A990027610D /* WRTool.m in Sources */,
 				C3ADED151BF70AEC006E00BB /* SearchResultCell.m in Sources */,
 				C3CCB57E1BF42C46005A0660 /* CommentCell.m in Sources */,
+				C3B91A631BF9B802006C3056 /* ItemsCell.m in Sources */,
 				C3B3FC591BF3647D00879635 /* UIView+Extension.m in Sources */,
 				C35C849F1BF096BE005ED3B9 /* WRCompareViewController.m in Sources */,
 				C3282AFE1BF0CCFC00331012 /* DealsCell.m in Sources */,

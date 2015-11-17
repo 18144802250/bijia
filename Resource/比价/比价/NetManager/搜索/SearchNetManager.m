@@ -10,6 +10,7 @@
 #import "ShopModel.h"
 #import "SearchModel.h"
 #import "SearchResultModel.h"
+#import "SearchDetailModel.h"
 
 @implementation SearchNetManager
 
@@ -50,11 +51,13 @@
         str = [str stringByReplacingCharactersInRange:range withString:@"\"r\""];
         str = [str stringByReplacingOccurrencesOfString:@");" withString:@"}"];
         str = [str stringByReplacingOccurrencesOfString:@"\\" withString:@""];
-
+        
         NSData *strData = [str dataUsingEncoding:NSUTF8StringEncoding];
         
-        id jsonData = [NSJSONSerialization JSONObjectWithData:strData options:NSJSONReadingMutableLeaves|NSJSONReadingMutableContainers|NSJSONReadingAllowFragments error:&error];
+        id jsonData = [NSJSONSerialization JSONObjectWithData:strData options:NSJSONReadingMutableLeaves|NSJSONReadingMutableContainers|NSJSONReadingAllowFragments error:nil];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
+             
             completion([SearchModel mj_objectWithKeyValues:jsonData],error);
         });
         
@@ -73,6 +76,15 @@
     return [self GET:path paramters:nil completionHandle:^(id responseObj, NSError *error) {
         
         completion([SearchResultModel mj_objectWithKeyValues:responseObj],error);
+    }];
+}
+
++ (id)getItemsPriceWithID:(NSString *)idStr completionHandle:(void (^)(id, NSError *))completion
+{
+    NSString *path = [NSString stringWithFormat:@"http://app.huihui.cn/m/detail.json?id=%@&app_version=3.4.1&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=youdao&appname=deals_app&system_version=4.4.4",idStr];
+    return [self GET:path paramters:nil completionHandle:^(id responseObj, NSError *error) {
+        
+        completion([SearchDetailModel mj_objectWithKeyValues:responseObj],error);
     }];
 }
 

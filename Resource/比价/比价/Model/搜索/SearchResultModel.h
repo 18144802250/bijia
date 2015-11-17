@@ -30,7 +30,7 @@
 
 /** 商家数 */
 @property (nonatomic, assign) NSInteger merchant_count;
-
+/** 通过ID进入商家比价页面 */
 @property (nonatomic, copy) NSString *ID;
 /** 价格 */
 @property (nonatomic, copy) NSString *price;

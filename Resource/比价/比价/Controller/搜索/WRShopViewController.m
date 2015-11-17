@@ -46,5 +46,13 @@
     [SVProgressHUD dismiss];
 }
 
+#pragma mark - viewDisAppear 页面消失时把加载框停掉
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [SVProgressHUD dismiss];
+}
+
 
 @end

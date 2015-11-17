@@ -19,5 +19,7 @@
 /** 根据搜索的值 返回商品列表 */
 + (id)getSearchResultWithQuest:(NSString*)quest page:(NSInteger)page completionHandle:(void(^)(id model,NSError *error))completion;
 
+/** 根据商品ID 返回各电商的价格 */
++ (id)getItemsPriceWithID:(NSString*)idStr completionHandle:(void(^)(id model,NSError *error))completion;
 
 @end
