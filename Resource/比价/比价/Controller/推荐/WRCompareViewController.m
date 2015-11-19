@@ -156,7 +156,6 @@ kRemoveCellSeparator
     
     DealsDetailViewController *vc = [[DealsDetailViewController alloc] initWithIdStr:[self.dealsVM idStrWithRow:indexPath.row]];
     
-//    [self presentViewController:vc animated:YES completion:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
