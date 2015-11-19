@@ -24,7 +24,9 @@ typedef NS_ENUM(NSUInteger, CategoryType) {
     /** 数码家电 */
     CategoryTypeDigital,
     /** 母婴玩具 */
-    CategoryTypeBaby
+    CategoryTypeBaby,
+    /** 商品图片列表 */
+    CategoryTypeGoodlist
 };
 
 @interface DealsNetManager : BaseNetManager

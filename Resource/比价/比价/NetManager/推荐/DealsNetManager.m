@@ -10,11 +10,12 @@
 #import "DealsModel.h"
 #import "DealsDetailModel.h"
 #import "DealsPriceInfoModel.h"
+#import "GoodListModel.h"
 #import "NSString+WREncode.h"
 
 @implementation DealsNetManager
 //http://app.huihui.cn/deals/category.json?category=inland&with_user=1&with_merchant=1&since_time=0&max_time=0&app_version=3.3.1&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=youdao&appname=deals_app&system_version=4.4.4
-
+//http://app.huihui.cn/deals/category.json?category=goods_list&with_user=1&with_merchant=1&since_time=0&max_time=0&app_version=3.4.1&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=youdao&appname=deals_app&system_version=4.4.4
 
 + (id)getDealsDataWithType:(CategoryType)type Sec:(NSString *)secStr completionHandle:(void (^)(id, NSError *))completion
 {
@@ -45,6 +46,9 @@
         case CategoryTypeBaby:
             params[@"category"] = @"baby";
             break;
+        case CategoryTypeGoodlist:
+            params[@"category"] = @"goods_list";
+            break;
 
         default:
             NSAssert1(NO, @"%s 请输入类别", __FUNCTION__);
@@ -65,7 +69,10 @@
     params[@"system_version"] = @"4.4.4";
     
     return [self GET:@"http://app.huihui.cn/deals/category.json" paramters:params completionHandle:^(id responseObj, NSError *error) {
-        
+        if (type == CategoryTypeGoodlist) {
+            completion([GoodListModel mj_objectWithKeyValues:responseObj],error);
+            return;
+        }
         completion([DealsModel mj_objectWithKeyValues:responseObj],error);
     }];
 }

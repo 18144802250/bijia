@@ -15,6 +15,7 @@ pod 'SDWebImage'
 pod 'SVProgressHUD'
 pod 'Shimmer'
 pod 'RESideMenu'
+pod 'WMPageController'
 
 end
 

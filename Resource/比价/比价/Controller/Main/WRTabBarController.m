@@ -12,6 +12,7 @@
 #import "WRCommendViewController.h"
 #import "WRSearchViewController.h"
 #import "WRTipViewController.h"
+#import "WRSettingViewController.h"
 
 @interface WRTabBarController ()
 
@@ -44,11 +45,17 @@
     
     //搜索
     WRSearchViewController *searchVC = [WRSearchViewController new];
+    
     [self setUpOneVCWithVC:searchVC title:@"搜索" image:nil selectedImage:nil];
     
     //贴士
     WRTipViewController *tipVC = [WRTipViewController new];
+    
     [self setUpOneVCWithVC:tipVC title:@"贴士" image:nil selectedImage:nil];
+    //设置
+    WRSettingViewController *settingVC = [WRSettingViewController new];
+    [self setUpOneVCWithVC:settingVC title:@"设置" image:nil selectedImage:nil];
+    
 }
 
 - (void)setUpOneVCWithVC:(UIViewController*)vc title:(NSString*)title image:(UIImage*)image selectedImage:(UIImage*)selectedImage
@@ -58,6 +65,12 @@
     vc.tabBarItem.image = image;
     
     vc.tabBarItem.selectedImage = selectedImage;
+    
+    if (![vc isKindOfClass:[RESideMenu class]]) {
+        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self addChildViewController:navi];
+        return;
+    }
     
     [self addChildViewController:vc];
 }

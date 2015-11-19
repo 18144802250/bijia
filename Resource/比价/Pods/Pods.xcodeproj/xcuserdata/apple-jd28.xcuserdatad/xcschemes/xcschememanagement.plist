@@ -59,20 +59,20 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>WMPageController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0D8390BD1610E4CE9B866B6917F1389F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>12E2BC28C62976C425F4B71C2723F0B1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>39E2226AE71D5FF5A6E3E8C2D1BC96DF</key>
+		<key>17720AB272B979944D6127F5C2236FBB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +82,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>508989B38FF6A8AE617288103CC665DB</key>
+		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
+		<key>72A25D55416E7D235B1E5EE657E141B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,7 +102,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CD5AC6C00D2CE1D18955E0EE9726391B</key>
+		<key>B3488752DEB1362B733D5465CEE013AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C705ADDE3EE637810A485F51FCB8EF20</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +117,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F26E2846F5C9DF23E1D04EA801A2344E</key>
+		<key>F807998E49248DBC819F6815459B722A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FE4B44732B80B5A6418A52061D272752</key>
 		<dict>
 			<key>primary</key>
 			<true/>

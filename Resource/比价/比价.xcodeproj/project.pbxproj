@@ -24,6 +24,10 @@
 		C35BCC941BFD6AE3005561AF /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC931BFD6AE3005561AF /* CommentCell.m */; };
 		C35BCC981BFD6BF2005561AF /* WRTipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC971BFD6BF2005561AF /* WRTipViewController.m */; };
 		C35BCC9B1BFD6D0C005561AF /* WRCommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC9A1BFD6D0C005561AF /* WRCommendViewController.m */; };
+		C35BCC9F1BFD786C005561AF /* WRSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC9E1BFD786C005561AF /* WRSettingViewController.m */; };
+		C35BCCA31BFD7A8A005561AF /* CommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCCA21BFD7A8A005561AF /* CommendViewController.m */; };
+		C35BCCA61BFD7D32005561AF /* GoodListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCCA51BFD7D32005561AF /* GoodListModel.m */; };
+		C35BCCAA1BFDA7B8005561AF /* TipListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCCA91BFDA7B8005561AF /* TipListModel.m */; };
 		C35C84961BF08602005ED3B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C35C84931BF08602005ED3B9 /* AppDelegate.m */; };
 		C35C84991BF08637005ED3B9 /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = C35C84981BF08637005ED3B9 /* AppDelegate+Category.m */; };
 		C35C84A21BF0B11C005ED3B9 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C35C84A11BF0B11C005ED3B9 /* BaseModel.m */; };
@@ -99,6 +103,14 @@
 		C35BCC971BFD6BF2005561AF /* WRTipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRTipViewController.m; sourceTree = "<group>"; };
 		C35BCC991BFD6D0C005561AF /* WRCommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCommendViewController.h; sourceTree = "<group>"; };
 		C35BCC9A1BFD6D0C005561AF /* WRCommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCommendViewController.m; sourceTree = "<group>"; };
+		C35BCC9D1BFD786C005561AF /* WRSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRSettingViewController.h; sourceTree = "<group>"; };
+		C35BCC9E1BFD786C005561AF /* WRSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRSettingViewController.m; sourceTree = "<group>"; };
+		C35BCCA11BFD7A8A005561AF /* CommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommendViewController.h; sourceTree = "<group>"; };
+		C35BCCA21BFD7A8A005561AF /* CommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommendViewController.m; sourceTree = "<group>"; };
+		C35BCCA41BFD7D32005561AF /* GoodListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodListModel.h; sourceTree = "<group>"; };
+		C35BCCA51BFD7D32005561AF /* GoodListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodListModel.m; sourceTree = "<group>"; };
+		C35BCCA81BFDA7B8005561AF /* TipListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipListModel.h; sourceTree = "<group>"; };
+		C35BCCA91BFDA7B8005561AF /* TipListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipListModel.m; sourceTree = "<group>"; };
 		C35C84921BF08602005ED3B9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C35C84931BF08602005ED3B9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C35C84971BF08637005ED3B9 /* AppDelegate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Category.h"; sourceTree = "<group>"; };
@@ -229,6 +241,8 @@
 				C35BCC6B1BFD6A31005561AF /* DealsDetailViewController.m */,
 				C35BCC991BFD6D0C005561AF /* WRCommendViewController.h */,
 				C35BCC9A1BFD6D0C005561AF /* WRCommendViewController.m */,
+				C35BCCA11BFD7A8A005561AF /* CommendViewController.h */,
+				C35BCCA21BFD7A8A005561AF /* CommendViewController.m */,
 			);
 			path = "推荐";
 			sourceTree = "<group>";
@@ -262,6 +276,8 @@
 				C35BCC7F1BFD6A9C005561AF /* DealsModel.m */,
 				C35BCC801BFD6A9C005561AF /* DealsPriceInfoModel.h */,
 				C35BCC811BFD6A9C005561AF /* DealsPriceInfoModel.m */,
+				C35BCCA41BFD7D32005561AF /* GoodListModel.h */,
+				C35BCCA51BFD7D32005561AF /* GoodListModel.m */,
 			);
 			path = "推荐";
 			sourceTree = "<group>";
@@ -292,9 +308,28 @@
 			path = "贴士";
 			sourceTree = "<group>";
 		};
+		C35BCC9C1BFD785B005561AF /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+				C35BCC9D1BFD786C005561AF /* WRSettingViewController.h */,
+				C35BCC9E1BFD786C005561AF /* WRSettingViewController.m */,
+			);
+			path = "设置";
+			sourceTree = "<group>";
+		};
+		C35BCCA71BFDA794005561AF /* 贴士 */ = {
+			isa = PBXGroup;
+			children = (
+				C35BCCA81BFDA7B8005561AF /* TipListModel.h */,
+				C35BCCA91BFDA7B8005561AF /* TipListModel.m */,
+			);
+			path = "贴士";
+			sourceTree = "<group>";
+		};
 		C35C848E1BF08602005ED3B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C35BCC9C1BFD785B005561AF /* 设置 */,
 				C35BCC951BFD6BC1005561AF /* 贴士 */,
 				C35BCC691BFD6A31005561AF /* 推荐 */,
 				C35BCC651BFD6890005561AF /* Main */,
@@ -308,6 +343,7 @@
 		C35C848F1BF08602005ED3B9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C35BCCA71BFDA794005561AF /* 贴士 */,
 				C35BCC7B1BFD6A9C005561AF /* 推荐 */,
 				C3F4596B1BF5C9560044850E /* 搜索 */,
 				C35C84A01BF0B11C005ED3B9 /* BaseModel.h */,
@@ -669,11 +705,13 @@
 				C35BCC9B1BFD6D0C005561AF /* WRCommendViewController.m in Sources */,
 				C35BCC821BFD6A9C005561AF /* DealsDetailModel.m in Sources */,
 				C35BCC681BFD68B6005561AF /* WRTabBarController.m in Sources */,
+				C35BCCA31BFD7A8A005561AF /* CommendViewController.m in Sources */,
 				C35BCC941BFD6AE3005561AF /* CommentCell.m in Sources */,
 				C3ADED1B1BF713DD006E00BB /* WRSearchResultViewController.m in Sources */,
 				C3B3FC531BF31E9900879635 /* NSString+Extension.m in Sources */,
 				C35BCC831BFD6A9C005561AF /* DealsModel.m in Sources */,
 				C35C84991BF08637005ED3B9 /* AppDelegate+Category.m in Sources */,
+				C35BCCA61BFD7D32005561AF /* GoodListModel.m in Sources */,
 				C3F459791BF5CB400044850E /* ShopViewModel.m in Sources */,
 				C3B3FC3E1BF2DB7500879635 /* NSString+WREncode.m in Sources */,
 				C3F459861BF6050E0044850E /* SearchModel.m in Sources */,
@@ -687,12 +725,14 @@
 				C3B91AF21BF9F100006C3056 /* WRShopPriceViewController.m in Sources */,
 				C35BCC761BFD6A5C005561AF /* DealsViewModel.m in Sources */,
 				C35BCC6E1BFD6A31005561AF /* DealsDetailViewController.m in Sources */,
+				C35BCC9F1BFD786C005561AF /* WRSettingViewController.m in Sources */,
 				C3ADED181BF7112D006E00BB /* SearchResultViewModel.m in Sources */,
 				C35BCC751BFD6A5C005561AF /* DealsDetailViewModel.m in Sources */,
 				C376DDBB1BF1C46E0027610D /* WRLeftViewController.m in Sources */,
 				C3CCB5811BF4354B005A0660 /* NSDate+Extension.m in Sources */,
 				C3F4596E1BF5C9A20044850E /* ShopModel.m in Sources */,
 				C3B91A601BF9B30A006C3056 /* SearchDetailModel.m in Sources */,
+				C35BCCAA1BFDA7B8005561AF /* TipListModel.m in Sources */,
 				C35C84A21BF0B11C005ED3B9 /* BaseModel.m in Sources */,
 				C35BCC8E1BFD6ABF005561AF /* DealsCell.m in Sources */,
 				C376DDC51BF20A990027610D /* WRTool.m in Sources */,
