@@ -113,7 +113,9 @@
     CGFloat w = kWindowW - 2*10;
     CGFloat h = kWindowH - 2*100;
     WRCompareView *compareView = [WRCompareView showInRect:CGRectMake(10, 100, w, h)];
-  
+    
+    compareView.siteName = _siteName;
+    
     compareView.piDataModel = _piDataModel;
     
     compareView.sdDataModel = _sdDataModel;

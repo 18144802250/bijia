@@ -48,6 +48,7 @@
 - (UIButton *)avibtn {
     if(_avibtn == nil) {
         _avibtn = [[UIButton alloc] init];
+        _avibtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:_avibtn];
     }
     return _avibtn;
@@ -56,6 +57,7 @@
 - (UILabel *)titleLb {
     if(_titleLb == nil) {
         _titleLb = [[UILabel alloc] init];
+        _titleLb.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:_titleLb];
     }
     return _titleLb;
@@ -65,6 +67,7 @@
     if(_priceLb == nil) {
         _priceLb = [[UILabel alloc] init];
         _priceLb.textAlignment = NSTextAlignmentCenter;
+        _titleLb.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:_priceLb];
     }
     return _priceLb;
@@ -150,20 +153,28 @@
 
 @implementation ShopPriceListView
 
++ (instancetype)viewInRect:(CGRect)frame
+{
+    ShopPriceListView *sp = [[ShopPriceListView alloc] initWithFrame:frame];
+    
+    return sp;
+}
+
 - (UITableView *)tableView {
     if(_tableView == nil) {
         _tableView = [[UITableView alloc] init];
+        _tableView.backgroundColor = [UIColor purpleColor];
         _tableView.dataSource = self;
         _tableView.delegate = self;
     }
     return _tableView;
 }
+
+
 #pragma mark -初始化 添加tableView到View上
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        
-        self.backgroundColor = [UIColor yellowColor];
         
         [self addSubview:self.tableView];
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -182,8 +193,20 @@
 #pragma mark - 重新构建数组 根据是否缺货排序
 - (void)setShopPriceArr:(NSArray *)shopPriceArr
 {
+    _shopPriceArr = shopPriceArr;
     
-    NSMutableArray *arr = [NSMutableArray arrayWithArray:shopPriceArr];
+    NSMutableArray *arr = [shopPriceArr mutableCopy];
+    
+    //是否是compareView点击进来的 如果是 删除对应的商品名
+    if (_isCompareView) {
+        for (SearchDetailDataItemsModel *model in arr) {
+            if ([model.site_name isEqualToString:_siteName]) {
+                [arr removeObject:model];
+                break;
+            }
+        }
+    }
+    
     //根据是否缺货排序
     int arrCount = (int)arr.count;
     int count = -1;
@@ -209,8 +232,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //+1个Cell
-    return self.shopPriceArr.count;
+    
+    NSInteger rowNumber = _shopPriceArr.count;
+    return rowNumber;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -236,5 +260,7 @@
     }
     
 }
+
+
 
 @end

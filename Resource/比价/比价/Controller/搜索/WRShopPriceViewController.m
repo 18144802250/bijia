@@ -79,9 +79,7 @@
         
         self.resultModel = model.data;
         
-    
         _headerView.dataModel = model.data;
-        
         
         _listView.sdModel = model.data;
     }];
@@ -115,6 +113,7 @@
     NSString *purUrlStr = itemModel.purchase_url;
     vc.URL = [NSURL URLWithString:purUrlStr];
     vc.purchaseURL = [purUrlStr stringByReplacingOccurrencesOfString:@"/proxy?purl=" withString:@""];
+    vc.siteName = itemModel.site_name;
     vc.sdDataModel = _resultModel;
     vc.title = itemModel.site_name;
     [self.navigationController pushViewController:vc animated:YES];

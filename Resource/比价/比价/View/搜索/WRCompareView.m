@@ -18,8 +18,6 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
-@property (nonatomic, strong) ShopPriceListView *spListView;
-
 @property (nonatomic, strong) UIButton *collectBtn;
 
 @property (nonatomic, assign) CGFloat contentH;
@@ -93,16 +91,7 @@
             make.bottom.mas_equalTo(_collectBtn.mas_top).mas_equalTo(-3);
             make.left.right.mas_equalTo(0);
         }];
-        
-        _contentH = 120;
-        //添加商家比价图 ShopPriceListView 需要数据 SearchDetailDataModel 的items
-        ShopPriceListView *spListView = [ShopPriceListView new];
-        
-        [_scrollView addSubview:spListView];
-        [spListView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(120, 0, 0, 0));
-        }];
-        _spListView = spListView;
+
     }
     return self;
 }
@@ -129,14 +118,23 @@
 - (void)setSdDataModel:(SearchDetailDataModel *)sdDataModel
 {
     _sdDataModel = sdDataModel;
-        //设置listView时 把scrollView的contentSize设置
-    NSUInteger count = sdDataModel.items.count;
-    CGFloat tableH = count*33;
-    _contentH += tableH;
     
+    
+    NSUInteger count = sdDataModel.items.count - 1;
+    CGFloat tableH = count*44;
+    //添加商家比价图 ShopPriceListView 需要数据 SearchDetailDataModel 的items
+    ShopPriceListView *spListView = [ShopPriceListView viewInRect:CGRectMake(0, self.width/1.8, self.width, tableH)];
+    spListView.isCompareView = YES;
+    spListView.backgroundColor = [UIColor purpleColor];
+    [_scrollView addSubview:spListView];
+    
+
+    //设置listView时 把scrollView的contentSize设置
+    _contentH = self.width/1.8+tableH;
+    spListView.siteName = _siteName;
     _scrollView.contentSize = CGSizeMake(0, _contentH);
-    _spListView.sdModel = sdDataModel;
     
+    spListView.sdModel = sdDataModel;
 }
 
 

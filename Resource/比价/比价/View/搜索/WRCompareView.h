@@ -18,4 +18,7 @@
 @property (nonatomic, strong) DealsPriceInfoDataModel *piDataModel;
 @property (nonatomic, strong) SearchDetailDataModel *sdDataModel;
 
+/** 商家名 */
+@property (nonatomic, strong) NSString *siteName;
+
 @end

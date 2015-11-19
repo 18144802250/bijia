@@ -19,10 +19,14 @@
 @class SearchDetailDataModel;
 @interface ShopPriceListView : UIView
 
++ (instancetype)viewInRect:(CGRect)frame;
+
 @property (nonatomic, strong) SearchDetailDataModel *sdModel;
 
 @property (nonatomic, strong) id <ShopPriceListViewDelegate> delegate;
-/** 是否是compareView 如果是，把自己*/
+/** 是否是compareView 如果是，把对应的商家名去掉*/
 @property (nonatomic, assign) BOOL isCompareView;
+/** 商家名 */
+@property (nonatomic, strong) NSString *siteName;
 
 @end

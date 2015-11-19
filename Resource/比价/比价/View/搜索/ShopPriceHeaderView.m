@@ -26,6 +26,8 @@
 
 @implementation ShopPriceHeaderView
 
+
+
 - (UIImageView *)iconIV {
     if(_iconIV == nil) {
         _iconIV = [[UIImageView alloc] init];
