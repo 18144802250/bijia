@@ -7,7 +7,7 @@
 //
 
 #import "WRLeftViewController.h"
-#import "WRCompareViewController.h"
+#import "WRCommendViewController.h"
 
 @interface WRLeftViewController () <UITableViewDataSource,UITableViewDelegate>
 
@@ -34,7 +34,7 @@
         
         NSMutableArray *arr = [NSMutableArray new];
         for (int i = 0; i < self.itemsName.count; i++) {
-            WRCompareViewController *vc = [[WRCompareViewController alloc] initWithType:i];
+            WRCommendViewController *vc = [[WRCommendViewController alloc] initWithType:i];
             UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
             [arr addObject:navi];
         }

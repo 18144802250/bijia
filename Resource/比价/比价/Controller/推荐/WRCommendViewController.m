@@ -1,14 +1,12 @@
-
-
 //
-//  WRCompareViewController.m
+//  WRCommendViewController.m
 //  比价
 //
-//  Created by apple-jd28 on 15/11/9.
+//  Created by apple-jd28 on 15/11/19.
 //  Copyright © 2015年 apple-jd28. All rights reserved.
 //
 
-#import "WRCompareViewController.h"
+#import "WRCommendViewController.h"
 #import "DealsCell.h"
 #import "DealsViewModel.h"
 #import "WRNaviTool.h"
@@ -17,7 +15,7 @@
 #import "WRSearchViewController.h"
 #import "WRTitleBarButton.h"
 
-@interface WRCompareViewController () <UITableViewDataSource,UITableViewDelegate>
+@interface WRCommendViewController () <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -25,15 +23,16 @@
 
 @end
 
-@implementation WRCompareViewController
+@implementation WRCommendViewController
+
 
 - (id)initWithType:(CategoryType)type
 {
-
+    
     if (self = [super init]) {
         
         _type = type;
-
+        
     }
     return self;
 }
@@ -54,7 +53,7 @@
         _tableView.delegate = self;
         
         [_tableView registerClass:[DealsCell class] forCellReuseIdentifier:@"Cell"];
-
+        
     }
     return _tableView;
 }
@@ -96,7 +95,7 @@
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self.dealsVM refreshDataCompletionHandle:^(NSError *error) {
-           
+            
             [_tableView reloadData];
             [_tableView.mj_header endRefreshing];
         }];
@@ -158,8 +157,5 @@ kRemoveCellSeparator
     
     [self.navigationController pushViewController:vc animated:YES];
 }
-
-
-
 
 @end

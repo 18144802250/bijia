@@ -8,8 +8,8 @@
 
 #import "AppDelegate.h"
 #import "AppDelegate+Category.h"
-#import "WRCompareViewController.h"
-#import "WRLeftViewController.h"
+
+#import "WRTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -25,23 +25,11 @@
     return _window;
 }
 
-- (RESideMenu *)sideMenu {
-    if(_sideMenu == nil) {
-        
-        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[[WRCompareViewController alloc] initWithType:0]];
-        
-        _sideMenu = [[RESideMenu alloc] initWithContentViewController:navi leftMenuViewController:[WRLeftViewController new] rightMenuViewController:nil];
-    }
-    return _sideMenu;
-}
-
-
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.window.rootViewController = self.sideMenu;
-    
+    WRTabBarController *tbVC = [WRTabBarController new];
+    self.window.rootViewController = tbVC;
     
     return YES;
 }

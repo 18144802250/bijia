@@ -11,7 +11,6 @@
 		C3282B0B1BF0D41700331012 /* BaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3282B0A1BF0D41700331012 /* BaseViewModel.m */; };
 		C35BCC681BFD68B6005561AF /* WRTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC671BFD68B6005561AF /* WRTabBarController.m */; };
 		C35BCC6E1BFD6A31005561AF /* DealsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC6B1BFD6A31005561AF /* DealsDetailViewController.m */; };
-		C35BCC6F1BFD6A31005561AF /* WRCompareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC6D1BFD6A31005561AF /* WRCompareViewController.m */; };
 		C35BCC751BFD6A5C005561AF /* DealsDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC721BFD6A5C005561AF /* DealsDetailViewModel.m */; };
 		C35BCC761BFD6A5C005561AF /* DealsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC741BFD6A5C005561AF /* DealsViewModel.m */; };
 		C35BCC7A1BFD6A80005561AF /* DealsNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC791BFD6A80005561AF /* DealsNetManager.m */; };
@@ -23,6 +22,8 @@
 		C35BCC901BFD6ABF005561AF /* PriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC8B1BFD6ABF005561AF /* PriceView.m */; };
 		C35BCC911BFD6ABF005561AF /* TimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC8D1BFD6ABF005561AF /* TimeView.m */; };
 		C35BCC941BFD6AE3005561AF /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC931BFD6AE3005561AF /* CommentCell.m */; };
+		C35BCC981BFD6BF2005561AF /* WRTipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC971BFD6BF2005561AF /* WRTipViewController.m */; };
+		C35BCC9B1BFD6D0C005561AF /* WRCommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC9A1BFD6D0C005561AF /* WRCommendViewController.m */; };
 		C35C84961BF08602005ED3B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C35C84931BF08602005ED3B9 /* AppDelegate.m */; };
 		C35C84991BF08637005ED3B9 /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = C35C84981BF08637005ED3B9 /* AppDelegate+Category.m */; };
 		C35C84A21BF0B11C005ED3B9 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C35C84A11BF0B11C005ED3B9 /* BaseModel.m */; };
@@ -72,8 +73,6 @@
 		C35BCC671BFD68B6005561AF /* WRTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRTabBarController.m; sourceTree = "<group>"; };
 		C35BCC6A1BFD6A31005561AF /* DealsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealsDetailViewController.h; sourceTree = "<group>"; };
 		C35BCC6B1BFD6A31005561AF /* DealsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealsDetailViewController.m; sourceTree = "<group>"; };
-		C35BCC6C1BFD6A31005561AF /* WRCompareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCompareViewController.h; sourceTree = "<group>"; };
-		C35BCC6D1BFD6A31005561AF /* WRCompareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCompareViewController.m; sourceTree = "<group>"; };
 		C35BCC711BFD6A5C005561AF /* DealsDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealsDetailViewModel.h; sourceTree = "<group>"; };
 		C35BCC721BFD6A5C005561AF /* DealsDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealsDetailViewModel.m; sourceTree = "<group>"; };
 		C35BCC731BFD6A5C005561AF /* DealsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealsViewModel.h; sourceTree = "<group>"; };
@@ -96,6 +95,10 @@
 		C35BCC8D1BFD6ABF005561AF /* TimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeView.m; sourceTree = "<group>"; };
 		C35BCC921BFD6AE3005561AF /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		C35BCC931BFD6AE3005561AF /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		C35BCC961BFD6BF2005561AF /* WRTipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRTipViewController.h; sourceTree = "<group>"; };
+		C35BCC971BFD6BF2005561AF /* WRTipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRTipViewController.m; sourceTree = "<group>"; };
+		C35BCC991BFD6D0C005561AF /* WRCommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCommendViewController.h; sourceTree = "<group>"; };
+		C35BCC9A1BFD6D0C005561AF /* WRCommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCommendViewController.m; sourceTree = "<group>"; };
 		C35C84921BF08602005ED3B9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C35C84931BF08602005ED3B9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C35C84971BF08637005ED3B9 /* AppDelegate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Category.h"; sourceTree = "<group>"; };
@@ -224,8 +227,8 @@
 			children = (
 				C35BCC6A1BFD6A31005561AF /* DealsDetailViewController.h */,
 				C35BCC6B1BFD6A31005561AF /* DealsDetailViewController.m */,
-				C35BCC6C1BFD6A31005561AF /* WRCompareViewController.h */,
-				C35BCC6D1BFD6A31005561AF /* WRCompareViewController.m */,
+				C35BCC991BFD6D0C005561AF /* WRCommendViewController.h */,
+				C35BCC9A1BFD6D0C005561AF /* WRCommendViewController.m */,
 			);
 			path = "推荐";
 			sourceTree = "<group>";
@@ -280,9 +283,19 @@
 			path = "推荐";
 			sourceTree = "<group>";
 		};
+		C35BCC951BFD6BC1005561AF /* 贴士 */ = {
+			isa = PBXGroup;
+			children = (
+				C35BCC961BFD6BF2005561AF /* WRTipViewController.h */,
+				C35BCC971BFD6BF2005561AF /* WRTipViewController.m */,
+			);
+			path = "贴士";
+			sourceTree = "<group>";
+		};
 		C35C848E1BF08602005ED3B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C35BCC951BFD6BC1005561AF /* 贴士 */,
 				C35BCC691BFD6A31005561AF /* 推荐 */,
 				C35BCC651BFD6890005561AF /* Main */,
 				C3F4597D1BF5F67D0044850E /* 搜索 */,
@@ -637,6 +650,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C376DDBF1BF1C9D80027610D /* WRNaviTool.m in Sources */,
+				C35BCC981BFD6BF2005561AF /* WRTipViewController.m in Sources */,
 				C3F459761BF5CB0E0044850E /* SearchViewModel.m in Sources */,
 				C3F459601BF5BB160044850E /* WRTitleBarButton.m in Sources */,
 				C3EEB4F31BFB4AFB004EBD7D /* WRToolBar.m in Sources */,
@@ -652,6 +666,7 @@
 				C3EEB4F61BFB4DE0004EBD7D /* WRCompareView.m in Sources */,
 				C35BCC841BFD6A9C005561AF /* DealsPriceInfoModel.m in Sources */,
 				C3282B0B1BF0D41700331012 /* BaseViewModel.m in Sources */,
+				C35BCC9B1BFD6D0C005561AF /* WRCommendViewController.m in Sources */,
 				C35BCC821BFD6A9C005561AF /* DealsDetailModel.m in Sources */,
 				C35BCC681BFD68B6005561AF /* WRTabBarController.m in Sources */,
 				C35BCC941BFD6AE3005561AF /* CommentCell.m in Sources */,
@@ -672,7 +687,6 @@
 				C3B91AF21BF9F100006C3056 /* WRShopPriceViewController.m in Sources */,
 				C35BCC761BFD6A5C005561AF /* DealsViewModel.m in Sources */,
 				C35BCC6E1BFD6A31005561AF /* DealsDetailViewController.m in Sources */,
-				C35BCC6F1BFD6A31005561AF /* WRCompareViewController.m in Sources */,
 				C3ADED181BF7112D006E00BB /* SearchResultViewModel.m in Sources */,
 				C35BCC751BFD6A5C005561AF /* DealsDetailViewModel.m in Sources */,
 				C376DDBB1BF1C46E0027610D /* WRLeftViewController.m in Sources */,
