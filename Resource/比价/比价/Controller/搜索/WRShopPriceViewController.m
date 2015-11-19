@@ -9,11 +9,16 @@
 #import "WRShopPriceViewController.h"
 #import "SearchNetManager.h"
 #import "SearchDetailModel.h"
-#import "ItemsCell.h"
 
-@interface WRShopPriceViewController () <UITableViewDataSource,UITableViewDelegate>
+#import "WRShopViewController.h"
 
-@property (nonatomic, strong) UITableView *tableView;
+#import "ShopPriceHeaderView.h"
+#import "ShopPriceListView.h"
+
+@interface WRShopPriceViewController () <ShopPriceListViewDelegate>
+
+@property (nonatomic, strong) ShopPriceHeaderView *headerView;
+@property (nonatomic, strong) ShopPriceListView *listView;
 
 @property (nonatomic, strong) SearchDetailDataModel *resultModel;
 
@@ -42,13 +47,19 @@
     return self;
 }
 
-- (UITableView *)tableView {
-    if(_tableView == nil) {
-        _tableView = [[UITableView alloc] init];
-        _tableView.dataSource = self;
-        _tableView.delegate = self;
+- (ShopPriceHeaderView *)headerView {
+    if(_headerView == nil) {
+        _headerView = [[ShopPriceHeaderView alloc] init];
     }
-    return _tableView;
+    return _headerView;
+}
+
+- (ShopPriceListView *)listView {
+    if(_listView == nil) {
+        _listView = [[ShopPriceListView alloc] init];
+        _listView.delegate = self;
+    }
+    return _listView;
 }
 
 - (SearchDetailDataModel *)resultModel {
@@ -61,59 +72,54 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
+    //添加视图
+    [self addSubView];
     
     [SearchNetManager getItemsPriceWithID:_idStr completionHandle:^(SearchDetailModel *model, NSError *error) {
         
         self.resultModel = model.data;
-        [_tableView reloadData];
         
+    
+        _headerView.dataModel = model.data;
+        
+        
+        _listView.sdModel = model.data;
     }];
     
 }
 
-#pragma mark - tableView数据源配置
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+#pragma mark - 添加头和list视图
+- (void)addSubView
 {
-    //+1个Cell
-    return self.resultModel.items.count>0?self.resultModel.items.count+1:0;
-}
-
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0) {
-        HeadItemCell *cell = [HeadItemCell new];
-        
-        cell.dataModel = self.resultModel;
-        
-        return cell;
-    }
-    ItemsCell *cell = [ItemsCell new];
-        
-    cell.itemsModel = self.resultModel.items[indexPath.row-1];
-        
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0) {
-        return 100;
-    }
-    return 44;
-}
-
-#pragma mark - tableViewDelegate 点击Cell
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.view addSubview:self.headerView];
+    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(64);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(100);
+    }];
     
-    
+    [self.view addSubview:self.listView];
+    [self.listView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_headerView.mas_bottom).mas_equalTo(0);
+        make.left.right.bottom.mas_equalTo(0);
+    }];
 }
+
+#pragma mark - ShopPriceListViewDelegate
+
+- (void)didClickAtCellIndex:(NSInteger)index
+{
+    WRShopViewController *vc = [WRShopViewController new];
+    
+    SearchDetailDataItemsModel *itemModel = _resultModel.items[index];
+    NSString *purUrlStr = itemModel.purchase_url;
+    vc.URL = [NSURL URLWithString:purUrlStr];
+    vc.purchaseURL = [purUrlStr stringByReplacingOccurrencesOfString:@"/proxy?purl=" withString:@""];
+    vc.sdDataModel = _resultModel;
+    vc.title = itemModel.site_name;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 
 

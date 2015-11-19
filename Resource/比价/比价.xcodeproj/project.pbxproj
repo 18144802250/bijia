@@ -34,11 +34,15 @@
 		C3B3FC531BF31E9900879635 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B3FC521BF31E9900879635 /* NSString+Extension.m */; };
 		C3B3FC591BF3647D00879635 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B3FC581BF3647D00879635 /* UIView+Extension.m */; };
 		C3B91A601BF9B30A006C3056 /* SearchDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B91A5F1BF9B30A006C3056 /* SearchDetailModel.m */; };
-		C3B91A631BF9B802006C3056 /* ItemsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B91A621BF9B802006C3056 /* ItemsCell.m */; };
 		C3B91AF21BF9F100006C3056 /* WRShopPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B91AF11BF9F100006C3056 /* WRShopPriceViewController.m */; };
 		C3CCB57E1BF42C46005A0660 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CCB57D1BF42C46005A0660 /* CommentCell.m */; };
 		C3CCB5811BF4354B005A0660 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CCB5801BF4354B005A0660 /* NSDate+Extension.m */; };
 		C3CCB5841BF444AC005A0660 /* PriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CCB5831BF444AC005A0660 /* PriceView.m */; };
+		C3EEAE1A1BFAD9DB004EBD7D /* ShopPriceHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EEAE191BFAD9DB004EBD7D /* ShopPriceHeaderView.m */; };
+		C3EEAE1D1BFADAE2004EBD7D /* ShopPriceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EEAE1C1BFADAE2004EBD7D /* ShopPriceListView.m */; };
+		C3EEB4F31BFB4AFB004EBD7D /* WRToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EEB4F21BFB4AFB004EBD7D /* WRToolBar.m */; };
+		C3EEB4F61BFB4DE0004EBD7D /* WRCompareView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EEB4F51BFB4DE0004EBD7D /* WRCompareView.m */; };
+		C3EEB4F91BFB5EE7004EBD7D /* WRCover.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EEB4F81BFB5EE7004EBD7D /* WRCover.m */; };
 		C3F459601BF5BB160044850E /* WRTitleBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4595F1BF5BB160044850E /* WRTitleBarButton.m */; };
 		C3F459671BF5BFA70044850E /* WRSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F459661BF5BFA70044850E /* WRSearchBar.m */; };
 		C3F4596A1BF5C0880044850E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F459691BF5C0880044850E /* UIImage+Extension.m */; };
@@ -115,8 +119,6 @@
 		C3B3FC581BF3647D00879635 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		C3B91A5E1BF9B30A006C3056 /* SearchDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDetailModel.h; sourceTree = "<group>"; };
 		C3B91A5F1BF9B30A006C3056 /* SearchDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDetailModel.m; sourceTree = "<group>"; };
-		C3B91A611BF9B802006C3056 /* ItemsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsCell.h; sourceTree = "<group>"; };
-		C3B91A621BF9B802006C3056 /* ItemsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsCell.m; sourceTree = "<group>"; };
 		C3B91AF01BF9F100006C3056 /* WRShopPriceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRShopPriceViewController.h; sourceTree = "<group>"; };
 		C3B91AF11BF9F100006C3056 /* WRShopPriceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRShopPriceViewController.m; sourceTree = "<group>"; };
 		C3CCB57C1BF42C46005A0660 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
@@ -125,6 +127,16 @@
 		C3CCB5801BF4354B005A0660 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		C3CCB5821BF444AC005A0660 /* PriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceView.h; sourceTree = "<group>"; };
 		C3CCB5831BF444AC005A0660 /* PriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceView.m; sourceTree = "<group>"; };
+		C3EEAE181BFAD9DB004EBD7D /* ShopPriceHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopPriceHeaderView.h; sourceTree = "<group>"; };
+		C3EEAE191BFAD9DB004EBD7D /* ShopPriceHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopPriceHeaderView.m; sourceTree = "<group>"; };
+		C3EEAE1B1BFADAE2004EBD7D /* ShopPriceListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopPriceListView.h; sourceTree = "<group>"; };
+		C3EEAE1C1BFADAE2004EBD7D /* ShopPriceListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopPriceListView.m; sourceTree = "<group>"; };
+		C3EEB4F11BFB4AFB004EBD7D /* WRToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRToolBar.h; sourceTree = "<group>"; };
+		C3EEB4F21BFB4AFB004EBD7D /* WRToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRToolBar.m; sourceTree = "<group>"; };
+		C3EEB4F41BFB4DE0004EBD7D /* WRCompareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCompareView.h; sourceTree = "<group>"; };
+		C3EEB4F51BFB4DE0004EBD7D /* WRCompareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCompareView.m; sourceTree = "<group>"; };
+		C3EEB4F71BFB5EE7004EBD7D /* WRCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCover.h; sourceTree = "<group>"; };
+		C3EEB4F81BFB5EE7004EBD7D /* WRCover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCover.m; sourceTree = "<group>"; };
 		C3F4595E1BF5BB160044850E /* WRTitleBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRTitleBarButton.h; sourceTree = "<group>"; };
 		C3F4595F1BF5BB160044850E /* WRTitleBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRTitleBarButton.m; sourceTree = "<group>"; };
 		C3F459651BF5BFA70044850E /* WRSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRSearchBar.h; sourceTree = "<group>"; };
@@ -291,6 +303,7 @@
 		C35C84A81BF0B7B2005ED3B9 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				C3EEB4ED1BFB4268004EBD7D /* TabBar */,
 				C376DDBC1BF1C9BC0027610D /* NavigationBar */,
 				C376DDC31BF20A990027610D /* WRTool.h */,
 				C376DDC41BF20A990027610D /* WRTool.m */,
@@ -305,6 +318,13 @@
 				C376DDBE1BF1C9D80027610D /* WRNaviTool.m */,
 			);
 			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		C3EEB4ED1BFB4268004EBD7D /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		C3F4595D1BF5BAE70044850E /* 首页 */ = {
@@ -325,8 +345,16 @@
 				C3F4597B1BF5D7140044850E /* WRShopListView.m */,
 				C3ADED131BF70AEC006E00BB /* SearchResultCell.h */,
 				C3ADED141BF70AEC006E00BB /* SearchResultCell.m */,
-				C3B91A611BF9B802006C3056 /* ItemsCell.h */,
-				C3B91A621BF9B802006C3056 /* ItemsCell.m */,
+				C3EEAE1B1BFADAE2004EBD7D /* ShopPriceListView.h */,
+				C3EEAE1C1BFADAE2004EBD7D /* ShopPriceListView.m */,
+				C3EEAE181BFAD9DB004EBD7D /* ShopPriceHeaderView.h */,
+				C3EEAE191BFAD9DB004EBD7D /* ShopPriceHeaderView.m */,
+				C3EEB4F11BFB4AFB004EBD7D /* WRToolBar.h */,
+				C3EEB4F21BFB4AFB004EBD7D /* WRToolBar.m */,
+				C3EEB4F41BFB4DE0004EBD7D /* WRCompareView.h */,
+				C3EEB4F51BFB4DE0004EBD7D /* WRCompareView.m */,
+				C3EEB4F71BFB5EE7004EBD7D /* WRCover.h */,
+				C3EEB4F81BFB5EE7004EBD7D /* WRCover.m */,
 			);
 			path = "搜索";
 			sourceTree = "<group>";
@@ -469,6 +497,7 @@
 				TargetAttributes = {
 					C3F788801BF03DD800B48C4D = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = L9JG6GMVQ4;
 					};
 				};
 			};
@@ -559,11 +588,15 @@
 				C3B3FC4A1BF2EE9B00879635 /* DealsDetailViewController.m in Sources */,
 				C3282B051BF0D14D00331012 /* DealsNetManager.m in Sources */,
 				C3F459601BF5BB160044850E /* WRTitleBarButton.m in Sources */,
+				C3EEB4F31BFB4AFB004EBD7D /* WRToolBar.m in Sources */,
 				C3F459831BF5FB100044850E /* WRSearchViewController.m in Sources */,
 				C3282B041BF0D14D00331012 /* BaseNetManager.m in Sources */,
 				C3F459721BF5CA280044850E /* SearchNetManager.m in Sources */,
 				C3ADED121BF7085F006E00BB /* SearchResultModel.m in Sources */,
+				C3EEAE1A1BFAD9DB004EBD7D /* ShopPriceHeaderView.m in Sources */,
 				C3F4597C1BF5D7140044850E /* WRShopListView.m in Sources */,
+				C3EEB4F91BFB5EE7004EBD7D /* WRCover.m in Sources */,
+				C3EEB4F61BFB4DE0004EBD7D /* WRCompareView.m in Sources */,
 				C3CCB5841BF444AC005A0660 /* PriceView.m in Sources */,
 				C3282B0B1BF0D41700331012 /* BaseViewModel.m in Sources */,
 				C3ADED1B1BF713DD006E00BB /* WRSearchResultViewController.m in Sources */,
@@ -575,6 +608,7 @@
 				C3F459861BF6050E0044850E /* SearchModel.m in Sources */,
 				C3B3FC471BF2EC4B00879635 /* DealsDetailView.m in Sources */,
 				C35C84961BF08602005ED3B9 /* AppDelegate.m in Sources */,
+				C3EEAE1D1BFADAE2004EBD7D /* ShopPriceListView.m in Sources */,
 				C3282B081BF0D3F300331012 /* DealsViewModel.m in Sources */,
 				C3F459801BF5F68D0044850E /* WRShopViewController.m in Sources */,
 				C3F4596A1BF5C0880044850E /* UIImage+Extension.m in Sources */,
@@ -593,7 +627,6 @@
 				C376DDC51BF20A990027610D /* WRTool.m in Sources */,
 				C3ADED151BF70AEC006E00BB /* SearchResultCell.m in Sources */,
 				C3CCB57E1BF42C46005A0660 /* CommentCell.m in Sources */,
-				C3B91A631BF9B802006C3056 /* ItemsCell.m in Sources */,
 				C3B3FC591BF3647D00879635 /* UIView+Extension.m in Sources */,
 				C35C849F1BF096BE005ED3B9 /* WRCompareViewController.m in Sources */,
 				C3282AFE1BF0CCFC00331012 /* DealsCell.m in Sources */,
@@ -690,12 +723,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "比价/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "比价/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.tedo.--";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -705,12 +741,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "比价/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "比价/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.tedo.--";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class SearchDetailDataModel;
 @interface WRShopViewController : UIViewController
 
 @property (nonatomic, strong) NSURL *URL;
+
+/** 请求价格波动图 PurchaseURL */
+@property (nonatomic, strong) NSString *purchaseURL;
+/** 商城列表的数据 */
+@property (nonatomic, strong) SearchDetailDataModel *sdDataModel;
+/**商家名*/
+@property (nonatomic, strong) NSString *siteName;
 
 @end

@@ -39,9 +39,9 @@
 @property (nonatomic, assign) BOOL recommend;
 /** 价格 */
 @property (nonatomic, copy) NSString *price;
-/** 是否缺货 */
+/** 是否缺货 yes不缺货*/
 @property (nonatomic, assign) BOOL available;
-
+/** 根据URL请求详细页面URL */
 @property (nonatomic, copy) NSString *purchase_url;
 
 @end

@@ -11,6 +11,8 @@
 
 @interface PriceView : UIView
 
+- (instancetype)initWithDateModel:(DealsPriceInfoDataModel*)data rect:(CGRect)frame;
+
 @property (nonatomic, strong) DealsPriceInfoDataModel *data;
 
 @end

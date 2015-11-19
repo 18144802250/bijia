@@ -18,17 +18,19 @@
 - (NSDateComponents*)dateCmpFormStr
 {
     NSDateFormatter *formatter = [NSDateFormatter new];
-    formatter.dateFormat = @"MM-dd";
+    formatter.dateFormat = @"yyyy-MM-dd";
     
-    NSCalendar *calendar = [NSCalendar new];
-    int unit = NSCalendarUnitMonth | NSCalendarUnitDay;
-    return [calendar components:unit fromDate:[formatter dateFromString:self]];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    int unit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+    NSDate *date = [formatter dateFromString:self];
+    
+    return [calendar components:unit fromDate:date];
 }
 
 - (NSDate *)strToDate
 {
     NSDateFormatter *formatter = [NSDateFormatter new];
-    formatter.dateFormat = @"MM-dd";
+    formatter.dateFormat = @"yyyy-MM-dd";
     return [formatter dateFromString:self];
 }
 /** 返回日期月份天数 没有判断闰年 */
@@ -71,13 +73,20 @@
         NSAssert1(NO, @"日期比较错误 %s", __FUNCTION__);
         return 0;
     } else {
+        if (selfCmp.month == toCmp.month) {
+            days += toCmp.day - selfCmp.day;
+            return days;
+        }
         for (NSUInteger i = selfCmp.month; i <= toCmp.month; i++) {
+            
             if (i == selfCmp.month) {
                 days += [self myDays:i] - selfCmp.day;
+                continue;
             }
             
             if (i == toCmp.month) {
                 days += toCmp.day;
+                break;
             }
             
             days += [self myDays:i];

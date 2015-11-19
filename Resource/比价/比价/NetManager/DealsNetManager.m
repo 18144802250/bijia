@@ -77,13 +77,12 @@
         completion([DealsDetailModel mj_objectWithKeyValues:responseObj],error);
     }];
 }
-//http://app.huihui.cn/price_inf o.json?product_url=https%3A%2F%2Fdetail.tmall.com%2Fitem.htm%3Fid%3D522566419672%26skuId%3D3111058407674&app_version=3.3.1&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=youdao&appname=deals_app&system_version=4.4.4
-//http://app.huihui.cn/ price_info.json?product_url=https%3A%2F%2Fdetail.tmall.com%2Fitem.htm%3Fspm%3D608.7065813.ne.1.lil56w%26id%3D20878779465&app_version=3.3.1&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=youdao&appname=deals_app&system_version=4.4.4
+
 + (id)getDealsDataPriceWithPurchaseURL:(NSString*)URL completionHandle:(void (^)(id, NSError *))completion
 {
     
-    NSString *purchaseUrl = [URL encodeToPercentEscapeString:URL];
-    NSString *path = [NSString stringWithFormat:@"http://app.huihui.cn/price_info.json?product_url=%@&app_version=3.3.1&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=youdao&appname=deals_app&system_version=4.4.4",purchaseUrl];
+//    NSString *purchaseUrl = [URL encodeToPercentEscapeString:URL];
+    NSString *path = [NSString stringWithFormat:@"http://app.huihui.cn/price_info.json?product_url=%@&app_version=3.3.1&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=youdao&appname=deals_app&system_version=4.4.4",URL];
 //
 //    NSMutableDictionary *params = [NSMutableDictionary new];
 //    

@@ -14,6 +14,8 @@
 /** 导航栏题目文字颜色 */
 #define kNaviTitleColor     [UIColor colorWithRed:239/255.0 green:141/255.0 blue:119/255.0 alpha:1.0]
 
+#define Keywindow [UIApplication sharedApplication].keyWindow
+
 //通过RGB设置颜色
 #define kRGBColor(R,G,B)        [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.0]
 
@@ -22,7 +24,6 @@
 
 #define kAppDelegate ((AppDelegate*)([UIApplication sharedApplication].delegate))
 
-#define kStoryboard(StoryboardName)     [UIStoryboard storyboardWithName:StoryboardName bundle:nil]
 
 //通过Storyboard ID 在对应Storyboard中获取场景对象
 #define kVCFromSb(storyboardId, storyboardName)     [[UIStoryboard storyboardWithName:storyboardName bundle:nil] \

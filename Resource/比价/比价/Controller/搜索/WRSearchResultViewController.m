@@ -116,9 +116,9 @@
     
     SearchResultDataItemsModel *itemModel = self.sResultVM.dataArr[indexPath.row];
     
-//    if ([_delegate respondsToSelector:@selector(didClickedAtCellWithID:)]) {
+    if ([_delegate respondsToSelector:@selector(didClickedAtCellWithID:)]) {
         [_delegate didClickedAtCellWithID:itemModel.ID];
-//    }
+    }
     
 }
 

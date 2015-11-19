@@ -15,7 +15,7 @@
 - (void)getDataFromNetCompleteHandle:(CompletionHandle)completionHandle
 {
     [self.dataArr removeAllObjects];
-    self.dataTask = [SearchNetManager getSearchValueWithTextStr:_textStr completionHandle:^(SearchModel *model, NSError *error) {
+    [SearchNetManager getSearchValueWithTextStr:_textStr completionHandle:^(SearchModel *model, NSError *error) {
         [self.dataArr addObjectsFromArray:model.huigoods.r];
         
         completionHandle(error);
