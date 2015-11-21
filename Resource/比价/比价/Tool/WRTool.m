@@ -11,7 +11,7 @@
 static WRTool *tool = nil;
 @implementation WRTool
 
-+ (id)defaultTool
++ (WRTool*)defaultTool
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

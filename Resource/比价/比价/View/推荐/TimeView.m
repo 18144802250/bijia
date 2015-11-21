@@ -39,20 +39,20 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-//        self.backgroundColor = [UIColor lightGrayColor];
-//        self.userInteractionEnabled = NO;
-//    
-//        [self addSubview:self.whiteBGV];
-//        [_whiteBGV mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.edges.mas_equalTo(UIEdgeInsetsMake(3, 0, 0, 0));
-//        }];
-//        
-//        [self.whiteBGV addSubview:self.textLb];
-//        [_textLb mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.mas_equalTo(10);
-//            make.right.mas_equalTo(-10);
-//            make.centerY.mas_equalTo(0);
-//        }];
+        self.backgroundColor = [UIColor lightGrayColor];
+        self.userInteractionEnabled = NO;
+    
+        [self addSubview:self.whiteBGV];
+        [_whiteBGV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(UIEdgeInsetsMake(3, 0, 0, 0));
+        }];
+        
+        [self.whiteBGV addSubview:self.textLb];
+        [_textLb mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(10);
+            make.right.mas_equalTo(-10);
+            make.centerY.mas_equalTo(0);
+        }];
         
     }
     return self;

@@ -19,7 +19,7 @@
 @end
 
 
-@interface DealsPriceInfoDataModel : NSObject
+@interface DealsPriceInfoDataModel : BaseModel
 /** 卖家数组 */
 @property (nonatomic, strong) NSArray *other_quotes;
 /** 结束时间 */
@@ -40,7 +40,7 @@
 @end
 
 
-@interface DealsPriceHistoryModel : NSObject
+@interface DealsPriceHistoryModel : BaseModel
 /** 价格 */
 @property (nonatomic, copy) NSString *price;
 /** 时间 */
@@ -49,7 +49,7 @@
 @end
 
 
-@interface DealsPriceInfoDataOtherQuotesModel : NSObject
+@interface DealsPriceInfoDataOtherQuotesModel : BaseModel
 
 @property (nonatomic, copy) NSString *purchase_url;
 

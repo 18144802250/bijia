@@ -8,23 +8,16 @@
 
 #import "DealsDetailView.h"
 #import "UIView+Extension.h"
-#import "CommentCell.h"
+#import "CommentTableView.h"
 #import "PriceView.h"
 
-@interface DealsDetailView ()<UIWebViewDelegate,UITableViewDataSource,UITableViewDelegate>
-
+@interface DealsDetailView ()<UIWebViewDelegate>
 /** 头部图片 680*332 */
 @property (nonatomic, strong) UIImageView *headIcon;
-
 /** webView加载内容 */
 @property (nonatomic, strong) UIWebView *contentWebView;
-
-/** 价格走势 */
-@property (nonatomic, strong) UIView *priceView;
 /** 热门评论 */
-@property (nonatomic, strong) UITableView *hotCommentTv;
-
-
+@property (nonatomic, strong) CommentTableView *hotCommentTV;
 
 @property (nonatomic) CGFloat cellH;
 
@@ -35,7 +28,6 @@
 - (UIImageView *)headIcon {
 	if(_headIcon == nil) {
 		_headIcon = [[UIImageView alloc] init];
-        _headIcon.backgroundColor = [UIColor redColor];
         _headIcon.contentMode = UIViewContentModeScaleAspectFill;
         _headIcon.clipsToBounds = YES;
         
@@ -47,44 +39,28 @@
 - (UIWebView *)contentWebView {
 	if(_contentWebView == nil) {
 		_contentWebView = [[UIWebView alloc] init];
-        _contentWebView.backgroundColor = [UIColor purpleColor];
         _contentWebView.delegate = self;
 	}
 	return _contentWebView;
 }
 
-- (UIView *)priceView {
-	if(_priceView == nil) {
-		_priceView = [[UIView alloc] init];
+- (CommentTableView *)hotCommentTV {
+	if(_hotCommentTV == nil) {
+		_hotCommentTV = [[CommentTableView alloc] init];
+        _cellH = 44;
 	}
-	return _priceView;
-}
-
-- (UITableView *)hotCommentTv {
-	if(_hotCommentTv == nil) {
-		_hotCommentTv = [[UITableView alloc] init];
-        _hotCommentTv.dataSource = self;
-        _hotCommentTv.delegate = self;
-        _hotCommentTv.rowHeight = 48;
-        _cellH = _hotCommentTv.rowHeight;
-        
-        
-        
-        [_hotCommentTv registerClass:[CommentCell class] forCellReuseIdentifier:@"Cell"];
-	}
-	return _hotCommentTv;
+	return _hotCommentTV;
 }
 #pragma mark - 初始化View时
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.backgroundColor = [UIColor greenColor];
+        self.backgroundColor = [UIColor grayColor];
         
         [self addSubview:self.headIcon];
         [self addSubview:self.contentWebView];
-        [self addSubview:self.priceView];
-        [self addSubview:self.hotCommentTv];
+        [self addSubview:self.hotCommentTV];
         
         [self.headIcon mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.mas_equalTo(0);
@@ -95,15 +71,9 @@
             make.top.mas_equalTo(_headIcon.mas_bottom).mas_equalTo(0);
             make.left.right.mas_equalTo(0);
         }];
-        
-        [self.priceView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_contentWebView.mas_bottom).mas_equalTo(0);
-            make.left.right.mas_equalTo(0);
-        }];
-        
-        [self.hotCommentTv mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_priceView.mas_bottom).mas_equalTo(0);
-            make.left.right.mas_equalTo(0);
+
+        [self.hotCommentTV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.mas_equalTo(0);
         }];
         
         _contentH = 150;
@@ -127,17 +97,16 @@
 - (void)setPm:(DealsPriceInfoDataModel *)pm
 {
     _pm = pm;
-    if (pm.price_history.count>1&&pm!=nil) {
-        PriceView *pv = [PriceView new];
-        pv.data = pm;
-        CGFloat h = (kWindowW - 60)/2 + 40;
-        [_priceView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(h);
-        }];
-        _contentH += h;
-        self.contentSize = CGSizeMake(0, _contentH);
-    }
-    
+//    if (pm.price_history.count>1&&pm!=nil) {
+//        PriceView *pv = [[PriceView alloc] initWithDateModel:pm rect:CGRectMake(0, 0, self.width, self.width/1.8)];
+//        
+//        [self addSubview:pv];
+//        CGFloat h = self.width/1.8;
+//        pv.frame = CGRectMake(self.width, _contentH, self.width, h);
+//        
+//        _contentH += h;
+//        self.contentSize = CGSizeMake(0, _contentH);
+//    }
 }
 
 #pragma mark - webView代理方法  计算webView的高度
@@ -161,29 +130,17 @@
     if (count==0) {
         return;
     }
-    
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, 40)];
-    headView.backgroundColor = [UIColor lightGrayColor];
-    UILabel *textLb = [UILabel new];
-    textLb.text = @"热门评论";
-    textLb.backgroundColor = [UIColor clearColor];
-    [headView addSubview:textLb];
-    [textLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 12, 0, 0));
-    }];
-    
-    _hotCommentTv.tableHeaderView = headView;
+    _hotCommentTV.hotCommentArr = self.vm.detailDataModel.hot_comments;
     CGFloat commentTvH = 0;
     if (count < 4) {
         commentTvH = _cellH*count + 40;
     } else
         commentTvH = _cellH * 3 + 40;
-    [_hotCommentTv mas_updateConstraints:^(MASConstraintMaker *make) {
+    [_hotCommentTV mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(commentTvH);
     }];
     _contentH += commentTvH;
     self.contentSize = CGSizeMake(0, _contentH);
-    [_hotCommentTv reloadData];
 }
 #pragma mark - 当头部的图片有值时调用 
 //会调用两次 设置前置图片时调用一次 获取网络图片时调用一次
@@ -213,22 +170,5 @@
     [_headIcon removeObserver:self forKeyPath:@"image"];
 }
 
-#pragma mark - tableViewDataSource 数据源配置
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSUInteger count = self.vm.detailDataModel.hot_comments.count;
-    if (count < 4) {
-        return count;
-    }
-    return 3;
-}
-
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.commontModel = self.vm.detailDataModel.hot_comments[indexPath.row];
-    
-    return cell;
-}
 
 @end

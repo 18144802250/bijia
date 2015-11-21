@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseModel.h"
 
 @class DealsDetailDataModel,DdealDetailDataHotCommentsModel,DealsDetailDataUserModel;
-@interface DealsDetailModel : NSObject
+@interface DealsDetailModel : BaseModel
 
 @property (nonatomic, copy) NSString *status;
 
 @property (nonatomic, strong) DealsDetailDataModel *data;
 
 @end
-@interface DealsDetailDataModel : NSObject
+@interface DealsDetailDataModel : BaseModel
 
 /** 热门评论 */
 @property (nonatomic, strong) NSArray *hot_comments;
@@ -32,7 +33,7 @@
 @property (nonatomic, copy) NSString *image_url;
 /** 题目 */
 @property (nonatomic, copy) NSString *title;
-/** 比价的关键链接 */
+/** 比价的关键链接  详细页关键链接 */
 @property (nonatomic, copy) NSString *purchase_url;
 
 @property (nonatomic, copy) NSString *html_url;
@@ -50,9 +51,9 @@
 
 
 
-@interface DealsDetailDataHotCommentsModel : NSObject
+@interface DealsDetailDataHotCommentsModel : BaseModel
 
-@property (nonatomic, assign) long long id;
+@property (nonatomic, assign) long long ID;
 /** 评论 */
 @property (nonatomic, copy) NSString *comment_content;
 /** 发布时间 */
@@ -64,10 +65,9 @@
 
 @end
 
-@interface DealsDetailDataUserModel : NSObject
+@interface DealsDetailDataUserModel : BaseModel
 
 @property (nonatomic, copy) NSString *email;
-
 
 /** 匿名 */
 @property (nonatomic, copy) NSString *nickname;

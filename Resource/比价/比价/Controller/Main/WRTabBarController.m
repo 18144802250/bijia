@@ -7,11 +7,14 @@
 //
 
 #import "WRTabBarController.h"
+#import "WRNavigationController.h"
 
 #import "WRLeftViewController.h"
+//#import "CommendViewController.h"
 #import "WRCommendViewController.h"
 #import "WRSearchViewController.h"
-#import "WRTipViewController.h"
+//#import "WRTipViewController.h"
+#import "TipViewController.h"
 #import "WRSettingViewController.h"
 
 @interface WRTabBarController ()
@@ -22,10 +25,26 @@
 
 @implementation WRTabBarController
 
-- (RESideMenu *)sideMenu {
-    if(_sideMenu == nil) {
++ (void)initialize
+{
+    if (self == [WRTabBarController class]) {
+        UITabBar *tabBaar = [UITabBar appearance];        
         
-        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[[WRCommendViewController alloc] initWithType:0]];
+        [tabBaar setBackgroundImage:[UIImage imageWithStretchableName:@"tabbarBkg"]];
+        UITabBarItem *item = [UITabBarItem appearance];
+        
+        NSMutableDictionary *attributes = [NSMutableDictionary new];
+        attributes[NSForegroundColorAttributeName] = kRGBColor(40, 137, 59);
+        
+        [item setTitleTextAttributes:attributes forState:UIControlStateSelected];
+    }
+}
+
+- (RESideMenu *)sideMenu {
+    if (!_sideMenu) {
+        WRCommendViewController *vc = [WRCommendViewController new];
+        [WRNaviTool addLeftNaviItemAtViewC:vc];
+        WRNavigationController *navi = [[WRNavigationController alloc] initWithRootViewController:vc];
         
         _sideMenu = [[RESideMenu alloc] initWithContentViewController:navi leftMenuViewController:[WRLeftViewController new] rightMenuViewController:nil];
     }
@@ -34,6 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // 添加 subVC
     [self addSubVC];
 }
@@ -41,20 +61,26 @@
 - (void)addSubVC
 {
     //推荐
-    [self setUpOneVCWithVC:self.sideMenu title:@"推荐" image:nil selectedImage:nil];
+//    [self setUpOneVCWithVC:self.sideMenu title:@"推荐" image:[UIImage imageWithOriginName:@"tabbar_commend"] selectedImage:[UIImage imageWithOriginName:@"tabbar_commend_select"]];
+    self.sideMenu.title = @"推荐";
+    self.sideMenu.tabBarItem.image = [UIImage imageWithOriginName:@"tabbar_commend"];
+    self.sideMenu.tabBarItem.selectedImage = [UIImage imageWithOriginName:@"tabbar_commend_select"];
+    [self addChildViewController:self.sideMenu];
     
     //搜索
     WRSearchViewController *searchVC = [WRSearchViewController new];
     
-    [self setUpOneVCWithVC:searchVC title:@"搜索" image:nil selectedImage:nil];
+    [self setUpOneVCWithVC:searchVC title:@"搜索" image:[UIImage imageWithOriginName:@"tabbar_search"] selectedImage:[UIImage imageWithOriginName:@"tabbar_search_selected"]];
     
     //贴士
-    WRTipViewController *tipVC = [WRTipViewController new];
+    UIViewController *tipVC = [TipViewController standardTip];
     
-    [self setUpOneVCWithVC:tipVC title:@"贴士" image:nil selectedImage:nil];
+//    WRTipViewController *tipVC = [WRTipViewController new];
+//    
+    [self setUpOneVCWithVC:tipVC title:@"分享" image:[UIImage imageWithOriginName:@"tabbar_share"] selectedImage:[UIImage imageWithOriginName:@"tabbar_share_selected"]];
     //设置
     WRSettingViewController *settingVC = [WRSettingViewController new];
-    [self setUpOneVCWithVC:settingVC title:@"设置" image:nil selectedImage:nil];
+    [self setUpOneVCWithVC:settingVC title:@"设置" image:[UIImage imageWithOriginName:@"tabbar_setting"] selectedImage:[UIImage imageWithOriginName:@"tabbar_setting_selected"]];
     
 }
 
@@ -66,13 +92,9 @@
     
     vc.tabBarItem.selectedImage = selectedImage;
     
-    if (![vc isKindOfClass:[RESideMenu class]]) {
-        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
-        [self addChildViewController:navi];
-        return;
-    }
     
-    [self addChildViewController:vc];
+    WRNavigationController *navi = [[WRNavigationController alloc] initWithRootViewController:vc];
+    [self addChildViewController:navi];
 }
 
 @end

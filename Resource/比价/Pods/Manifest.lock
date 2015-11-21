@@ -44,14 +44,14 @@ PODS:
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
   - Masonry (0.6.3)
-  - MJExtension (3.0.3)
+  - MBProgressHUD (0.9.1)
+  - MJExtension (3.0.4)
   - MJRefresh (3.0.4)
   - RESideMenu (4.0.7)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - Shimmer (1.0.2)
-  - SVProgressHUD (1.1.3)
   - WMPageController (1.2.5)
 
 DEPENDENCIES:
@@ -59,12 +59,12 @@ DEPENDENCIES:
   - BlocksKit
   - CocoaLumberjack
   - Masonry
+  - MBProgressHUD
   - MJExtension
   - MJRefresh
   - RESideMenu
   - SDWebImage
   - Shimmer
-  - SVProgressHUD
   - WMPageController
 
 SPEC CHECKSUMS:
@@ -72,12 +72,12 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
-  MJExtension: de557e1c48ef3212590d3203764c8003fae68815
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MJExtension: 1cd4e22c5323f1ec7729933da550bcfce19e184e
   MJRefresh: c95f0d541606ef584dab3fbeda28f4f32b4aca6e
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
-  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   WMPageController: 1a071f465823128e1d03702f0fa8df5606e1c96e
 
 COCOAPODS: 0.39.0

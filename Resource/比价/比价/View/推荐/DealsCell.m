@@ -10,16 +10,22 @@
 #import "DealsCell.h"
 #import "WRTool.h"
 
+@interface DealsCell ()
 
+//* 左侧图片 */
+@property(nonatomic,strong)UIImageView *iconIV;
+//* 题目标签 */
+@property(nonatomic,strong)UILabel *titleLb;
+//* 来源标签 */
+@property(nonatomic,strong)UILabel *sourceLb;
+//* 赞标签 */
+@property(nonatomic,strong)UILabel *supportLb;
+//* 回复数标签 */
+@property(nonatomic,strong)UILabel *commentLb;
+
+@end
 
 @implementation DealsCell
-
-- (TimeView *)timeView {
-    if(_timeView == nil) {
-        _timeView = [[TimeView alloc] init];
-    }
-    return _timeView;
-}
 
 -(UIImageView *)iconIV
 {
@@ -76,22 +82,18 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self.contentView addSubview:self.timeView];
+
         [self.contentView addSubview:self.iconIV];
         [self.contentView addSubview:self.titleLb];
         [self.contentView addSubview:self.sourceLb];
         [self.contentView addSubview:self.supportLb];
         [self.contentView addSubview:self.commentLb];
-        //图片 左10,宽高92,70,竖向居中
-        
 
-       
-        
         
         [self.iconIV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(10);
             make.size.mas_equalTo(CGSizeMake(90, 90));
-            make.centerY.mas_equalTo(0);
+            make.top.mas_equalTo(10);
         }];
         //题目 距离图片右边缘8,右边缘10,上边缘笔图片上边缘矮3
         [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -120,17 +122,61 @@
 
 - (void)setDataModel:(DealsDataModel *)dataModel
 {
-    [self.timeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(33);
-    }];
+    _dataModel = dataModel;
     
-    [self.iconIV mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(43);
-        make.left.mas_equalTo(10);
-        make.size.mas_equalTo(CGSizeMake(88, 88));
-        make.bottom.mas_equalTo(-8);
-    }];
+    [_iconIV setImageWithURL:dataModel.image_url];
+    
+    NSString *subTitle = dataModel.sub_title;
+    NSString *title = [NSString stringWithFormat:@"%@ %@",dataModel.title,subTitle];
+    NSRange subRange = [title rangeOfString:subTitle];
+    NSMutableAttributedString *titleAttri = [[NSMutableAttributedString alloc] initWithString:title];
+    [titleAttri addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:subRange];
+    _titleLb.attributedText = titleAttri;
+    //如果是今天 则为空
+    if ([self timeStrFromToday]) {
+        
+        //* 时间标签 */
+        TimeView *timeView = [TimeView new];
+        timeView.text = [self timeStrFromToday];
+        [timeView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.mas_equalTo(0);
+            make.height.mas_equalTo(33);
+        }];
+        [self.iconIV mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(43);
+        }];
+    }
+    DealsDataMerchantModel *merchantModel = dataModel.merchant;
+    _sourceLb.text = merchantModel.name;
+    
+    _supportLb.text = [NSString stringWithFormat:@"%ld",dataModel.supports_count];
+    
+    _commentLb.text = [NSString stringWithFormat:@"%ld",dataModel.comments_count];
+}
 
+/** 计算发布时间距离今天的天数，返回时间字符串 */
+- (NSString *)timeStrFromToday
+{
+    NSDateComponents *cmp = _dataModel.daysFromToday;
+    //如果是今天，返回空 如果不是今天 返回发布时间的str
+    if (cmp.day == 0) {
+        return nil;
+    } else {
+        NSDateFormatter *formatter = [NSDateFormatter new];
+        formatter.dateFormat = @"yyyy-MM-dd";
+        NSString *dateStr = [formatter stringFromDate:[self publishTimeStrToDate]];
+        //保存
+        WRTool *tool = [WRTool defaultTool];
+        tool.timeStr = dateStr;
+        return dateStr;
+    }
+}
+
+- (NSDate*)publishTimeStrToDate
+{
+    NSDateFormatter *formatter = [NSDateFormatter new];//Tue Nov 10 08:30:28 +0800 2015
+    formatter.dateFormat = @"EEE MMM d HH:mm:ss z yyyy";
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en-us"];
+    return [formatter dateFromString:_dataModel.pub_time];
 }
 @end

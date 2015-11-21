@@ -9,10 +9,12 @@
 #import "DealsDetailViewController.h"
 #import "DealsDetailView.h"
 #import "DealsDetailViewModel.h"
+#import "WRBuyButton.h"
+#import "WRShopViewController.h"
 
 
 
-@interface DealsDetailViewController () <UIScrollViewDelegate>
+@interface DealsDetailViewController () <UIScrollViewDelegate,WRBuyButtonDelegate>
 
 @property (nonatomic, strong) DealsDetailView *dealsDetailView;
 
@@ -64,17 +66,15 @@
     [self.view addSubview:self.dealsDetailView];
     
     [self.dealsDetailView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
+        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, -64, 0));
     }];
     
-    [SVProgressHUD showWithStatus:@"正在加载数据"];
+    [self showProgress];
     [self.dealsDetailVM getDataFromNetCompleteHandle:^(NSError *error) {
-        [SVProgressHUD dismiss];
+        [self hideProgress];
         
         self.dealsDetailView.vm = self.dealsDetailVM;
     }];
-    
-    
     
     [self.dealsDetailVM addObserver:self forKeyPath:@"priceInfoModel" options:NSKeyValueObservingOptionNew context:nil];
     
@@ -83,17 +83,30 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
     self.dealsDetailView.pm = self.dealsDetailVM.priceInfoModel;
+    WRBuyButton *buy = [[WRBuyButton alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 60)];
+    buy.delegate = self;
+    [self.view addSubview:buy];
+    [buy mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(20);
+        make.centerX.mas_equalTo(0);
+    }];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+//对象销毁时，移除监听者
+- (void)dealloc
 {
-    [super viewWillDisappear:animated];
-
     [self.dealsDetailVM removeObserver:self forKeyPath:@"priceInfoModel"];
 }
 
-
-
+#pragma mark - WRBuyButtonDelegate
+- (void)didClickedAtBuyBtn:(UIButton *)btn
+{
+    WRShopViewController *vc = [WRShopViewController new];
+    DealsDetailDataModel *model = self.dealsDetailVM.detailDataModel;
+    vc.URL = [NSURL URLWithString:model.purchase_url];
+    
+    [self.navigationController pushViewController:vc animated:NO];
+}
 
 
 @end

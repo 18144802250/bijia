@@ -26,22 +26,21 @@
 @implementation WRCommendViewController
 
 
-- (id)initWithType:(CategoryType)type
-{
-    
-    if (self = [super init]) {
-        
-        _type = type;
-        
-    }
-    return self;
-}
+//- (id)initWithType:(CategoryType)type
+//{
+//    if (self = [super init]) {
+//        
+//        _type = type;
+//    }
+//    return self;
+//}
+
 
 - (instancetype)init
 {
     if (self = [super init]) {
         
-        NSAssert1(NO, @"%s 请使用initWithType初始化", __FUNCTION__);
+        _categoryType = [WRTool defaultTool].type;
     }
     return self;
 }
@@ -60,7 +59,7 @@
 
 - (DealsViewModel *)dealsVM {
     if(_dealsVM == nil) {
-        _dealsVM = [[DealsViewModel alloc] initWithType:_type];
+        _dealsVM = [[DealsViewModel alloc] initWithType:[WRTool defaultTool].type];
     }
     return _dealsVM;
 }
@@ -68,27 +67,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view addSubview:self.tableView];
-    
     WRTitleBarButton *titleBtn = [WRTitleBarButton new];
-    
 #pragma mark - 点击开启全网搜索 跳转页面
     [titleBtn bk_addEventHandler:^(id sender) {
-        
         WRSearchViewController *vc = [WRSearchViewController standerSearchVC];
-        
-        
-        
         UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
-        
         [self presentViewController:navi animated:NO completion:nil];
-        
     } forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.titleView = titleBtn;
     
     [WRNaviTool addLeftNaviItemAtViewC:self];
-    
+    //UIEdgeInsetsMake(0, 0, -64, 0)
+    [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
@@ -115,36 +106,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dealsVM.rowNumber;
+    return self.dealsVM.dataArr.count;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DealsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    //如果不是今天的日期
-    if ([self.dealsVM timeWithRow:indexPath.row]) {
-        cell.dataModel = self.dealsVM.dataArr[indexPath.row];
-        cell.timeView.text = [self.dealsVM timeWithRow:indexPath.row];
-    }
     
-    [cell.iconIV setImageWithURL:[self.dealsVM picURLWithRow:indexPath.row]];
-    
-    cell.titleLb.attributedText = [self.dealsVM titleWithRow:indexPath.row];
-    
-    cell.sourceLb.text = [self.dealsVM sourceWithRow:indexPath.row];
-    
-    cell.supportLb.text = [self.dealsVM supportWithRow:indexPath.row];
-    
-    cell.commentLb.text = [self.dealsVM commentWithRow:indexPath.row];
-    
+    cell.dataModel = self.dealsVM.dataArr[indexPath.row];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DealsDataModel *model = self.dealsVM.dataArr[indexPath.row];
+    NSDateComponents *cmp = model.daysFromToday;
     
-    return [self.dealsVM timeWithRow:indexPath.row]?135:100;
+    return cmp.day == 0?110:145;
 }
 
 kRemoveCellSeparator
@@ -153,8 +132,9 @@ kRemoveCellSeparator
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    DealsDetailViewController *vc = [[DealsDetailViewController alloc] initWithIdStr:[self.dealsVM idStrWithRow:indexPath.row]];
-    
+    DealsDataModel *model = self.dealsVM.dataArr[indexPath.row];
+    DealsDetailViewController *vc = [[DealsDetailViewController alloc] initWithIdStr:[NSString stringWithFormat:@"%ld",model.content_id]];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

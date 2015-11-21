@@ -122,6 +122,10 @@
     
     NSUInteger count = sdDataModel.items.count - 1;
     CGFloat tableH = count*44;
+    
+    if (count == 0) {
+        return;
+    }
     //添加商家比价图 ShopPriceListView 需要数据 SearchDetailDataModel 的items
     ShopPriceListView *spListView = [ShopPriceListView viewInRect:CGRectMake(0, self.width/1.8, self.width, tableH)];
     spListView.isCompareView = YES;
@@ -135,8 +139,8 @@
     _scrollView.contentSize = CGSizeMake(0, _contentH);
     
     spListView.sdModel = sdDataModel;
+    
+    _spListView = spListView;
 }
-
-
 
 @end

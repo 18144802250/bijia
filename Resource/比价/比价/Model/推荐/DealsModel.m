@@ -36,6 +36,10 @@
 
 @implementation DealsDataUserModel
 
++ (NSDictionary *)objectClassInArray{
+    return @{@"items" : [DealsDataItemsModel class]};
+}
+
 @end
 
 
@@ -43,4 +47,6 @@
 
 @end
 
+@implementation DealsDataItemsModel
 
+@end

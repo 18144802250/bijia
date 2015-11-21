@@ -23,6 +23,11 @@
     return @{@"author" : [TipListDataAuthorModel class], @"category" : [TipListDataCategoryModel class]};
 }
 
+-(void)setTitle:(NSString *)title
+{
+    _title = [title stringByReplacingOccurrencesOfString:@"【晒物园】" withString:@""];
+}
+
 @end
 
 
@@ -34,6 +39,7 @@
 @implementation TipListDataCategoryModel
 
 @end
+
 
 
 

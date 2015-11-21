@@ -11,7 +11,7 @@
 
 @interface WRCommendViewController : UIViewController
 
-- (id)initWithType:(CategoryType)type;
-@property (nonatomic, assign) CategoryType type;
+//- (id)initWithType:(CategoryType)type;
+@property (nonatomic, assign) CategoryType categoryType;
 
 @end

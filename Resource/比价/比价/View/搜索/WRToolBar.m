@@ -111,6 +111,7 @@
     switch (type) {
         case PriceWaveTypeClam:
             [_priceBtn setTitle:@"价格平稳" forState:UIControlStateNormal];
+            [_priceBtn setImage:[UIImage imageNamed:@"tabbar_share_selected"] forState:UIControlStateNormal];
             break;
         case PriceWaveTypeDown:
             [_priceBtn setTitle:@"价格下降" forState:UIControlStateNormal];

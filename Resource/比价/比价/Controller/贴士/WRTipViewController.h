@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SharePicNetManager.h"
 
 @interface WRTipViewController : UIViewController
+
+@property (nonatomic, assign) ShareType type;
 
 @end

@@ -27,7 +27,7 @@
 @property (nonatomic, assign) NSInteger download_count;
 /** 标题 */
 @property (nonatomic, copy) NSString *title;
-
+/** 通过id获取页面url */
 @property (nonatomic, assign) NSInteger guide_id;
 
 @property (nonatomic, assign) CGFloat grade;
@@ -40,7 +40,7 @@
 /** 简介 */
 @property (nonatomic, copy) NSString *intro;
 /** 图片链接 */
-@property (nonatomic, copy) NSString *cover_image_url;
+@property (nonatomic, copy) NSURL *cover_image_url;
 
 @end
 
@@ -49,8 +49,8 @@
 @property (nonatomic, copy) NSString *nick_name;
 
 @property (nonatomic, copy) NSString *intro;
-
-@property (nonatomic, copy) NSString *photo;
+/** 图片 */
+@property (nonatomic, copy) NSURL *photo;
 
 @property (nonatomic, copy) NSString *job;
 

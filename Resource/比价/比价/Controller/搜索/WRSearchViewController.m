@@ -55,7 +55,8 @@ static WRSearchViewController *searchVC = nil;
             
             [self.view addSubview:srVC.view];
             [srVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.mas_equalTo(UIEdgeInsetsMake(64, 0, 0, 0));
+                //UIEdgeInsetsMake(0, 0, 0, 0)
+                make.edges.mas_equalTo(0);
             }];
             _srVC = srVC;
             //添加历史记录

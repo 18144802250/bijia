@@ -10,7 +10,7 @@
 
 @class SearchDetailDataModel;
 @interface WRShopViewController : UIViewController
-
+/** 显示在webView的URL */
 @property (nonatomic, strong) NSURL *URL;
 
 /** 请求价格波动图 PurchaseURL */

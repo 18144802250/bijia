@@ -23,7 +23,4 @@
 @property (nonatomic, strong) DealsPriceInfoDataModel *priceInfoModel;
 
 
-
-
-
 @end

@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class DealsPriceInfoDataModel,SearchDetailDataModel;
+@class DealsPriceInfoDataModel,SearchDetailDataModel,ShopPriceListView;
 @interface WRCompareView : UIView
 
 + (instancetype)showInRect:(CGRect)frame;
 
 + (void)hide;
 
+@property (nonatomic, strong) ShopPriceListView *spListView;
 @property (nonatomic, strong) DealsPriceInfoDataModel *piDataModel;
 @property (nonatomic, strong) SearchDetailDataModel *sdDataModel;
 

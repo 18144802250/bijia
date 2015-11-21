@@ -26,7 +26,6 @@
         self.minimumInteritemSpacing = 5;
         self.sectionInset = UIEdgeInsetsMake(5, 15, 5, 15);
 
-        
     }
     return self;
 }

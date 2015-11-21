@@ -22,22 +22,4 @@
 /** 时间Str */
 @property (nonatomic, strong) NSString *secStr;
 
-
-/** 时间 */
-- (NSString *)timeWithRow:(NSInteger)row;
-/** 图片URL */
-- (NSURL *)picURLWithRow:(NSInteger)row;
-/** 题目 */
-- (NSMutableAttributedString *)titleWithRow:(NSInteger)row;
-/** 来源 */
-- (NSString *)sourceWithRow:(NSInteger)row;
-/** 赞 */
-- (NSString *)supportWithRow:(NSInteger)row;
-/** 评论数 */
-- (NSString *)commentWithRow:(NSInteger)row;
-/** id */
-- (NSString *)idStrWithRow:(NSInteger)row;
-
-
-
 @end

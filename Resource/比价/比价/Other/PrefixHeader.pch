@@ -11,32 +11,40 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "Constants.h"
 
+
+
+/*  分类   */
 #import "UIImage+Extension.h"
 #import "UIView+Extension.h"
-#import "WRNaviTool.h"
+#import "NSObject+Common.h"
+#import "UIBarButtonItem+item.h"
 
-//用于存放全局宏定义 或者 静态字符串
-#import "Constants.h"
-#import <AFNetworking.h>        //Github排名第一的第三方网络请求类库，封装了系统的NSURLSession+NSOperation
-#import <UIKit+AFNetworking.h>      //对UIKit类添加类拓展，让诸如UIButton, UIImageView等拥有了网络加载图片的功能
-/* 改变系统的target+selector模式为 block模式。 带来紧凑的代码风格，高效率的回调执行 */
+/* 工具类 */
+#import "WRNaviTool.h"
+#import "WRTool.h"
+
+
+/* 框架 */
+#import <AFNetworking.h>
+#import <UIKit+AFNetworking.h>
 #import <BlocksKit.h>
 #import <BlocksKit+MessageUI.h>
 #import <BlocksKit+UIKit.h>
-/* --------------------------- */
 #import <MJRefresh.h>    //优秀的滚动视图头部和脚步刷新效果
 #import <MJExtension.h>     //优秀的Json解析类库
 #import <CocoaLumberjack.h> //优秀的替换NSLog的第三方，更加省资源，并且可以定义打印级别
+
+/* 代替NSLog */
 #ifdef DEBUG
 static const int ddLogLevel = DDLogLevelVerbose;
 #else
 static const int ddLogLevel = DDLogLevelError;
 #endif
 
-#import <SVProgressHUD.h>     //与MBProgressHUD功能相似
+#import <MBProgressHUD.h>     
 #import <Masonry.h>         //超好用的链式书写AutoLayout的第三方类库
-
 #import <FBShimmeringView.h>        //闪光效果
 #import <FBShimmeringLayer.h>       //闪光效果
 #import <RESideMenu.h>          //QQ左侧菜单风格

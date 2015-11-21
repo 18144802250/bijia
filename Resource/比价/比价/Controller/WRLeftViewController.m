@@ -34,7 +34,7 @@
         
         NSMutableArray *arr = [NSMutableArray new];
         for (int i = 0; i < self.itemsName.count; i++) {
-            WRCommendViewController *vc = [[WRCommendViewController alloc] initWithType:i];
+            WRCommendViewController *vc = [WRCommendViewController new];
             UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
             [arr addObject:navi];
         }
@@ -89,11 +89,10 @@ kRemoveCellSeparator
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    [WRTool defaultTool].type = indexPath.row;
     [self.sideMenuViewController setContentViewController:self.contros[indexPath.row] animated:YES];
     [self.sideMenuViewController hideMenuViewController];
 }
-
 
 
 @end

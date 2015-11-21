@@ -13,17 +13,5 @@
 @interface DealsCell : UITableViewCell
 
 @property (nonatomic, strong) DealsDataModel *dataModel;
-//* 时间标签 */
-@property(nonatomic,strong)TimeView *timeView;
-//* 左侧图片 */
-@property(nonatomic,strong)UIImageView *iconIV;
-//* 题目标签 */
-@property(nonatomic,strong)UILabel *titleLb;
-//* 来源标签 */
-@property(nonatomic,strong)UILabel *sourceLb;
-//* 赞标签 */
-@property(nonatomic,strong)UILabel *supportLb;
-//* 回复数标签 */
-@property(nonatomic,strong)UILabel *commentLb;
 
 @end

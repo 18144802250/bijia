@@ -10,6 +10,6 @@
 
 @interface CommendViewController : WMPageController
 
-
++ (UINavigationController *)standardCommend;
 
 @end

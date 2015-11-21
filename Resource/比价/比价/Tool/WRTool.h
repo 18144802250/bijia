@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DealsNetManager.h"
 
 @interface WRTool : NSObject
 
-+ (id)defaultTool;
++ (WRTool*)defaultTool;
 
 @property (nonatomic, strong) NSString *timeStr;
 
+@property (nonatomic, assign) CategoryType type;
 
 @end

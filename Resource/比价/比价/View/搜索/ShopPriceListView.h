@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class SearchDetailDataItemsModel;
 @protocol ShopPriceListViewDelegate <NSObject>
 
 @optional
 - (void)didClickAtCellIndex:(NSInteger)index;
+
+- (void)didClickAtCellWithItemModel:(SearchDetailDataItemsModel*)itemModel;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "BaseModel.h"
 
-@class DealsDataModel,DealsDataUserModel,DealsDataMerchantModel;
+@class DealsDataModel,DealsDataUserModel,DealsDataMerchantModel,DealsDataItemsModel;
 @interface DealsModel : BaseModel
 
 @property (nonatomic, copy) NSString *status;
@@ -30,8 +30,6 @@
 @property (nonatomic, copy) NSString *pub_time;
 /** 根据判断发布时间，返回与今天相差的天数 */
 @property (nonatomic, assign) NSDateComponents *daysFromToday;
-
-@property (nonatomic, strong) NSArray *items;
 
 @property (nonatomic, copy) NSString *channel;
 
@@ -59,7 +57,9 @@
 
 @property (nonatomic, strong) NSArray<NSString *> *categories;
 /** 图片 */
-@property (nonatomic, copy) NSString *image_url;
+@property (nonatomic, copy) NSURL *image_url;
+/** 子图片数组 */
+@property (nonatomic, strong) NSArray<DealsDataItemsModel *> *items;
 
 @end
 
@@ -88,6 +88,14 @@
 @property (nonatomic, copy) NSString *desc;
 
 @property (nonatomic, copy) NSString *logo_url;
+
+@end
+
+@interface DealsDataItemsModel : BaseModel
+/** 标题 */
+@property (nonatomic, copy) NSString *title;
+/** 图片 */
+@property (nonatomic, copy) NSURL *image_url;
 
 @end
 

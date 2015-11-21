@@ -17,19 +17,17 @@
 
 @implementation AppDelegate
 
-- (UIWindow *)window {
-    if(_window == nil) {
-        _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        [_window makeKeyAndVisible];
-    }
-    return _window;
-}
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [self initializeWithApplication:application];
+    
+    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     WRTabBarController *tbVC = [WRTabBarController new];
-    self.window.rootViewController = tbVC;
+    _window.rootViewController = tbVC;
+    
+    [_window makeKeyAndVisible];
     
     return YES;
 }

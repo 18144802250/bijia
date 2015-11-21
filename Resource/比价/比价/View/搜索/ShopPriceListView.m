@@ -258,9 +258,10 @@
     if ([_delegate respondsToSelector:@selector(didClickAtCellIndex:)]) {
         [_delegate didClickAtCellIndex:indexPath.row];
     }
-    
+    if ([_delegate respondsToSelector:@selector(didClickAtCellWithItemModel:)]) {
+        [_delegate didClickAtCellWithItemModel:self.shopPriceArr[indexPath.row]];
+    }
 }
-
 
 
 @end
