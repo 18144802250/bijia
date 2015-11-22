@@ -12,13 +12,14 @@
 /** 导航栏题目文字大小 */
 #define kNaviTitleFontSize   24.0
 
-//通过RGB设置颜色
+/** 通过RGB设置颜色 */
 #define kRGBColor(R,G,B)        [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.0]
 /** 导航栏题目文字颜色 */
 #define kNaviTitleColor  kRGBColor(40, 137, 59)
 
 #define Keywindow [UIApplication sharedApplication].keyWindow
-
+/** 微博请求账号信息的归档地址 */
+#define WRAccountFilePath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"account.data"]
 
 
 #define kWindowH   [UIScreen mainScreen].bounds.size.height //应用程序的屏幕高度

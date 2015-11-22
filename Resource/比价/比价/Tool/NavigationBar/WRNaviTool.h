@@ -16,4 +16,6 @@
 
 + (void)addBackItemAtVC:(UIViewController*)vc;
 
++ (void)addBackItemAtPresentVC:(UIViewController*)vc;
+
 @end

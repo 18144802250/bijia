@@ -9,6 +9,7 @@
 #import "AppDelegate+Category.h"
 #import <AFNetworkActivityIndicatorManager.h>
 
+#define BmobAppkey @"874a88a7d9e4ca0198ebda1da4b1fbd6"
 
 @implementation AppDelegate (Category)
 
@@ -19,6 +20,9 @@
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+    
+    //比目鱼初始化
+    [Bmob registerWithAppKey:BmobAppkey];
 }
 
 

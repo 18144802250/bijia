@@ -56,6 +56,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         
+        self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor grayColor];
         
         [self addSubview:self.headIcon];

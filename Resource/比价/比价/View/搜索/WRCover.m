@@ -15,11 +15,22 @@
 {
     WRCover *cover = [[WRCover alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    cover.backgroundColor = [UIColor clearColor];
+    cover.backgroundColor = [UIColor blackColor];
+    
+    cover.alpha = 0.6;
     
     [Keywindow addSubview:cover];
     
     return cover;
+}
+
++ (void)hide
+{
+    for (UIView *view in Keywindow.subviews) {
+        if ([view isKindOfClass:self]) {
+            [view removeFromSuperview];
+        }
+    }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

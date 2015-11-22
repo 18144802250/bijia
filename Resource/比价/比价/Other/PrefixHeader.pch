@@ -24,6 +24,7 @@
 /* 工具类 */
 #import "WRNaviTool.h"
 #import "WRTool.h"
+#import "WRBmobTool.h"
 
 
 /* 框架 */
@@ -48,5 +49,6 @@ static const int ddLogLevel = DDLogLevelError;
 #import <FBShimmeringView.h>        //闪光效果
 #import <FBShimmeringLayer.h>       //闪光效果
 #import <RESideMenu.h>          //QQ左侧菜单风格
+#import <BmobSDK/Bmob.h> //比目鱼框架 搭建数据库
 
 #endif /* PrefixHeader_pch */

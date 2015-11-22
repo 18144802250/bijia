@@ -16,6 +16,7 @@ pod 'MBProgressHUD'
 pod 'Shimmer'
 pod 'RESideMenu'
 pod 'WMPageController'
+pod 'BmobSDK'
 
 end
 

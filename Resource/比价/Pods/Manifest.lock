@@ -35,6 +35,7 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - BmobSDK (1.6.5)
   - CocoaLumberjack (2.2.0):
     - CocoaLumberjack/Default (= 2.2.0)
     - CocoaLumberjack/Extensions (= 2.2.0)
@@ -45,7 +46,7 @@ PODS:
     - CocoaLumberjack/Default
   - Masonry (0.6.3)
   - MBProgressHUD (0.9.1)
-  - MJExtension (3.0.4)
+  - MJExtension (3.0.7)
   - MJRefresh (3.0.4)
   - RESideMenu (4.0.7)
   - SDWebImage (3.7.3):
@@ -57,6 +58,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - BlocksKit
+  - BmobSDK
   - CocoaLumberjack
   - Masonry
   - MBProgressHUD
@@ -70,10 +72,11 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  BmobSDK: 9928a9135a3a7823c6d8bd2bcd9baffeb8e6289a
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJExtension: 1cd4e22c5323f1ec7729933da550bcfce19e184e
+  MJExtension: 290cc966f0f849b12b6391a38e296e0004ae8e5e
   MJRefresh: c95f0d541606ef584dab3fbeda28f4f32b4aca6e
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84

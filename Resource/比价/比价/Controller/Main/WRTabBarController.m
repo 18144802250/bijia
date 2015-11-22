@@ -15,7 +15,8 @@
 #import "WRSearchViewController.h"
 //#import "WRTipViewController.h"
 #import "TipViewController.h"
-#import "WRSettingViewController.h"
+
+#import "WRProfileViewController.h"
 
 @interface WRTabBarController ()
 
@@ -79,8 +80,8 @@
 //    
     [self setUpOneVCWithVC:tipVC title:@"分享" image:[UIImage imageWithOriginName:@"tabbar_share"] selectedImage:[UIImage imageWithOriginName:@"tabbar_share_selected"]];
     //设置
-    WRSettingViewController *settingVC = [WRSettingViewController new];
-    [self setUpOneVCWithVC:settingVC title:@"设置" image:[UIImage imageWithOriginName:@"tabbar_setting"] selectedImage:[UIImage imageWithOriginName:@"tabbar_setting_selected"]];
+    WRProfileViewController *profileVC = [WRProfileViewController new];
+    [self setUpOneVCWithVC:profileVC title:@"我的" image:[UIImage imageWithOriginName:@"tabbar_profile"] selectedImage:[UIImage imageWithOriginName:@"tabbar_profile_selected"]];
     
 }
 

@@ -19,6 +19,8 @@
 
 + (instancetype)show;
 
++ (void)hide;
+
 @property (nonatomic, strong) id <WRCoverDelegate> delegate;
 
 @end

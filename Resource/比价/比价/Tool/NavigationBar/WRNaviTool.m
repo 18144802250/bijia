@@ -47,7 +47,25 @@
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spaceItem.width = -10;
     vc.navigationItem.leftBarButtonItems = @[spaceItem,leftItem];
+}
+
++ (void)addBackItemAtPresentVC:(UIViewController *)vc
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     
+//    [btn setBackgroundImage:[UIImage imageNamed:@"navigationbar_back"] forState:UIControlStateNormal];
+    
+    [btn setTitle:@"返回" forState:UIControlStateNormal];
+    
+    btn.frame = CGRectMake(10, 30, 80, 35);
+    
+//    btn.layer.cornerRadius = 35/2;
+    
+    [btn bk_addEventHandler:^(id sender) {
+        [vc dismissViewControllerAnimated:YES completion:nil];
+    } forControlEvents:UIControlEventTouchUpInside];
+    
+    [vc.view addSubview:btn];
 }
 
 @end
