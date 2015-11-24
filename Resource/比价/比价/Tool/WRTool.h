@@ -17,5 +17,7 @@
 
 @property (nonatomic, assign) CategoryType type;
 
+@property (nonatomic, assign) NSUInteger selectIndexItem;
+
 
 @end

@@ -9,6 +9,53 @@
 #import "WRLeftViewController.h"
 #import "WRCommendViewController.h"
 
+@interface LeftCell : UITableViewCell
+
+@property (nonatomic, strong) UIImageView *leftIV;
+@property (nonatomic, strong) UILabel *textLb;
+
+@end
+
+@implementation LeftCell
+
+- (UIImageView *)leftIV {
+    if(_leftIV == nil) {
+        _leftIV = [[UIImageView alloc] init];
+        _leftIV.contentMode = UIViewContentModeScaleAspectFill;
+        _leftIV.clipsToBounds = YES;
+    }
+    return _leftIV;
+}
+
+- (UILabel *)textLb {
+    if(_textLb == nil) {
+        _textLb = [[UILabel alloc] init];
+        _textLb.textColor = [UIColor whiteColor];
+        _textLb.textAlignment = NSTextAlignmentCenter;
+    }
+    return _textLb;
+}
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        [self.contentView addSubview:self.leftIV];
+        [self.contentView addSubview:self.textLb];
+        
+        [self.textLb mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(0);
+        }];
+        [self.leftIV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(_textLb.mas_left).mas_equalTo(-10);
+            make.centerY.mas_equalTo(0);
+        }];
+    }
+    return self;
+}
+
+
+@end
+
 @interface WRLeftViewController () <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -49,8 +96,9 @@
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = [UIColor clearColor];
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+        [_tableView registerClass:[LeftCell class] forCellReuseIdentifier:@"Cell"];
         _tableView.tableFooterView = [UIView new];
+        _tableView.rowHeight = 88;
     }
     return _tableView;
 }
@@ -73,17 +121,14 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    LeftCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     cell.backgroundColor = [UIColor clearColor];
     
-    cell.textLabel.textColor = [UIColor whiteColor];
-    
-    cell.textLabel.text = self.itemsName[indexPath.row];
+    cell.textLb.text = self.itemsName[indexPath.row];
     
     NSString *imageStr = [NSString stringWithFormat:@"%ld",indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:imageStr];
-    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.leftIV.image = [UIImage imageNamed:imageStr];
     
     return cell;
 }
@@ -93,10 +138,18 @@ kRemoveCellSeparator
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [WRTool defaultTool].type = indexPath.row;
+    
+
+    LeftCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.textLb.font = [UIFont systemFontOfSize:30];
+
+//    [WRTool defaultTool].type = indexPath.row;
+    [WRTool defaultTool].selectIndexItem = indexPath.row;
     [self.sideMenuViewController setContentViewController:self.contros[indexPath.row] animated:YES];
     [self.sideMenuViewController hideMenuViewController];
 }
+
+
 
 
 @end
