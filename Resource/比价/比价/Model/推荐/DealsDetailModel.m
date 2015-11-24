@@ -18,19 +18,19 @@
     return @{@"hot_comments" : [DealsDetailDataHotCommentsModel class]};
 }
 
-- (void)setPage:(NSString *)page
-{
-//    NSArray *strArr = [page componentsSeparatedByString:@"<div class=\"Strategy-pic\">"];
-    NSArray *strArr = [page componentsSeparatedByString:@"<img alt"];
-    NSString *preStr = strArr.firstObject;
-    NSMutableString *lasStr = [strArr.lastObject mutableCopy];
-//    NSRange range2 = [lasStr rangeOfString:@"\"editor-mod\">"];
-    NSRange range2 = [lasStr rangeOfString:@"/>"];
-    [lasStr deleteCharactersInRange:NSMakeRange(0, range2.location+range2.length)];
-    
-    
-    _page = [preStr stringByAppendingString:lasStr];
-}
+//- (void)setPage:(NSString *)page
+//{
+////    NSArray *strArr = [page componentsSeparatedByString:@"<div class=\"Strategy-pic\">"];
+//    NSArray *strArr = [page componentsSeparatedByString:@"<img alt"];
+//    NSString *preStr = strArr.firstObject;
+//    NSMutableString *lasStr = [strArr.lastObject mutableCopy];
+////    NSRange range2 = [lasStr rangeOfString:@"\"editor-mod\">"];
+//    NSRange range2 = [lasStr rangeOfString:@"/>"];
+//    [lasStr deleteCharactersInRange:NSMakeRange(0, range2.location+range2.length)];
+//    
+//    
+//    _page = [preStr stringByAppendingString:lasStr];
+//}
 
 - (void)setPurchase_url:(NSString *)purchase_url
 {

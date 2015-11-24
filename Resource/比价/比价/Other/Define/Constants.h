@@ -20,6 +20,7 @@
 #define Keywindow [UIApplication sharedApplication].keyWindow
 /** 微博请求账号信息的归档地址 */
 #define WRAccountFilePath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"account.data"]
+#define WRHistoryFilePath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"history.data"]
 
 
 #define kWindowH   [UIScreen mainScreen].bounds.size.height //应用程序的屏幕高度
@@ -47,5 +48,8 @@ cell.preservesSuperviewLayoutMargins = NO; \
 #define WRTableCollectName @"Collect"
 /** collect数据库字段名id */
 #define WRTableCollectObjectId @"objectId"
+
+
+#define WRItemsNameFontSize 17
 
 #endif /* Constants_h */

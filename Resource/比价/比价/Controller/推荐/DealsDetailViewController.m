@@ -66,7 +66,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.dealsDetailView];
-    
     [self.dealsDetailView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, -64, 0));
     }];

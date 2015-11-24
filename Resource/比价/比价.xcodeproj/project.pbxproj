@@ -47,6 +47,8 @@
 		C35C84961BF08602005ED3B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C35C84931BF08602005ED3B9 /* AppDelegate.m */; };
 		C35C84991BF08637005ED3B9 /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = C35C84981BF08637005ED3B9 /* AppDelegate+Category.m */; };
 		C35C84A21BF0B11C005ED3B9 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C35C84A11BF0B11C005ED3B9 /* BaseModel.m */; };
+		C36928111C04842300E18984 /* WRHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C36928101C04842300E18984 /* WRHistory.m */; };
+		C36928141C04860A00E18984 /* WRHistoryTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C36928131C04860A00E18984 /* WRHistoryTool.m */; };
 		C376DDBB1BF1C46E0027610D /* WRLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C376DDBA1BF1C46E0027610D /* WRLeftViewController.m */; };
 		C376DDBF1BF1C9D80027610D /* WRNaviTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C376DDBE1BF1C9D80027610D /* WRNaviTool.m */; };
 		C376DDC51BF20A990027610D /* WRTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C376DDC41BF20A990027610D /* WRTool.m */; };
@@ -184,6 +186,10 @@
 		C35C84A11BF0B11C005ED3B9 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		C35C84A71BF0B6D4005ED3B9 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C35C84A91BF0B807005ED3B9 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		C369280F1C04842300E18984 /* WRHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHistory.h; sourceTree = "<group>"; };
+		C36928101C04842300E18984 /* WRHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHistory.m; sourceTree = "<group>"; };
+		C36928121C04860A00E18984 /* WRHistoryTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHistoryTool.h; sourceTree = "<group>"; };
+		C36928131C04860A00E18984 /* WRHistoryTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHistoryTool.m; sourceTree = "<group>"; };
 		C376DDB91BF1C46E0027610D /* WRLeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRLeftViewController.h; sourceTree = "<group>"; };
 		C376DDBA1BF1C46E0027610D /* WRLeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRLeftViewController.m; sourceTree = "<group>"; };
 		C376DDBD1BF1C9D80027610D /* WRNaviTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRNaviTool.h; sourceTree = "<group>"; };
@@ -641,6 +647,7 @@
 		C35C84A81BF0B7B2005ED3B9 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				C369280E1C04840400E18984 /* History */,
 				C3E4D3E51C01BCF800A38DFB /* Account */,
 				C3E4D3D81C0163B800A38DFB /* Bmob */,
 				C3EEB4ED1BFB4268004EBD7D /* TabBar */,
@@ -649,6 +656,17 @@
 				C376DDC41BF20A990027610D /* WRTool.m */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		C369280E1C04840400E18984 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				C369280F1C04842300E18984 /* WRHistory.h */,
+				C36928101C04842300E18984 /* WRHistory.m */,
+				C36928121C04860A00E18984 /* WRHistoryTool.h */,
+				C36928131C04860A00E18984 /* WRHistoryTool.m */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		C376DDBC1BF1C9BC0027610D /* NavigationBar */ = {
@@ -964,6 +982,7 @@
 			files = (
 				C376DDBF1BF1C9D80027610D /* WRNaviTool.m in Sources */,
 				C37D1D811BFEF7CF00A16E1A /* NSObject+Common.m in Sources */,
+				C36928141C04860A00E18984 /* WRHistoryTool.m in Sources */,
 				C35BCC981BFD6BF2005561AF /* WRTipViewController.m in Sources */,
 				C35BCCC01BFDBC63005561AF /* SharePicNetManager.m in Sources */,
 				C3F459761BF5CB0E0044850E /* SearchViewModel.m in Sources */,
@@ -1043,6 +1062,7 @@
 				C3F4596E1BF5C9A20044850E /* ShopModel.m in Sources */,
 				C3B91A601BF9B30A006C3056 /* SearchDetailModel.m in Sources */,
 				C35BCCAA1BFDA7B8005561AF /* TipListModel.m in Sources */,
+				C36928111C04842300E18984 /* WRHistory.m in Sources */,
 				C35C84A21BF0B11C005ED3B9 /* BaseModel.m in Sources */,
 				C35BCC8E1BFD6ABF005561AF /* DealsCell.m in Sources */,
 				C376DDC51BF20A990027610D /* WRTool.m in Sources */,

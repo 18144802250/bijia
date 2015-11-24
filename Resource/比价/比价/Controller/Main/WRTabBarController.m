@@ -45,7 +45,6 @@
     if (!_sideMenu) {
         WRCommendViewController *vc = [WRCommendViewController new];
         WRNavigationController *navi = [[WRNavigationController alloc] initWithRootViewController:vc];
-        [WRTool defaultTool].selectIndexItem = 0;
         _sideMenu = [[RESideMenu alloc] initWithContentViewController:navi leftMenuViewController:[WRLeftViewController new] rightMenuViewController:nil];
         _sideMenu.backgroundImage = [UIImage imageNamed:@"sideMenuBg"];
     }

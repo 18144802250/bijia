@@ -30,8 +30,9 @@
 - (UILabel *)textLb {
     if(_textLb == nil) {
         _textLb = [[UILabel alloc] init];
-        _textLb.textColor = [UIColor whiteColor];
+        _textLb.textColor = [UIColor blackColor];
         _textLb.textAlignment = NSTextAlignmentCenter;
+        _textLb.font = [UIFont systemFontOfSize:WRItemsNameFontSize];
     }
     return _textLb;
 }
@@ -63,6 +64,8 @@
 @property (nonatomic, strong) NSArray *itemsName;
 
 @property (nonatomic, strong) NSArray *contros;
+
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
 
@@ -98,7 +101,7 @@
         _tableView.backgroundColor = [UIColor clearColor];
         [_tableView registerClass:[LeftCell class] forCellReuseIdentifier:@"Cell"];
         _tableView.tableFooterView = [UIView new];
-        _tableView.rowHeight = 88;
+        _tableView.rowHeight = 66;
     }
     return _tableView;
 }
@@ -123,6 +126,11 @@
 {
     LeftCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
+    if (indexPath.row == 0) {
+        cell.textLb.font = [UIFont systemFontOfSize:30];
+        _selectedIndexPath = indexPath;
+    }
+    
     cell.backgroundColor = [UIColor clearColor];
     
     cell.textLb.text = self.itemsName[indexPath.row];
@@ -139,16 +147,22 @@ kRemoveCellSeparator
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-
-    LeftCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    LeftCell *cell2 = [tableView cellForRowAtIndexPath:_selectedIndexPath];
+    cell2.textLb.font = [UIFont systemFontOfSize:WRItemsNameFontSize];
+    
+    
+    LeftCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.textLb.font = [UIFont systemFontOfSize:30];
+    
+    _selectedIndexPath = indexPath;
 
-//    [WRTool defaultTool].type = indexPath.row;
-    [WRTool defaultTool].selectIndexItem = indexPath.row;
+    [WRTool defaultTool].type = indexPath.row;
+
     [self.sideMenuViewController setContentViewController:self.contros[indexPath.row] animated:YES];
     [self.sideMenuViewController hideMenuViewController];
 }
 
+#pragma mark - 当选定的Cell放大 怎么放大？怎么找到对应的Cell 的 文本字体设置大点
 
 
 

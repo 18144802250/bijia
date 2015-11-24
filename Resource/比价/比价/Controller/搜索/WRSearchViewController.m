@@ -15,6 +15,7 @@
 #import "SearchModel.h"
 #import "WRSearchResultViewController.h"
 #import "WRShopPriceViewController.h"
+#import "WRHistoryTool.h"
 
 @interface WRSearchViewController () <UITableViewDataSource,UITableViewDelegate,WRShopListViewDelegate,WRSearchResultViewControllerDelegate>
 
@@ -38,9 +39,6 @@ static WRSearchViewController *searchVC = nil;
 
 @implementation WRSearchViewController
 
-
-
-
 - (WRSearchBar *)searchBar {
     if(_searchBar == nil) {
         WRSearchBar *searchBar = [[WRSearchBar alloc] initWithFrame:CGRectMake(0, 0, kWindowW - 80, 35)];
@@ -48,9 +46,9 @@ static WRSearchViewController *searchVC = nil;
         searchBar.placeholder = @"搜一搜，比一比";
 #pragma mark - 当点击键盘右下角搜索时 添加历史记录
         [searchBar bk_addEventHandler:^(id sender) {
-            
+            //添加返回按钮
+            [self addBackItem];
             WRSearchResultViewController *srVC = [[WRSearchResultViewController alloc] initWithQuest:_searchBar.text];
-            
             srVC.delegate = self;
             
             [self.view addSubview:srVC.view];
@@ -59,9 +57,14 @@ static WRSearchViewController *searchVC = nil;
                 make.edges.mas_equalTo(0);
             }];
             _srVC = srVC;
-            //添加历史记录
+            //添加历史记录 并归档
+            for (NSString *str in self.historyArr) {
+                if (_searchBar.text == str) {
+                    return;
+                }
+            }
             [self.historyArr addObject:_searchBar.text];
-            
+            [WRHistoryTool saveHistory:self.historyArr];
 
         } forControlEvents:UIControlEventEditingDidEndOnExit];
         _searchBar = searchBar;
@@ -85,9 +88,8 @@ static WRSearchViewController *searchVC = nil;
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = [UIColor grayColor];
-        
-        _tableView.tableFooterView = [UIView new];
 
+        _tableView.tableFooterView = [UIView new];
     }
     return _tableView;
 }
@@ -105,10 +107,10 @@ static WRSearchViewController *searchVC = nil;
     }
     return _shopVM;
 }
-
+#pragma mark - 获取本地历史记录
 - (NSMutableArray *)historyArr {
     if(_historyArr == nil) {
-        _historyArr = [[NSMutableArray alloc] init];
+        _historyArr = [[WRHistoryTool history].historyArr mutableCopy];
     }
     return _historyArr;
 }
@@ -123,12 +125,9 @@ static WRSearchViewController *searchVC = nil;
 #pragma mark - 设计单例模式，免得重复加载数据
 + (WRSearchViewController *)standerSearchVC
 {
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
         searchVC = [WRSearchViewController new];
-        
     });
     return searchVC;
 }
@@ -160,7 +159,6 @@ static WRSearchViewController *searchVC = nil;
 #pragma mark -添加搜索框
 - (void)addSearchBar
 {
-    
     self.navigationItem.titleView = self.searchBar;
 }
 
@@ -171,12 +169,32 @@ static WRSearchViewController *searchVC = nil;
     self.searchVM.textStr = _searchBar.text;
     [self.searchVM getDataFromNetCompleteHandle:^(NSError *error) {
         NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:self.historyArr];
-        [arr addObjectsFromArray:self.searchVM.dataArr];
+#pragma mark 把搜索请求回来的数据添加到搜索结果数组
+        for (SearchHuigoodsDataModel *strModel in self.searchVM.dataArr) {
+            [arr addObject:strModel.value];
+        }
         self.searchArr = [arr copy];
         [self.tableView reloadData];
     }];
 }
 
+#pragma mark 当搜索详情页出来时，需要添加返回按钮
+- (void)addBackItem
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundImage:[UIImage imageNamed:@"navigationbar_back"] forState:UIControlStateNormal];
+    btn.frame = CGRectMake(0, 0, 35, 35);
+    [btn bk_addEventHandler:^(id sender) {
+#pragma mark - 点击返回按钮 搜索详情页取消
+        [_srVC.view removeFromSuperview];
+        
+        [btn removeFromSuperview];
+    } forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceItem.width = -10;
+    self.navigationItem.leftBarButtonItems = @[spaceItem,leftItem];
+}
 
 #pragma mark - view加载完成 searchBar获得键盘相应
 - (void)viewDidAppear:(BOOL)animated
@@ -190,16 +208,18 @@ static WRSearchViewController *searchVC = nil;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == 0 || section == 2) {
         return 1;
         
-    } else {
+    } else if (self.searchArr.count) {
         return self.searchArr.count;
+    } else {
+        return self.historyArr.count;
     }
 }
 #pragma mark - 标题
@@ -207,8 +227,10 @@ static WRSearchViewController *searchVC = nil;
 {
     if (section == 0) {
         return @"商城入口";
-    } else {
+    } else if (section == 1){
         return @"历史记录";
+    } else {
+        return nil;
     }
 }
 
@@ -220,42 +242,37 @@ static WRSearchViewController *searchVC = nil;
         cell = [tableView dequeueReusableCellWithIdentifier:@"Cell1"];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell1"];
-            
             [cell.contentView addSubview:self.list];
             _list.tag = 100;
-
             [self.list mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(0);
             }];
-            
         }
-        
         WRShopListView *listView = (WRShopListView*)[cell.contentView viewWithTag:100];
-        
         listView.shopModel = self.shopVM;
         
         return cell;
-        
-    } else {
+    } else if (indexPath.section == 1){
         cell = [tableView dequeueReusableCellWithIdentifier:@"Cell2"];
 
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell2"];
-            
         }
-        //如果是历史记录
-        if ([self.searchArr[indexPath.row] isKindOfClass:[NSString class]]) {
+        if (self.searchArr.count) {
             cell.textLabel.text = self.searchArr[indexPath.row];
-        }
-        else {
-        //如果是搜索数组
-            SearchHuigoodsDataModel *model = self.searchArr[indexPath.row];
-            cell.textLabel.text = model.value;
+        } else {
+            cell.textLabel.text = self.historyArr[indexPath.row];
         }
         return cell;
+    } else {
+        UITableViewCell * cell = [UITableViewCell new];
+        cell.backgroundColor = [UIColor grayColor];
+        
+#pragma mark -清空历史记录
+        cell.textLabel.text = @"清空历史记录";
+        
+        return cell;
     }
-    
-    
 }
 
 #pragma mark - 点击历史记录Cell时 跳转到新SearchResultView 把键盘隐藏 把点击的
@@ -263,21 +280,46 @@ static WRSearchViewController *searchVC = nil;
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    SearchHuigoodsDataModel *model = self.searchArr[indexPath.row];
+    if (indexPath.section == 2) {
+        [self.historyArr removeAllObjects];
+        [WRHistoryTool saveHistory:self.historyArr];
+        if (self.historyArr.count == 0) {
+            [self showSuccessMsg:@"清空成功"];
+        }
+        [self.tableView reloadData];
+        return;
+    }
     
-    WRSearchResultViewController *srVC = [[WRSearchResultViewController alloc] initWithQuest:model.value];
+    //添加返回按钮
+    [self addBackItem];
+    //点击对应的字符串
+    NSString *clickStr = nil;
+    if (self.searchArr.count) {
+        clickStr = self.searchArr[indexPath.row];
+    } else {
+        clickStr = self.historyArr[indexPath.row];
+    }
+    
+    WRSearchResultViewController *srVC = [[WRSearchResultViewController alloc] initWithQuest:clickStr];
     
     srVC.delegate = self;
     
     [self.view addSubview:srVC.view];
     [srVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(64, 0, 0, 0));
+        make.edges.mas_equalTo(0);
     }];
-    
     _srVC = srVC;
-    _searchBar.text = model.value;
-    
+    _searchBar.text = clickStr;
     [_searchBar resignFirstResponder];
+    
+    //添加历史记录 如果不重复 并归档
+    for (NSString *str in self.historyArr) {
+        if (clickStr == str) {
+            return;
+        }
+    }
+    [self.historyArr addObject:clickStr];
+    [WRHistoryTool saveHistory:self.historyArr];
 }
 
 #pragma mark - 返回tableCell 的高度

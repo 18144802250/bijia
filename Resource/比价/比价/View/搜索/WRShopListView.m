@@ -7,6 +7,10 @@
 //
 
 #import "WRShopListView.h"
+#define WRItemInterSpace 10
+#define WRLineSpace 10
+#define WRLeftMargin 15
+#define WRTopMargin 10
 
 @interface WRShopLayout : UICollectionViewFlowLayout
 
@@ -19,12 +23,14 @@
 {
     self = [super init];
     if (self) {
-        CGFloat w = (kWindowW - 30 - 10)/3;
-        CGFloat h = ((kWindowW -30)/2 - 15)/4;
+        //3 X 4
+        CGFloat w = (kWindowW - 2*WRItemInterSpace - 2*WRLeftMargin)/3;
+        // 高 = 宽/2 - 3个行间距
+        CGFloat h = ((kWindowW - 2*WRItemInterSpace)/2 - 5*WRLineSpace)/4;
         self.itemSize = CGSizeMake(w, h);
-        self.minimumLineSpacing = 5;
-        self.minimumInteritemSpacing = 5;
-        self.sectionInset = UIEdgeInsetsMake(5, 15, 5, 15);
+        self.minimumLineSpacing = WRLineSpace;
+        self.minimumInteritemSpacing = WRItemInterSpace;
+        self.sectionInset = UIEdgeInsetsMake(WRTopMargin, WRLeftMargin, WRTopMargin, WRLeftMargin);
 
     }
     return self;
@@ -91,6 +97,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     
     btn.tag = indexPath.row;
+    btn.titleLabel.font = [UIFont systemFontOfSize:14];
     [btn setTitle:model.name forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn setBackgroundColor:[UIColor whiteColor]];

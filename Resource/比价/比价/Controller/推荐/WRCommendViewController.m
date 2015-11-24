@@ -18,23 +18,12 @@
 @interface WRCommendViewController () <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-
 @property (nonatomic, strong) DealsViewModel *dealsVM;
+
 
 @end
 
 @implementation WRCommendViewController
-
-
-//- (id)initWithType:(CategoryType)type
-//{
-//    if (self = [super init]) {
-//        
-//        _type = type;
-//    }
-//    return self;
-//}
-
 
 - (instancetype)init
 {
@@ -67,7 +56,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [WRNaviTool addLeftNaviItemAtViewC:self];
+    [self addLeftItem];
     self.title = @"推荐";
     //UIEdgeInsetsMake(0, 0, -64, 0)
     [self.view addSubview:self.tableView];
@@ -93,6 +82,23 @@
         }];
     }];
     
+}
+
+#pragma mark - 添加LeftVC的Item
+- (void)addLeftItem
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+
+    NSString *imageName = [NSString stringWithFormat:@"%ld",[WRTool defaultTool].type];
+    [btn setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    btn.frame = CGRectMake(0, 0, 35, 35);
+    [btn bk_addEventHandler:^(id sender) {
+        [self.sideMenuViewController presentLeftMenuViewController];
+    } forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceItem.width = -10;
+    self.navigationItem.leftBarButtonItems = @[spaceItem,leftItem];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

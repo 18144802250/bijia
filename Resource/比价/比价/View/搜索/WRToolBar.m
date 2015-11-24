@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) UIButton *priceBtn;
 @property (nonatomic, strong) UIButton *shopNumBtn;
+@property (nonatomic, strong) UIImageView *waveIV;
 
 @end
 
@@ -23,7 +24,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = kNaviTitleColor;
         
         //按钮的宽度
         CGFloat w = (kWindowW - 2*LineW)/3;
@@ -37,7 +38,7 @@
             
         } forControlEvents:UIControlEventTouchUpInside];
         UIImageView *waveIV = [UIImageView new];
-        
+        _waveIV = waveIV;
         [self addSubview:_priceBtn];
         [_priceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.bottom.mas_equalTo(0);
@@ -113,6 +114,7 @@
         case PriceWaveTypeClam:
             [_priceBtn setTitle:@"价格平稳" forState:UIControlStateNormal];
             [_priceBtn setImage:[UIImage imageNamed:@"tabbar_share_selected"] forState:UIControlStateNormal];
+
             break;
         case PriceWaveTypeDown:
             [_priceBtn setTitle:@"价格下降" forState:UIControlStateNormal];

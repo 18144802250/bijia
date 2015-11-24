@@ -13,7 +13,7 @@
 
 @interface DealsDetailView ()<UIWebViewDelegate>
 /** 头部图片 680*332 */
-@property (nonatomic, strong) UIImageView *headIcon;
+//@property (nonatomic, strong) UIImageView *headIcon;
 /** webView加载内容 */
 @property (nonatomic, strong) UIWebView *contentWebView;
 /** 热门评论 */
@@ -25,16 +25,16 @@
 
 @implementation DealsDetailView
 
-- (UIImageView *)headIcon {
-	if(_headIcon == nil) {
-		_headIcon = [[UIImageView alloc] init];
-        _headIcon.contentMode = UIViewContentModeScaleAspectFill;
-        _headIcon.clipsToBounds = YES;
-        
-        [_headIcon addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:nil];
-	}
-	return _headIcon;
-}
+//- (UIImageView *)headIcon {
+//	if(_headIcon == nil) {
+//		_headIcon = [[UIImageView alloc] init];
+//        _headIcon.contentMode = UIViewContentModeScaleAspectFill;
+//        _headIcon.clipsToBounds = YES;
+//        
+//        [_headIcon addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:nil];
+//	}
+//	return _headIcon;
+//}
 
 - (UIWebView *)contentWebView {
 	if(_contentWebView == nil) {
@@ -61,25 +61,25 @@
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor grayColor];
         
-        [self addSubview:self.headIcon];
+//        [self addSubview:self.headIcon];
         [self addSubview:self.contentWebView];
         
         
-        [self.headIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.right.mas_equalTo(0);
-            make.size.mas_equalTo(CGSizeMake(kWindowW, 150));
-        }];
+//        [self.headIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.left.right.mas_equalTo(0);
+//            make.size.mas_equalTo(CGSizeMake(kWindowW, 150));
+//        }];
         
         [self.contentWebView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_headIcon.mas_bottom).mas_equalTo(0);
-            make.left.right.mas_equalTo(0);
+//            make.top.mas_equalTo(_headIcon.mas_bottom).mas_equalTo(0);
+            make.top.left.right.mas_equalTo(0);
         }];
 
 //        [self.hotCommentTV mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.left.right.bottom.mas_equalTo(0);
 //        }];
         
-        _contentH = 150;
+//        _contentH = 150;
 
     }
     return self;
@@ -89,7 +89,7 @@
 {
     _vm = vm;
     
-    [_headIcon setImageWithURL:[NSURL URLWithString:vm.detailDataModel.image_url]];
+//    [_headIcon setImageWithURL:[NSURL URLWithString:vm.detailDataModel.image_url]];
     
     [_contentWebView loadHTMLString:vm.detailDataModel.page baseURL:nil];
     
@@ -115,6 +115,13 @@
 #pragma mark - webView代理方法  计算webView的高度
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+//    CGFloat documentWidth = [[webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('content').offsetWidth"] floatValue];
+//    CGFloat documentHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.getElementById(\"content\").offsetHeight;"] floatValue];
+//    
+//    CGFloat height = [[webView stringByEvaluatingJavaScriptFromString:@"document.getElementById(\"foo\").offsetHeight"] floatValue];
+    
+//    NSLog(@"documentSize = {%f, %f}", documentWidth, documentHeight);
+    
     CGRect frame = webView.frame;
     frame.size.width = 768;
     frame.size.height = 1;
@@ -122,7 +129,8 @@
     webView.scrollView.bounces = NO;
     webView.frame = frame;
     /** webView高 */
-    CGFloat webViewH = webView.scrollView.contentSize.height + 200;
+    CGFloat webViewH = webView.scrollView.contentSize.height;
+    DDLogVerbose(@"webViewH = %lf",webViewH);
     [_contentWebView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(webViewH);
     }];
@@ -151,31 +159,31 @@
 }
 #pragma mark - 当头部的图片有值时调用 
 //会调用两次 设置前置图片时调用一次 获取网络图片时调用一次
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
-{
-
-    if ([keyPath isEqualToString:@"image"]) {
-        CGFloat headHeight = _headIcon.image.size.height;
-        CGFloat headWidth = _headIcon.image.size.width;
-        CGFloat h = kWindowW/(headWidth/headHeight);
-        
-        if (h > 100) {
-            [_headIcon mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(h);
-            }];
-            _contentH = _contentH + h - 150;
-            self.contentSize = CGSizeMake(0, _contentH);
-        }
-    }
-        
-
-    
-}
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+//{
+//
+//    if ([keyPath isEqualToString:@"image"]) {
+//        CGFloat headHeight = _headIcon.image.size.height;
+//        CGFloat headWidth = _headIcon.image.size.width;
+//        CGFloat h = kWindowW/(headWidth/headHeight);
+//        
+//        if (h > 100) {
+//            [_headIcon mas_updateConstraints:^(MASConstraintMaker *make) {
+//                make.height.mas_equalTo(h);
+//            }];
+//            _contentH = _contentH + h - 150;
+//            self.contentSize = CGSizeMake(0, _contentH);
+//        }
+//    }
+//        
+//
+//    
+//}
 #pragma mark - 对象销毁时 移除监听者
-- (void)dealloc
-{
-    [_headIcon removeObserver:self forKeyPath:@"image"];
-}
+//- (void)dealloc
+//{
+//    [_headIcon removeObserver:self forKeyPath:@"image"];
+//}
 
 
 @end
