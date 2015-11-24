@@ -53,7 +53,7 @@
         if (isSuccessful){
             [self showSuccessMsg:@"注册成功"];
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.navigationController popToRootViewControllerAnimated:YES];
             
         } else {
             [self showErrorMsg:@"注册失败"];

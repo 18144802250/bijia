@@ -163,7 +163,6 @@
 - (UITableView *)tableView {
     if(_tableView == nil) {
         _tableView = [[UITableView alloc] init];
-        _tableView.backgroundColor = [UIColor purpleColor];
         _tableView.dataSource = self;
         _tableView.delegate = self;
     }

@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ProfileHeaderView.h"
+#import "ProfileCollectView.h"
 
 @interface ProfileView : UIView
 
 @property (nonatomic, strong) ProfileHeaderView *headView;
+
+@property (nonatomic, strong) ProfileCollectView *collectView;
 
 @end

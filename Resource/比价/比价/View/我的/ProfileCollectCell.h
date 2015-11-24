@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class ProfileCollectDataBmobModel;
 @interface ProfileCollectCell : UICollectionViewCell
+
+@property (nonatomic, strong) ProfileCollectDataBmobModel *dataModel;
 
 @end

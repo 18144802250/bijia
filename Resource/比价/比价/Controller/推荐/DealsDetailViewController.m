@@ -61,6 +61,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [WRTabBarTool hideTabBar:self];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.dealsDetailView];
@@ -84,6 +86,7 @@
 {
     self.dealsDetailView.pm = self.dealsDetailVM.priceInfoModel;
     WRBuyButton *buy = [[WRBuyButton alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 60)];
+    buy.title = @"买买买";
     buy.delegate = self;
     [self.view addSubview:buy];
     [buy mas_makeConstraints:^(MASConstraintMaker *make) {

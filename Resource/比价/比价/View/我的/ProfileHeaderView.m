@@ -8,6 +8,9 @@
 
 #import "ProfileHeaderView.h"
 
+#define LoginStr @"点击登陆收藏"
+#define WelcomeStr @"欢迎开启比意绿色购物之旅!"
+
 @interface ProfileHeaderView ()
 
 @property (nonatomic, strong) UILabel *welcomeLb;
@@ -16,17 +19,17 @@
 @property (nonatomic, strong) UILabel *userNameLb;
 @property (nonatomic, strong) UIButton *setNickNameBtn;
 
+
 @end
 
 @implementation ProfileHeaderView
-
 
 
 - (UILabel *)welcomeLb {
 	if(_welcomeLb == nil) {
 		_welcomeLb = [[UILabel alloc] init];
         _welcomeLb.textColor = [UIColor whiteColor];
-        _welcomeLb.text = @"欢迎开启比意绿色购物之旅!";
+        _welcomeLb.text = WelcomeStr;
         _welcomeLb.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_welcomeLb];
 	}
@@ -40,7 +43,7 @@
         _loginBtn.userInteractionEnabled = YES;
         _loginBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_loginBtn setTitle:@"点击登陆收藏" forState:UIControlStateNormal];
+        [_loginBtn setTitle:LoginStr forState:UIControlStateNormal];
         [_loginBtn bk_addEventHandler:^(id sender) {
             
             if ([_delegate respondsToSelector:@selector(didClickedAtLoginBtn:)]) {
@@ -113,12 +116,29 @@
 {
     _profileUserName = profileUserName;
     
-    _userNameLb.hidden = NO;
     
-    [_loginBtn setTitle:profileUserName forState:UIControlStateNormal];
-    _loginBtn.enabled = NO;
+    //如果登出
+    if (!profileUserName) {
+        _welcomeLb.text = WelcomeStr;
+        _userNameLb.hidden = YES;
+        
+        [_loginBtn setTitle:LoginStr forState:UIControlStateNormal];
+        _loginBtn.enabled = YES;
+        
+        _setNickNameBtn.hidden = YES;
+    } else {
+        //如果登入，修改呢名
+        _welcomeLb.text = @"欢迎回来";
+        
+        _userNameLb.hidden = NO;
+        
+        [_loginBtn setTitle:profileUserName forState:UIControlStateNormal];
+        _loginBtn.enabled = NO;
+        
+        _setNickNameBtn.hidden = NO;
+    }
     
-    _setNickNameBtn.hidden = NO;
+    
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ProfileCollectCell.h"
+#import "ProfileCollectModel.h"
 
 @interface ProfileCollectCell ()
 
@@ -41,6 +42,7 @@
 - (UILabel *)priceLb {
     if(_priceLb == nil) {
         _priceLb = [[UILabel alloc] init];
+        _priceLb.backgroundColor = [UIColor whiteColor];
     }
     return _priceLb;
 }
@@ -59,9 +61,13 @@
 {
     if (self = [super initWithFrame:frame]) {
         
+        self.backgroundColor = [UIColor yellowColor];
+        
+        CGFloat colloctIVH = (kWindowW - 30)/2;
+        
         [self.collectIV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.mas_equalTo(0);
-            make.height.mas_equalTo(self.height);
+            make.height.mas_equalTo(colloctIVH);
         }];
         
         [self.collectIV addSubview:self.priceLb];
@@ -83,5 +89,14 @@
     return self;
 }
 
+- (void)setDataModel:(ProfileCollectDataBmobModel *)dataModel
+{
+    _dataModel = dataModel;
+    
+    [_collectIV setImageWithURL:[NSURL URLWithString:dataModel.picURL]];
+    _priceLb.text = dataModel.goodPrice;
+    _titleLb.text = dataModel.goodName;
+    _sourLb.text = dataModel.source;
+}
 
 @end

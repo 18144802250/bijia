@@ -17,6 +17,8 @@
 
 @interface WRBuyButton : UIView
 
+@property (nonatomic, strong) NSString *title;
+
 @property (nonatomic, strong) id <WRBuyButtonDelegate> delegate;
 
 @end

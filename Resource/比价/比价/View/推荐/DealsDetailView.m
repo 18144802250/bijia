@@ -44,24 +44,26 @@
 	return _contentWebView;
 }
 
-- (CommentTableView *)hotCommentTV {
-	if(_hotCommentTV == nil) {
-		_hotCommentTV = [[CommentTableView alloc] init];
-        _cellH = 44;
-	}
-	return _hotCommentTV;
-}
+//- (CommentTableView *)hotCommentTV {
+//	if(_hotCommentTV == nil) {
+//		_hotCommentTV = [[CommentTableView alloc] init];
+//        
+//	}
+//	return _hotCommentTV;
+//}
 #pragma mark - 初始化View时
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        
+        _cellH = 44;
         
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor grayColor];
         
         [self addSubview:self.headIcon];
         [self addSubview:self.contentWebView];
-        [self addSubview:self.hotCommentTV];
+        
         
         [self.headIcon mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.mas_equalTo(0);
@@ -73,9 +75,9 @@
             make.left.right.mas_equalTo(0);
         }];
 
-        [self.hotCommentTV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.mas_equalTo(0);
-        }];
+//        [self.hotCommentTV mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.bottom.mas_equalTo(0);
+//        }];
         
         _contentH = 150;
 
@@ -131,15 +133,19 @@
     if (count==0) {
         return;
     }
-    _hotCommentTV.hotCommentArr = self.vm.detailDataModel.hot_comments;
     CGFloat commentTvH = 0;
     if (count < 4) {
         commentTvH = _cellH*count + 40;
     } else
         commentTvH = _cellH * 3 + 40;
-    [_hotCommentTV mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(commentTvH);
-    }];
+    CommentTableView *commentTV = [[CommentTableView alloc] initWithFrame:CGRectMake(0, _contentH, self.width, commentTvH) style:0];
+//    [_hotCommentTV mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.height.mas_equalTo(commentTvH);
+//    }];
+    commentTV.hotCommentArr = self.vm.detailDataModel.hot_comments;
+    [self addSubview:commentTV];
+    _hotCommentTV = commentTV;
+    
     _contentH += commentTvH;
     self.contentSize = CGSizeMake(0, _contentH);
 }

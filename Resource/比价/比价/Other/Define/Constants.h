@@ -10,7 +10,7 @@
 #define Constants_h
 
 /** 导航栏题目文字大小 */
-#define kNaviTitleFontSize   24.0
+#define kNaviTitleFontSize   20.0
 
 /** 通过RGB设置颜色 */
 #define kRGBColor(R,G,B)        [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.0]
@@ -42,5 +42,10 @@ cell.preservesSuperviewLayoutMargins = NO; \
 
 //Docment文件夹目录
 #define kDocumentPath NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject
+
+/** collect数据库表名 */
+#define WRTableCollectName @"Collect"
+/** collect数据库字段名id */
+#define WRTableCollectObjectId @"objectId"
 
 #endif /* Constants_h */

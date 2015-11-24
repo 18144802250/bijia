@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) WRHeadView *titleHead;
 
-@property (nonatomic, strong) ProfileCollectView *collectView;
+
 
 @end
 

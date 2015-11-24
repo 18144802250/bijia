@@ -25,6 +25,7 @@
 #import "WRNaviTool.h"
 #import "WRTool.h"
 #import "WRBmobTool.h"
+#import "WRTabBarTool.h"
 
 
 /* 框架 */

@@ -19,7 +19,7 @@
 + (void)initialize
 {
     UINavigationBar *naviBar = [UINavigationBar appearance];
-    [naviBar setBackgroundColor:kNaviTitleColor];
+    [naviBar setBackgroundImage:[UIImage imageWithStretchableName:@"bg"] forBarMetrics:0];
     
     [naviBar setTranslucent:NO];
     

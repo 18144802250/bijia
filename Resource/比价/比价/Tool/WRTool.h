@@ -17,4 +17,5 @@
 
 @property (nonatomic, assign) CategoryType type;
 
+
 @end

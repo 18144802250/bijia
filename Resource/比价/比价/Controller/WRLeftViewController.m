@@ -81,6 +81,10 @@
     
     cell.textLabel.text = self.itemsName[indexPath.row];
     
+    NSString *imageStr = [NSString stringWithFormat:@"%ld",indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:imageStr];
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
     return cell;
 }
 

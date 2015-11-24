@@ -17,6 +17,8 @@
 #import "WRCompareView.h"
 #import "ShopPriceListView.h"
 
+#import "WRLoginViewController.h"
+
 @interface WRShopViewController () <UIWebViewDelegate,WRToolBarDelegate,WRCoverDelegate,ShopPriceListViewDelegate>
 
 @property (nonatomic, strong) UIWebView *webView;
@@ -24,6 +26,7 @@
 @property (nonatomic, strong) WRToolBar *toolBar;
 
 @property (nonatomic, strong) DealsPriceInfoDataModel *piDataModel;
+
 
 @end
 
@@ -59,23 +62,12 @@
             
             _piDataModel = model.data;
             
-            
             [self.view addSubview:self.toolBar];
             [self.toolBar mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.mas_equalTo(0);
                 make.height.mas_equalTo(35);
             }];
             
-//            NSString *price = _piDataModel.price_trend_desc;
-//            PriceWaveType type;
-            
-//            if ([price isEqualToString:@"价格上涨"]) {
-//                type = PriceWaveTypeUp;
-//            } else if ([price isEqualToString: @"价格平稳"]) {
-//                type = PriceWaveTypeClam;
-//            } else {
-//                type = PriceWaveTypeDown;
-//            }
             self.toolBar.type = [self countWithPriceHistoryArr:_piDataModel.price_history];
             self.toolBar.shopNum = _sdDataModel.items.count;
         }];
@@ -128,6 +120,7 @@
 {
     [self hideProgress];
 }
+
 #pragma mark - viewDisAppear 页面消失时把加载框停掉
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -154,6 +147,60 @@
     compareView.sdDataModel = _sdDataModel;
     
     compareView.spListView.delegate = self;
+}
+
+#pragma mark - 点击收藏
+- (void)didClickedAtCollectBtn
+{
+    UIAlertController *alert = nil;
+    if ([BmobUser getCurrentUser]) {
+        
+        alert = [UIAlertController alertControllerWithTitle:@"添加收藏" message:@"确认收藏？" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"好的～" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            BmobObject  *collect = [BmobObject objectWithClassName:@"Collect"];
+            //商品名字
+            [collect setObject:_sdDataModel.title forKey:@"goodName"];
+            //商品价格
+            [collect setObject:_itemModel.price forKey:@"goodPrice"];
+            //图片url
+            [collect setObject:[NSString stringWithFormat:@"%@",_sdDataModel.image_url] forKey:@"picURL"];
+            //商家
+            [collect setObject:_siteName forKey:@"source"];
+            //跳转url
+            [collect setObject:[NSString stringWithFormat:@"%@",_URL] forKey:@"url"];
+            //异步保存
+            [collect saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                if (isSuccessful) {
+                    //创建成功后会返回objectId，updatedAt，createdAt等信息
+                    //打印objectId
+                    NSLog(@"objectid :%@",collect.objectId);
+                    [self showSuccessMsg:@"收藏成功"];
+                    
+                } else if (error){
+                    //发生错误后的动作
+                    NSLog(@"%@",error);
+                } else {
+                    NSLog(@"Unknow error");
+                }
+            }];
+            
+        }]];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"才不～" style:UIAlertActionStyleCancel handler:nil]];
+    } else {
+        alert = [UIAlertController alertControllerWithTitle:@"登陆收藏" message:@"登陆后添加收藏功能哦~" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"好的～" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            WRLoginViewController *loginVC = [WRLoginViewController new];
+            [self.navigationController pushViewController:loginVC animated:YES];
+            
+        }]];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"才不～" style:UIAlertActionStyleCancel handler:nil]];
+    }
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - WRCoverDelegate 点击蒙版

@@ -23,7 +23,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.backgroundColor = [UIColor greenColor];
+        self.backgroundColor = [UIColor whiteColor];
         
         //按钮的宽度
         CGFloat w = (kWindowW - 2*LineW)/3;
@@ -89,18 +89,19 @@
         //添加收藏按钮
         UIButton *collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [collectBtn setTitle:@"收藏" forState:UIControlStateNormal];
-        UIImageView *collectIV = [UIImageView new];
+        [collectBtn setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+        [collectBtn bk_addEventHandler:^(id sender) {
+
+            if ([_delegate respondsToSelector:@selector(didClickedAtCollectBtn)]) {
+                [_delegate didClickedAtCollectBtn];
+            }
+        } forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:collectBtn];
         [collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(line2.mas_right).mas_equalTo(0);
             make.top.bottom.right.mas_equalTo(0);
         }];
-        [collectBtn addSubview:collectIV];
-        [collectIV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-10);
-            make.centerY.mas_equalTo(0);
-            make.size.mas_equalTo(CGSizeMake(14, 14));
-        }];
+        _collectBtn = collectBtn;
     }
     return self;
 }

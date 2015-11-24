@@ -21,7 +21,6 @@
         _buyBtn = [[UIButton alloc] init];
         [_buyBtn setBackgroundColor:[UIColor redColor]];
         _buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-        [_buyBtn setTitle:@"买买买" forState:UIControlStateNormal];
         [_buyBtn bk_addEventHandler:^(id sender) {
             if ([_delegate respondsToSelector:@selector(didClickedAtBuyBtn:)]) {
                 [_delegate didClickedAtBuyBtn:_buyBtn];
@@ -35,26 +34,23 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.userInteractionEnabled = YES;
-        UIButton *btn = [[UIButton alloc] init];
-        [btn setBackgroundColor:[UIColor redColor]];
-        btn.userInteractionEnabled = YES;
-        btn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-        [btn setTitle:@"买买买" forState:UIControlStateNormal];
-        [btn bk_addEventHandler:^(id sender) {
-            if ([_delegate respondsToSelector:@selector(didClickedAtBuyBtn:)]) {
-                [_delegate didClickedAtBuyBtn:_buyBtn];
-            }
-        } forControlEvents:UIControlEventTouchUpInside];
         
-        [self addSubview:btn];
-        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self addSubview:self.buyBtn];
+        CGFloat w = 300;
+        CGFloat h = 50;
+        [_buyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_equalTo(0);
-            make.size.mas_equalTo(CGSizeMake(self.width-40, self.height-20));
+            make.size.mas_equalTo(CGSizeMake(w, h));
         }];
     }
     return self;
 }
 
-
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    
+    [_buyBtn setTitle:title forState:UIControlStateNormal];
+}
 
 @end

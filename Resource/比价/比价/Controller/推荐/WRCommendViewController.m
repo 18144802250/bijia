@@ -67,21 +67,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    WRTitleBarButton *titleBtn = [WRTitleBarButton new];
-#pragma mark - 点击开启全网搜索 跳转页面
-    [titleBtn bk_addEventHandler:^(id sender) {
-        WRSearchViewController *vc = [WRSearchViewController standerSearchVC];
-        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
-        [self presentViewController:navi animated:NO completion:nil];
-    } forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.titleView = titleBtn;
-    
     [WRNaviTool addLeftNaviItemAtViewC:self];
+    self.title = @"推荐";
     //UIEdgeInsetsMake(0, 0, -64, 0)
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
+        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, -64, 0));
     }];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -136,6 +127,11 @@ kRemoveCellSeparator
     DealsDetailViewController *vc = [[DealsDetailViewController alloc] initWithIdStr:[NSString stringWithFormat:@"%ld",model.content_id]];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [WRTabBarTool showTabBar:self];
 }
 
 @end

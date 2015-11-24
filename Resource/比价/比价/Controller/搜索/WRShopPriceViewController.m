@@ -76,11 +76,8 @@
     [self addSubView];
     
     [SearchNetManager getItemsPriceWithID:_idStr completionHandle:^(SearchDetailModel *model, NSError *error) {
-        
         self.resultModel = model.data;
-        
         _headerView.dataModel = model.data;
-        
         _listView.sdModel = model.data;
     }];
     
@@ -91,7 +88,7 @@
 {
     [self.view addSubview:self.headerView];
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(64);
+        make.top.mas_equalTo(0);
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(100);
     }];
@@ -111,6 +108,7 @@
     
     SearchDetailDataItemsModel *itemModel = _resultModel.items[index];
     NSString *purUrlStr = itemModel.purchase_url;
+    vc.itemModel = itemModel;
     vc.URL = [NSURL URLWithString:purUrlStr];
     vc.purchaseURL = [purUrlStr stringByReplacingOccurrencesOfString:@"/proxy?purl=" withString:@""];
     vc.siteName = itemModel.site_name;

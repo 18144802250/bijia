@@ -72,7 +72,20 @@
 {
     [WRAccountTool accountWithCode:code completionHandle:^(NSError *error) {
         
-        
+        NSDictionary *dic = @{@"access_token":[WRAccountTool account].access_token,@"uid":[WRAccountTool account].uid,@"expirationDate":[WRAccountTool account].expires_date};
+        //通过授权信息注册登录
+        [BmobUser loginInBackgroundWithAuthorDictionary:dic
+                                               platform:BmobSNSPlatformSinaWeibo
+                                                  block:^(BmobUser *user, NSError *error) {
+                                                      DDLogVerbose(@"user objectid is :%@",user.objectId);
+                                                      
+                                                      if (user) {
+                                                          [self showSuccessMsg:@"登陆成功"];
+                                                          [self.navigationController popToRootViewControllerAnimated:YES];
+                                                      } else {
+                                                          [self showErrorMsg:@"登陆失败"];
+                                                      }
+                                                  }];
         
     }];
 }

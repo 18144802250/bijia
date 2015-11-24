@@ -7,31 +7,50 @@
 //
 
 #import "WRSettingViewController.h"
+#import "SettingView.h"
 
-@interface WRSettingViewController ()
+
+@interface WRSettingViewController () <WRBuyButtonDelegate>
+
+@property (nonatomic, strong) SettingView *settingView;
 
 @end
 
 @implementation WRSettingViewController
 
+- (SettingView *)settingView {
+    if(_settingView == nil) {
+        _settingView = [[SettingView alloc] init];
+        _settingView.loginOutBtn.delegate = self;
+    }
+    return _settingView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self addSettingView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - 添加设置页面
+- (void)addSettingView
+{
+    [self.view addSubview:self.settingView];
+    [_settingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - WRBuyButtonDelegate 退出登陆
+- (void)didClickedAtBuyBtn:(UIButton *)btn
+{
+    [BmobUser logout];
+    if ([BmobUser getCurrentUser]) {
+        [self showErrorMsg:@"登出失败"];
+    } else {
+        [self showSuccessMsg:@"已登出"];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
-*/
 
 @end

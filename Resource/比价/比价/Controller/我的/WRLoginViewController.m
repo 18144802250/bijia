@@ -38,8 +38,7 @@
 - (void)addLoginview
 {
     [self.view addSubview:self.loginView];
-    
-    [WRNaviTool addBackItemAtPresentVC:self];
+
     [self.loginView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
@@ -53,18 +52,16 @@
             [self showErrorMsg:@"登陆失败"];
         } else {
             [self showSuccessMsg:@"登陆成功"];
-            
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }
 
 - (void)didClickedAtRegistBtn:(UIButton *)btn
 {
-    
-    
     WRRegisViewController *vc = [WRRegisViewController new];
     
-    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didClickedAtSinaBtn:(UIButton *)btn

@@ -12,6 +12,7 @@
 
 @optional
 - (void)didClickedAtBtn;
+- (void)didClickedAtCollectBtn;
 
 @end
 
@@ -25,6 +26,7 @@ typedef NS_ENUM(NSUInteger, PriceWaveType) {
 
 @property (nonatomic, assign) PriceWaveType type;
 @property (nonatomic, assign) NSInteger shopNum;
+@property (nonatomic, strong) UIButton *collectBtn;
 
 @property (nonatomic, strong) id <WRToolBarDelegate> delegate;
 

@@ -44,10 +44,10 @@
 - (RESideMenu *)sideMenu {
     if (!_sideMenu) {
         WRCommendViewController *vc = [WRCommendViewController new];
-        [WRNaviTool addLeftNaviItemAtViewC:vc];
         WRNavigationController *navi = [[WRNavigationController alloc] initWithRootViewController:vc];
         
         _sideMenu = [[RESideMenu alloc] initWithContentViewController:navi leftMenuViewController:[WRLeftViewController new] rightMenuViewController:nil];
+        _sideMenu.backgroundImage = [UIImage imageNamed:@"sideMenuBg"];
     }
     return _sideMenu;
 }
@@ -62,7 +62,6 @@
 - (void)addSubVC
 {
     //推荐
-//    [self setUpOneVCWithVC:self.sideMenu title:@"推荐" image:[UIImage imageWithOriginName:@"tabbar_commend"] selectedImage:[UIImage imageWithOriginName:@"tabbar_commend_select"]];
     self.sideMenu.title = @"推荐";
     self.sideMenu.tabBarItem.image = [UIImage imageWithOriginName:@"tabbar_commend"];
     self.sideMenu.tabBarItem.selectedImage = [UIImage imageWithOriginName:@"tabbar_commend_select"];
@@ -70,7 +69,6 @@
     
     //搜索
     WRSearchViewController *searchVC = [WRSearchViewController new];
-    
     [self setUpOneVCWithVC:searchVC title:@"搜索" image:[UIImage imageWithOriginName:@"tabbar_search"] selectedImage:[UIImage imageWithOriginName:@"tabbar_search_selected"]];
     
     //贴士

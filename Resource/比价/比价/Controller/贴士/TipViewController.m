@@ -74,7 +74,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.titleColorSelected = [UIColor greenColor];
+    self.titleColorSelected = kNaviTitleColor;
     self.menuViewStyle = WMMenuViewStyleLine;
     self.titleSizeNormal = 16;
     self.titleSizeSelected = 18;
