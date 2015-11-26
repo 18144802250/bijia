@@ -48,6 +48,10 @@ cell.preservesSuperviewLayoutMargins = NO; \
 #define WRTableCollectName @"Collect"
 /** collect数据库字段名id */
 #define WRTableCollectObjectId @"objectId"
+/** collect数据库字段名id */
+#define WRTableCollectUserId @"userID"
+
+
 
 
 #define WRItemsNameFontSize 17

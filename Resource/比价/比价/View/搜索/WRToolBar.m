@@ -9,6 +9,7 @@
 #import "WRToolBar.h"
 
 #define LineW 2
+#define ToolFontSize 15
 
 @interface WRToolBar ()
 
@@ -30,6 +31,7 @@
         CGFloat w = (kWindowW - 2*LineW)/3;
         //添加价格波动显示按钮
         _priceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _priceBtn.titleLabel.font = [UIFont systemFontOfSize:ToolFontSize];
         [_priceBtn bk_addEventHandler:^(id sender) {
             
             if ([_delegate respondsToSelector:@selector(didClickedAtBtn)]) {
@@ -48,7 +50,7 @@
         [waveIV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(0);
             make.right.mas_equalTo(-10);
-            make.size.mas_equalTo(CGSizeMake(14, 14));
+            make.size.mas_equalTo(CGSizeMake(20, 20));
         }];
         //添加线
         UILabel *line = [UILabel new];
@@ -62,7 +64,7 @@
         }];
         //添加多家比价
         _shopNumBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        
+        _shopNumBtn.titleLabel.font = [UIFont systemFontOfSize:ToolFontSize];
         [_shopNumBtn bk_addEventHandler:^(id sender) {
             
             if ([_delegate respondsToSelector:@selector(didClickedAtBtn)]) {
@@ -89,8 +91,8 @@
         }];
         //添加收藏按钮
         UIButton *collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _collectBtn.titleLabel.font = [UIFont systemFontOfSize:ToolFontSize];
         [collectBtn setTitle:@"收藏" forState:UIControlStateNormal];
-        [collectBtn setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
         [collectBtn bk_addEventHandler:^(id sender) {
 
             if ([_delegate respondsToSelector:@selector(didClickedAtCollectBtn)]) {
@@ -103,6 +105,14 @@
             make.top.bottom.right.mas_equalTo(0);
         }];
         _collectBtn = collectBtn;
+        UIImageView *collectIV = [UIImageView new];
+        collectIV.image = [UIImage imageNamed:@"收藏"];
+        [_collectBtn addSubview:collectIV];
+        [collectIV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(0);
+            make.right.mas_equalTo(-10);
+            make.size.mas_equalTo(CGSizeMake(25, 25));
+        }];
     }
     return self;
 }
@@ -113,14 +123,15 @@
     switch (type) {
         case PriceWaveTypeClam:
             [_priceBtn setTitle:@"价格平稳" forState:UIControlStateNormal];
-            [_priceBtn setImage:[UIImage imageNamed:@"tabbar_share_selected"] forState:UIControlStateNormal];
-
+            _waveIV.image = [UIImage imageNamed:@"clam"];
             break;
         case PriceWaveTypeDown:
             [_priceBtn setTitle:@"价格下降" forState:UIControlStateNormal];
+            _waveIV.image = [UIImage imageNamed:@"down"];
             break;
         case PriceWaveTypeUp:
             [_priceBtn setTitle:@"价格上升" forState:UIControlStateNormal];
+            _waveIV.image = [UIImage imageNamed:@"up"];
             break;
         default:
             break;
@@ -131,7 +142,11 @@
 {
     _shopNum = shopNum;
     
-    [_shopNumBtn setTitle:[NSString stringWithFormat:@"%ld家比价",_shopNum] forState:UIControlStateNormal];
+    if (!shopNum) {
+        [_shopNumBtn setTitle:@"没有比价信息" forState:UIControlStateNormal];
+    } else {
+        [_shopNumBtn setTitle:[NSString stringWithFormat:@"%ld家比价",_shopNum] forState:UIControlStateNormal];
+    }
 }
 
 @end

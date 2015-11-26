@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CommentTableView : UITableView
+@interface CommentTableView : UIView
 
 @property (nonatomic, strong) NSArray *hotCommentArr;
 

@@ -7,8 +7,9 @@
 //
 
 #import "BaseModel.h"
+#import "DealsDetailModel.h"
 
-@class TipDetailDataModel,TipDetailDataSectionListModel,TipDetailDataAuthorModel,TipDetailDataCategoryModel,TipDetailDataHotCommentsModel,TipDetailDataUserModel;
+@class TipDetailDataModel,TipDetailDataSectionListModel,TipDetailDataAuthorModel,TipDetailDataCategoryModel,TipDetailDataHotCommentsModel;
 @interface TipDetailModel : BaseModel
 
 @property (nonatomic, copy) NSString *status;
@@ -96,31 +97,8 @@
 
 @end
 
-@interface TipDetailDataHotCommentsModel : BaseModel
-
-@property (nonatomic, assign) long long ID;
-
-@property (nonatomic, copy) NSString *comment_content;
-
-@property (nonatomic, copy) NSString *pub_time;
-
-@property (nonatomic, assign) NSInteger supports_count;
-
-@property (nonatomic, strong) TipDetailDataUserModel *user;
+@interface TipDetailDataHotCommentsModel : DealsDetailDataHotCommentsModel
 
 @end
 
-@interface TipDetailDataUserModel : BaseModel
-
-@property (nonatomic, copy) NSString *email;
-
-@property (nonatomic, assign) NSInteger ID;
-
-@property (nonatomic, copy) NSString *nickname;
-
-@property (nonatomic, assign) NSInteger level;
-
-@property (nonatomic, copy) NSString *photo;
-
-@end
 

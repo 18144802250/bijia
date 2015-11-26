@@ -15,6 +15,7 @@
 		C314012D1C0057450050400C /* ProfileLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = C314012C1C0057450050400C /* ProfileLoginView.m */; };
 		C31401301C0061540050400C /* ProfileCollectView.m in Sources */ = {isa = PBXBuildFile; fileRef = C314012F1C0061540050400C /* ProfileCollectView.m */; };
 		C31401331C00660F0050400C /* ProfileCollectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C31401321C00660F0050400C /* ProfileCollectCell.m */; };
+		C31A01071C056169005FF87C /* WRTextFieldTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C31A01061C056169005FF87C /* WRTextFieldTool.m */; };
 		C3282B041BF0D14D00331012 /* BaseNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3282B011BF0D14D00331012 /* BaseNetManager.m */; };
 		C3282B0B1BF0D41700331012 /* BaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3282B0A1BF0D41700331012 /* BaseViewModel.m */; };
 		C350A68C1C029BA400CBD138 /* SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C350A68B1C029BA400CBD138 /* SettingView.m */; };
@@ -120,6 +121,8 @@
 		C314012F1C0061540050400C /* ProfileCollectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCollectView.m; sourceTree = "<group>"; };
 		C31401311C00660F0050400C /* ProfileCollectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCollectCell.h; sourceTree = "<group>"; };
 		C31401321C00660F0050400C /* ProfileCollectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCollectCell.m; sourceTree = "<group>"; };
+		C31A01051C056169005FF87C /* WRTextFieldTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRTextFieldTool.h; sourceTree = "<group>"; };
+		C31A01061C056169005FF87C /* WRTextFieldTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRTextFieldTool.m; sourceTree = "<group>"; };
 		C3282B001BF0D14D00331012 /* BaseNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetManager.h; sourceTree = "<group>"; };
 		C3282B011BF0D14D00331012 /* BaseNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetManager.m; sourceTree = "<group>"; };
 		C3282B091BF0D41700331012 /* BaseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewModel.h; sourceTree = "<group>"; };
@@ -360,6 +363,15 @@
 				C3E4D3E01C01681C00A38DFB /* WRRegisViewController.m */,
 			);
 			path = "我的";
+			sourceTree = "<group>";
+		};
+		C31A01041C056153005FF87C /* TextFieldKeyBoard */ = {
+			isa = PBXGroup;
+			children = (
+				C31A01051C056169005FF87C /* WRTextFieldTool.h */,
+				C31A01061C056169005FF87C /* WRTextFieldTool.m */,
+			);
+			path = TextFieldKeyBoard;
 			sourceTree = "<group>";
 		};
 		C3282AFB1BF0CCE400331012 /* View */ = {
@@ -647,6 +659,7 @@
 		C35C84A81BF0B7B2005ED3B9 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				C31A01041C056153005FF87C /* TextFieldKeyBoard */,
 				C369280E1C04840400E18984 /* History */,
 				C3E4D3E51C01BCF800A38DFB /* Account */,
 				C3E4D3D81C0163B800A38DFB /* Bmob */,
@@ -982,6 +995,7 @@
 			files = (
 				C376DDBF1BF1C9D80027610D /* WRNaviTool.m in Sources */,
 				C37D1D811BFEF7CF00A16E1A /* NSObject+Common.m in Sources */,
+				C31A01071C056169005FF87C /* WRTextFieldTool.m in Sources */,
 				C36928141C04860A00E18984 /* WRHistoryTool.m in Sources */,
 				C35BCC981BFD6BF2005561AF /* WRTipViewController.m in Sources */,
 				C35BCCC01BFDBC63005561AF /* SharePicNetManager.m in Sources */,

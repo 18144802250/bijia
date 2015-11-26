@@ -19,8 +19,8 @@
 @property (nonatomic, strong) UILabel *nameLb;
 @property (nonatomic, strong) UILabel *timeLb;
 @property (nonatomic, strong) WRHeadView *headView;
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIWebView *webView;
-@property (nonatomic, strong) CommentTableView *commentTV;
 
 @property (nonatomic, assign) CGFloat contentH;
 
@@ -51,7 +51,7 @@
 - (UILabel *)nameLb {
 	if(_nameLb == nil) {
 		_nameLb = [[UILabel alloc] init];
-        _nameLb.font = [UIFont systemFontOfSize:12];
+        _nameLb.font = [UIFont systemFontOfSize:13];
         _nameLb.textColor = [UIColor lightGrayColor];
         [self addSubview:_nameLb];
 	}
@@ -61,8 +61,8 @@
 - (UILabel *)timeLb {
 	if(_timeLb == nil) {
 		_timeLb = [[UILabel alloc] init];
-        _nameLb.font = [UIFont systemFontOfSize:12];
-        _nameLb.textColor = [UIColor lightGrayColor];
+        _timeLb.font = [UIFont systemFontOfSize:13];
+        _timeLb.textColor = [UIColor lightGrayColor];
         [self addSubview:_timeLb];
 	}
 	return _timeLb;
@@ -76,6 +76,14 @@
     return _headView;
 }
 
+- (UIScrollView *)scrollView {
+    if(_scrollView == nil) {
+        _scrollView = [[UIScrollView alloc] init];
+        [self addSubview:_scrollView];
+    }
+    return _scrollView;
+}
+
 - (UIWebView *)webView {
 	if(_webView == nil) {
 		_webView = [[UIWebView alloc] init];
@@ -83,14 +91,6 @@
         [self addSubview:_webView];
 	}
 	return _webView;
-}
-
-- (CommentTableView *)commentTV {
-	if(_commentTV == nil) {
-		_commentTV = [[CommentTableView alloc] init];
-        [self addSubview:_commentTV];
-	}
-	return _commentTV;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -118,13 +118,13 @@
             make.left.right.mas_equalTo(0);
             make.height.mas_equalTo(44);
         }];
-        [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_nameLb.mas_bottom).mas_equalTo(10);
-            make.left.right.mas_equalTo(0);
+        [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(_headView.mas_bottom).mas_equalTo(0);
+            make.left.right.bottom.mas_equalTo(0);
         }];
         
         _contentH = 164;
-        self.contentSize = CGSizeMake(0, _contentH);
+
     }
     return self;
 }
@@ -140,41 +140,53 @@
     _timeLb.text = dataModel.update_date;
     _headView.text = dataModel.title;
     TipDetailDataSectionListModel *sectionList = dataModel.section_list[0];
-    [_webView loadHTMLString:sectionList.content baseURL:nil];
+    [self.webView loadHTMLString:sectionList.content baseURL:nil];
     
 }
 
 #pragma mark - UIWebViewDelegate当网页加载完成
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    
     CGRect frame = webView.frame;
     frame.size.width = 768;
     frame.size.height = 1;
-    webView.scrollView.scrollEnabled = NO;
+    webView.scrollView.scrollEnabled = YES;
     webView.scrollView.bounces = NO;
     webView.frame = frame;
     /** webView高 */
     CGFloat webViewH = webView.scrollView.contentSize.height;
-    [_webView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(webViewH);
-        make.width.mas_equalTo(self.width);
-    }];
-    _contentH += webViewH;
-    self.contentSize = CGSizeMake(0, _contentH);
     
-    NSUInteger count = _dataModel.hot_comments.count;
-    if (count > 0) {
-        CommentTableView *commentTV = [CommentTableView new];
-        commentTV.hotCommentArr = _dataModel.hot_comments;
-        
-        CGFloat tableH;
-        if (count < 4) {
-            tableH = count * 44;
-        } else {
-            tableH = 3 * 44;
-        }
-        [self addSubview:commentTV];
+    [_scrollView addSubview:_webView];
+    [_webView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(self.width, _scrollView.height));
+    }];
+    
+    _contentH += webViewH;
+    _scrollView.contentSize = CGSizeMake(0, _contentH);
+    
+    NSUInteger count = self.dataModel.hot_comments.count;
+    if (count==0) {
+        return;
     }
+    CGFloat commentTvH = 0;
+    if (count < 4) {
+        commentTvH = 44*count + 100;
+    } else {
+        commentTvH = 44 * 3 + 100;
+    }
+    CommentTableView *commentTV = [CommentTableView new];
+    [_scrollView addSubview:commentTV];
+    [commentTV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_webView.mas_bottom).mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(commentTvH);
+    }];
+    commentTV.hotCommentArr = self.dataModel.hot_comments;
+    
+    _contentH += commentTvH + 50;
+    _scrollView.contentSize = CGSizeMake(0, _contentH);
     
 }
 

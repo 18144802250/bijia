@@ -110,6 +110,8 @@
     [super viewDidAppear:animated];
     
     [self userLogin];
+    
+    
 }
 
 #pragma mark - 判断用户是否登陆 登出是调用 开始时调用 设置呢名时调用 登陆，注册，第三方登陆成功时调用
@@ -117,6 +119,7 @@
 {
     BmobUser *bUser = [BmobUser getCurrentUser];
     if (bUser) {
+        [self refreshCollectView];
         _rightItem.enabled = YES;
         //如果用户存在，先判断是否有呢名，如果没有设置用户名
         NSString *name = [WRBmobTool nickNameFromCurrentUser];
@@ -129,6 +132,7 @@
         [self refreshCollectView];
         
     }else{
+        _profileView.collectView.collectArr = nil;
         _rightItem.enabled = NO;
         
         _profileView.headView.profileUserName = nil;
@@ -139,16 +143,15 @@
 - (void)refreshCollectView
 {
     //刷新收藏列表
-    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Collect"];
+    BmobQuery   *bquery = [BmobQuery queryWithClassName:WRTableCollectName];
+    //添加playerName不是小明的约束条件
+    [bquery whereKey:WRTableCollectUserId equalTo:[BmobUser getCurrentUser].objectId];
     //查找Collect表的数据
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         
         ProfileCollectModel *model = [ProfileCollectModel mj_objectWithKeyValues:[self transformWithArr:array]];
-        //当有数据时刷新列表
-        if (model.data.count > 0) {
-            
-            _profileView.collectView.collectArr = model.data;
-        }
+        
+        _profileView.collectView.collectArr = model.data;
     }];
 }
 

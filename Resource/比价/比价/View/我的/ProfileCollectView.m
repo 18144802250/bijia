@@ -47,6 +47,7 @@
 		_collectView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height) collectionViewLayout:[ProfileCollectLayout new]];
         _collectView.dataSource = self;
         _collectView.delegate = self;
+        _collectView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"head5"]];
         [_collectView registerClass:[ProfileCollectCell class] forCellWithReuseIdentifier:@"Cell"];
 	}
 	return _collectView;

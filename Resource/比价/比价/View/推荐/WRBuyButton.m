@@ -18,14 +18,12 @@
 
 - (UIButton *)buyBtn {
     if(_buyBtn == nil) {
+        
         _buyBtn = [[UIButton alloc] init];
-        [_buyBtn setBackgroundColor:[UIColor redColor]];
+        
+        _buyBtn.backgroundColor = kNaviTitleColor;
         _buyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-        [_buyBtn bk_addEventHandler:^(id sender) {
-            if ([_delegate respondsToSelector:@selector(didClickedAtBuyBtn:)]) {
-                [_delegate didClickedAtBuyBtn:_buyBtn];
-            }
-        } forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return _buyBtn;
 }
@@ -33,15 +31,26 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        
         self.userInteractionEnabled = YES;
+        self.backgroundColor = kRGBColor(222, 222, 222);
         
         [self addSubview:self.buyBtn];
-        CGFloat w = 300;
-        CGFloat h = 50;
+        CGFloat w = 200;
+        CGFloat h = 30;
         [_buyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.mas_equalTo(0);
+            make.centerX.mas_equalTo(0);
+            make.bottom.mas_equalTo(-3);
             make.size.mas_equalTo(CGSizeMake(w, h));
         }];
+        
+        [_buyBtn bk_addEventHandler:^(id sender) {
+            DDLogVerbose(@"1111");
+            if ([_delegate respondsToSelector:@selector(didClickedAtBuyBtn:)]) {
+                [_delegate didClickedAtBuyBtn:_buyBtn];
+            }
+        } forControlEvents:UIControlEventTouchUpInside];
+
     }
     return self;
 }

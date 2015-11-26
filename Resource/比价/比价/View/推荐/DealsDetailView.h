@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DealsDetailViewModel.h"
-#import "DealsPriceInfoModel.h"
+#import "WRBuyButton.h"
 
-@interface DealsDetailView : UIScrollView
+@class DealsDetailDataModel,DealsPriceInfoDataModel;
+@interface DealsDetailView : UIView
 
-@property (nonatomic, strong) DealsDetailViewModel *vm;
+@property (nonatomic, strong) WRBuyButton *buy;
 
-@property (nonatomic, strong) DealsPriceInfoDataModel *pm;
+@property (nonatomic, strong) DealsDetailDataModel *dataModel;
 
-@property (nonatomic) CGFloat contentH;
+@property (nonatomic, strong) DealsPriceInfoDataModel *priceInfoModel;
 
 @end

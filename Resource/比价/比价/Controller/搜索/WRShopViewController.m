@@ -56,7 +56,7 @@
         make.edges.mas_equalTo(0);
     }];
     
-#pragma mark - 请求价格波动图的数据 如果没有传sdDataModel过来则不需要请求
+#pragma mark - 请求价格波动图的数据 如果没有传sdDataModel和purchaseURL过来 则不需要请求
     if (_sdDataModel || _purchaseURL.length>4) {
         [DealsNetManager getDealsDataPriceWithPurchaseURL:_purchaseURL completionHandle:^(DealsPriceInfoModel *model, NSError *error) {
             
@@ -158,7 +158,9 @@
         alert = [UIAlertController alertControllerWithTitle:@"添加收藏" message:@"确认收藏？" preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"好的～" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
-            BmobObject  *collect = [BmobObject objectWithClassName:@"Collect"];
+            BmobObject  *collect = [BmobObject objectWithClassName:WRTableCollectName];
+            //用户ID
+            [collect setObject:[BmobUser getCurrentUser].objectId forKey:WRTableCollectUserId];
             //商品名字
             [collect setObject:_sdDataModel.title forKey:@"goodName"];
             //商品价格
@@ -212,9 +214,17 @@
 #pragma mark - ShopPriceListViewDelegate
 - (void)didClickAtCellWithItemModel:(SearchDetailDataItemsModel *)itemModel
 {
+    WRShopViewController *vc = [WRShopViewController new];
     NSString *purUrlStr = itemModel.purchase_url;
-    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:purUrlStr]]];
-    self.title = itemModel.site_name;
+    vc.itemModel = itemModel;
+    vc.URL = [NSURL URLWithString:purUrlStr];
+    vc.purchaseURL = [purUrlStr stringByReplacingOccurrencesOfString:@"/proxy?purl=" withString:@""];
+    vc.siteName = itemModel.site_name;
+    vc.sdDataModel = _sdDataModel;
+    vc.title = itemModel.site_name;
+    [self.navigationController pushViewController:vc animated:YES];
+
+    [WRCover hide];
     [WRCompareView hide];
 }
 

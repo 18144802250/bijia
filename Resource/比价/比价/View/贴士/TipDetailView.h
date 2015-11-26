@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class TipDetailDataModel;
-@interface TipDetailView : UIScrollView
+@interface TipDetailView : UIView
 
 @property (nonatomic, strong) TipDetailDataModel *dataModel;
 

@@ -64,6 +64,7 @@
         _supportLb.textColor = [UIColor lightGrayColor];
         _supportLb.font = [UIFont systemFontOfSize:12];
         _supportLb.textAlignment = NSTextAlignmentRight;
+        
     }
     return _supportLb;
 }
@@ -109,13 +110,27 @@
         //评论数
         [self.commentLb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-10);
-            make.width.mas_equalTo(50);
+            make.bottomMargin.mas_equalTo(_iconIV.mas_bottomMargin).mas_equalTo(-8);
+        }];
+        UIImageView *commentIV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"comment"]];
+        commentIV.frame = CGRectMake(0, 0, 10, 10);
+        [self.contentView addSubview:commentIV];
+        [commentIV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(_commentLb.mas_left).mas_equalTo(-5);
             make.bottomMargin.mas_equalTo(_iconIV.mas_bottomMargin).mas_equalTo(-8);
         }];
         [self.supportLb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(_commentLb.mas_left).mas_equalTo(0);
+            make.right.mas_equalTo(commentIV.mas_left).mas_equalTo(-10);
             make.bottomMargin.mas_equalTo(_iconIV.mas_bottomMargin).mas_equalTo(-8);
         }];
+        UIImageView *likeIV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"like"]];
+        likeIV.frame = CGRectMake(0, 0, 12, 12);
+        [self.contentView addSubview:likeIV];
+        [likeIV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(_supportLb.mas_left).mas_equalTo(-5);
+            make.bottomMargin.mas_equalTo(_iconIV.mas_bottomMargin).mas_equalTo(-8);
+        }];
+        
     }
     return self;
 }

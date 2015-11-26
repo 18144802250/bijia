@@ -19,6 +19,7 @@
 
 - (void)setPub_time:(NSString *)pub_time
 {
+    _pub_time = pub_time;
     
     NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.dateFormat = @"EEE MMM d HH:mm:ss z yyyy";

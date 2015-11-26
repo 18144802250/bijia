@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "WRBuyButton.h"
 
+@protocol SettingViewDelegate <NSObject>
+
+@optional
+- (void)didClickAtTableViewCellWithRow:(NSUInteger)row;
+
+@end
+
 @interface SettingView : UIView
 
 @property (nonatomic, strong) WRBuyButton *loginOutBtn;
+@property (nonatomic, strong) id <SettingViewDelegate> delegate;
 
 @end

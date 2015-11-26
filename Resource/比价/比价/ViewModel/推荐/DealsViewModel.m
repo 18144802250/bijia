@@ -67,7 +67,7 @@
         
         NSTimeInterval sec = [self publishDateWithLastSec].timeIntervalSince1970;
         
-        _secStr = [NSString stringWithFormat:@"%ld0000",(NSInteger)sec/10];
+        _secStr = [NSString stringWithFormat:@"%ld000",(NSInteger)sec];
     }
     [self getDataFromNetCompleteHandle:completionHandle];
 }
@@ -78,6 +78,7 @@
     formatter.dateFormat = @"EEE MMM d HH:mm:ss z yyyy";
     formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en-us"];
     DealsDataModel *model = self.dataArr.lastObject;
+    
     return [formatter dateFromString:model.pub_time];
 }
 

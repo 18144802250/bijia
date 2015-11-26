@@ -87,7 +87,7 @@
     if (self = [super initWithFrame:frame]) {
         
         self.userInteractionEnabled = YES;
-        self.backgroundColor = [UIColor grayColor];
+        self.image = [UIImage imageNamed:@"head2"];
         
         [self.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_equalTo(0);

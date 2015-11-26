@@ -31,7 +31,11 @@
 - (UIView *)inputView {
     if(_inputView == nil) {
         _inputView = [[UIView alloc] init];
-        _inputView.backgroundColor = [UIColor blackColor];
+        UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"背景框"]];
+        [_inputView addSubview:iv];
+        [iv mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
         _inputView.alpha = 0.4;
         [self addSubview:_inputView];
     }
@@ -41,13 +45,15 @@
 - (UITextField *)userNameTf {
     if(_userNameTf == nil) {
         _userNameTf = [[UITextField alloc] init];
-        [_userNameTf setTextColor:[UIColor whiteColor]];
+        [_userNameTf setTextColor:[UIColor blackColor]];
         UIImage *imageN = [UIImage imageNamed:@"icon"];
         UIImageView *leftVN = [[UIImageView alloc]initWithImage:imageN];
         leftVN.contentMode = UIViewContentModeCenter;
         leftVN.frame = CGRectMake(0, 0, 55, 20);
         _userNameTf.leftViewMode = UITextFieldViewModeAlways;
         _userNameTf.leftView = leftVN;
+        _userNameTf.returnKeyType = UIReturnKeyNext;
+        [WRTextFieldTool addHideDowmItemAtTFKeyboard:_userNameTf];
     }
     return _userNameTf;
 }
@@ -55,13 +61,16 @@
 - (UITextField *)userNamePwd {
     if(_userNamePwd == nil) {
         _userNamePwd = [[UITextField alloc] init];
-        [_userNamePwd setTextColor:[UIColor whiteColor]];
+        [_userNamePwd setTextColor:[UIColor blackColor]];
+        [_userNamePwd setSecureTextEntry:YES];
         UIImage *imageP = [UIImage imageNamed:@"lock"];
         UIImageView *leftVP = [[UIImageView alloc]initWithImage:imageP];
         leftVP.contentMode = UIViewContentModeCenter;
         leftVP.frame = CGRectMake(0, 0, 55, 20);
         _userNamePwd.leftViewMode = UITextFieldViewModeAlways;
         _userNamePwd.leftView = leftVP;
+        [WRTextFieldTool addHideDowmItemAtTFKeyboard:_userNamePwd];
+        _userNameTf.returnKeyType = UIReturnKeyDone;
     }
     return _userNamePwd;
 }
@@ -134,7 +143,7 @@
     if (self = [super initWithFrame:frame]) {
         
         self.userInteractionEnabled = YES;
-        self.image = [UIImage imageNamed:@"背景图"];
+        self.image = [UIImage imageNamed:@"head4"];
         
         [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(120);
@@ -172,7 +181,7 @@
         [self.sinaBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
             make.size.mas_equalTo(CGSizeMake(53, 53));
-            make.bottom.mas_equalTo(-100);
+            make.bottom.mas_equalTo(-50);
         }];
         
         [self.otherLoginLb mas_makeConstraints:^(MASConstraintMaker *make) {

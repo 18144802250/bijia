@@ -58,12 +58,12 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.backgroundColor = [UIColor greenColor];
+        self.backgroundColor = [UIColor whiteColor];
         
         //添加头视图  需要数据 DealsPriceInfoDataModel 的 价格局势描述
         UILabel *headTitle = [UILabel new];
         headTitle.numberOfLines = 2;
-//        headTitle.textColor = [UIColor whiteColor];
+        headTitle.backgroundColor = kNaviTitleColor;
         headTitle.textAlignment = NSTextAlignmentCenter;
         [self addSubview:headTitle];
         [headTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -74,8 +74,9 @@
         _headTitle = headTitle;
 #pragma mark - collectButton
         _collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [_collectBtn setBackgroundImage:[UIImage imageNamed:@"searchbar_textfield_search_icon"] forState:UIControlStateNormal];
-        _collectBtn.backgroundColor= [UIColor blackColor];
+        [_collectBtn setTitle:@"收藏" forState:UIControlStateNormal];
+        [_collectBtn setImage:[UIImage imageNamed:@"收藏"] forState:UIControlStateNormal];
+        _collectBtn.backgroundColor = kNaviTitleColor;
         [self addSubview:_collectBtn];
         [_collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.mas_equalTo(-10);
@@ -101,16 +102,8 @@
     _piDataModel = piDataModel;
     
     //添加价格走势图 PriceView 需要数据 DealsPriceInfoDataModel 的 items
-
     PriceView *priceView = [[PriceView alloc] initWithDateModel:piDataModel rect:CGRectMake(0, 0, self.width, self.width/1.8)];
-
     [_scrollView addSubview:priceView];
-    
-//    [priceView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(0);
-//        make.left.right.mas_equalTo(0);
-//        make.height.mas_equalTo(120);
-//    }];
     
     _headTitle.text = piDataModel.title;
 }

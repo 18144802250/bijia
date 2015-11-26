@@ -7,12 +7,12 @@
 //
 
 #import "CommentTableView.h"
-#import "DealsDetailModel.h"
+#import "TipDetailModel.h"
 #import "WRHeadView.h"
 
 @interface CommentCell : UITableViewCell
 
-@property (nonatomic, strong) DealsDetailDataHotCommentsModel *commontModel;
+@property (nonatomic, strong) TipDetailDataHotCommentsModel *commontModel;
 
 @end
 
@@ -101,7 +101,7 @@
     return self;
 }
 
-- (void)setCommontModel:(DealsDetailDataHotCommentsModel *)commontModel
+- (void)setCommontModel:(TipDetailDataHotCommentsModel *)commontModel
 {
     _commontModel = commontModel;
     
@@ -121,6 +121,7 @@
 @interface CommentTableView ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) WRHeadView *headView;
+@property (nonatomic, strong) UITableView *tableView;
 @end
 
 @implementation CommentTableView
@@ -132,14 +133,28 @@
     return _headView;
 }
 
+- (UITableView *)tableView {
+    if(_tableView == nil) {
+        _tableView = [[UITableView alloc] init];
+        self.headView.text = @"热门评论";
+        _tableView.tableHeaderView = _headView;
+        
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        
+        [_tableView registerClass:[CommentCell class] forCellReuseIdentifier:@"Cell"];
+    }
+    return _tableView;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         
-        [self registerClass:[CommentCell class] forCellReuseIdentifier:@"Cell"];
-        _headView.text = @"热门评论";
-        
-        self.tableHeaderView = _headView;
+        [self addSubview:self.tableView];
+        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
     }
     return self;
 }
@@ -148,7 +163,7 @@
 {
     _hotCommentArr = hotCommentArr;
     
-    [self reloadData];
+    [_tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -167,6 +182,8 @@
     
     return cell;
 }
+
+
 
 
 

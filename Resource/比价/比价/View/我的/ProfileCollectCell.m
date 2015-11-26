@@ -61,7 +61,8 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.backgroundColor = [UIColor yellowColor];
+        self.layer.borderColor=[UIColor darkGrayColor].CGColor;
+        self.layer.borderWidth=0.3;
         
         CGFloat colloctIVH = (kWindowW - 30)/2;
         

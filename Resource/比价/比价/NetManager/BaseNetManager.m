@@ -28,6 +28,7 @@ static AFHTTPSessionManager *manager = nil;
 
 + (id)GET:(NSString *)path paramters:(NSDictionary *)params completionHandle:(void (^)(id, NSError *))completion
 {
+//    DDLogVerbose(@"path = %@",path);
     return [[self sharedAFManager] GET:path parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         completion(responseObject,nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

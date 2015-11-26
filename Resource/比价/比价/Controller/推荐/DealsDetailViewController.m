@@ -46,7 +46,7 @@
 - (DealsDetailView *)dealsDetailView {
 	if(_dealsDetailView == nil) {
 		_dealsDetailView = [[DealsDetailView alloc] init];
-        _dealsDetailView.bounces = NO;
+        _dealsDetailView.buy.delegate = self;
 	}
 	return _dealsDetailView;
 }
@@ -60,10 +60,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //隐藏TabBar
     [WRTabBarTool hideTabBar:self];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.dealsDetailView];
     [self.dealsDetailView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -74,7 +72,7 @@
     [self.dealsDetailVM getDataFromNetCompleteHandle:^(NSError *error) {
         [self hideProgress];
         
-        self.dealsDetailView.vm = self.dealsDetailVM;
+        self.dealsDetailView.dataModel = self.dealsDetailVM.detailDataModel;
     }];
     
     [self.dealsDetailVM addObserver:self forKeyPath:@"priceInfoModel" options:NSKeyValueObservingOptionNew context:nil];
@@ -83,15 +81,7 @@
 /** 监听self.dealsDetailVM priceInfoModel属性 当有新值时，修改视图 */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
-    self.dealsDetailView.pm = self.dealsDetailVM.priceInfoModel;
-    WRBuyButton *buy = [[WRBuyButton alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 60)];
-    buy.title = @"买买买";
-    buy.delegate = self;
-    [self.view addSubview:buy];
-    [buy mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(20);
-        make.centerX.mas_equalTo(0);
-    }];
+    self.dealsDetailView.priceInfoModel = self.dealsDetailVM.priceInfoModel;
 }
 
 //对象销毁时，移除监听者
@@ -103,9 +93,12 @@
 #pragma mark - WRBuyButtonDelegate
 - (void)didClickedAtBuyBtn:(UIButton *)btn
 {
+    
     WRShopViewController *vc = [WRShopViewController new];
     DealsDetailDataModel *model = self.dealsDetailVM.detailDataModel;
-    vc.URL = [NSURL URLWithString:model.purchase_url];
+    NSString *purURLStr = model.purchase_url;
+    vc.URL = [NSURL URLWithString:purURLStr];
+    vc.purchaseURL = [purURLStr stringByReplacingOccurrencesOfString:@"/proxy?purl=" withString:@""];
     
     [self.navigationController pushViewController:vc animated:NO];
 }

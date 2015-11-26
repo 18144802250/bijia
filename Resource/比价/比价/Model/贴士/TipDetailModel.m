@@ -54,8 +54,4 @@
 @end
 
 
-@implementation TipDetailDataUserModel
-
-@end
-
 

@@ -74,6 +74,7 @@
         _commentLb.textColor = [UIColor lightGrayColor];
         _commentLb.font = [UIFont systemFontOfSize:12];
         _commentLb.textAlignment = NSTextAlignmentRight;
+        
         [self.contentView addSubview:_commentLb];
     }
     return _commentLb;
@@ -107,8 +108,14 @@
         //评论数
         [self.commentLb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-10);
-            make.width.mas_equalTo(50);
             make.bottomMargin.mas_equalTo(_iconIV.mas_bottomMargin).mas_equalTo(-2);
+        }];
+        UIImageView *commentIV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"comment"]];
+        [self.contentView addSubview:commentIV];
+        [commentIV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(_commentLb.mas_left).mas_equalTo(-5);
+            make.bottomMargin.mas_equalTo(_iconIV.mas_bottomMargin).mas_equalTo(-2);
+            make.size.mas_equalTo(CGSizeMake(12, 12));
         }];
         
     }

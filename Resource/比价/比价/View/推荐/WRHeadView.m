@@ -19,7 +19,6 @@
 - (UILabel *)textLb {
     if(_textLb == nil) {
         _textLb = [[UILabel alloc] init];
-        _textLb.backgroundColor = [UIColor clearColor];
     }
     return _textLb;
 }
@@ -30,10 +29,10 @@
         
         self.backgroundColor = [UIColor lightGrayColor];
         
-        
         [self addSubview:self.textLb];
         [_textLb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 12, 0, 0));
+            make.left.mas_equalTo(12);
+            make.top.mas_equalTo(12);
         }];
     }
     return self;
@@ -42,7 +41,6 @@
 - (void)setText:(NSString *)text
 {
     _text = text;
-
     _textLb.text = text;
 }
 
