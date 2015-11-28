@@ -76,6 +76,11 @@
         _collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_collectBtn setTitle:@"收藏" forState:UIControlStateNormal];
         [_collectBtn setImage:[UIImage imageNamed:@"收藏"] forState:UIControlStateNormal];
+        [_collectBtn bk_addEventHandler:^(id sender) {
+            if ([_delegate respondsToSelector:@selector(didClickAtCollectBtnAtWRCompareView)]) {
+                [_delegate didClickAtCollectBtnAtWRCompareView];
+            }
+        } forControlEvents:UIControlEventTouchUpInside];
         _collectBtn.backgroundColor = kNaviTitleColor;
         [self addSubview:_collectBtn];
         [_collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {

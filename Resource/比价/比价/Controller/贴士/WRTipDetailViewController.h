@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SharePicNetManager.h"
 
 @interface WRTipDetailViewController : UIViewController
 
-- (instancetype)initWithGuideId:(NSString*)idStr;
+- (instancetype)initWithGuideId:(NSString*)idStr type:(ShareType)type;
+@property (nonatomic, assign) ShareType type;
 @property (nonatomic, strong) NSString *guideId;
+
+@property (nonatomic, assign) BOOL isDealsCome;
 
 @end

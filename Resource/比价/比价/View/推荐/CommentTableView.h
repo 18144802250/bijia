@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CommentTableViewDelegate <NSObject>
+
+@optional
+- (void)didClickedAtMoreCommentBtn;
+
+@end
+
 @interface CommentTableView : UIView
 
+@property (nonatomic, assign) BOOL isCommentVC;
 @property (nonatomic, strong) NSArray *hotCommentArr;
+
+@property (nonatomic, strong) id<CommentTableViewDelegate> delegate;
 
 @end

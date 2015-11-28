@@ -85,7 +85,7 @@
     if (indexPath.section == 1) {
         [cell.contentView addSubview:self.loginOutBtn];
         
-        _loginOutBtn.frame = CGRectMake(0, 0, cell.width, cell.height);
+        _loginOutBtn.frame = CGRectMake(0, 0, kWindowW, cell.height);
         
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {

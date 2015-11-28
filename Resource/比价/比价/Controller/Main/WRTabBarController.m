@@ -10,10 +10,8 @@
 #import "WRNavigationController.h"
 
 #import "WRLeftViewController.h"
-//#import "CommendViewController.h"
 #import "WRCommendViewController.h"
 #import "WRSearchViewController.h"
-//#import "WRTipViewController.h"
 #import "TipViewController.h"
 
 #import "WRProfileViewController.h"
@@ -46,7 +44,7 @@
         WRCommendViewController *vc = [WRCommendViewController new];
         WRNavigationController *navi = [[WRNavigationController alloc] initWithRootViewController:vc];
         _sideMenu = [[RESideMenu alloc] initWithContentViewController:navi leftMenuViewController:[WRLeftViewController new] rightMenuViewController:nil];
-        _sideMenu.backgroundImage = [UIImage imageNamed:@"sideMenuBg"];
+        _sideMenu.backgroundImage = [UIImage imageNamed:@"molv"];
     }
     return _sideMenu;
 }
@@ -73,8 +71,6 @@
     //贴士
     UIViewController *tipVC = [TipViewController standardTip];
     
-//    WRTipViewController *tipVC = [WRTipViewController new];
-//    
     [self setUpOneVCWithVC:tipVC title:@"分享" image:[UIImage imageWithOriginName:@"tabbar_share"] selectedImage:[UIImage imageWithOriginName:@"tabbar_share_selected"]];
     //设置
     WRProfileViewController *profileVC = [WRProfileViewController new];

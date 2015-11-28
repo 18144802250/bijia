@@ -129,6 +129,9 @@
     [_iconIV setImageWithURL:dataModel.cover_image_url];
     _titleLb.text = dataModel.title;
     _subTitleLb.text = dataModel.intro;
+    if (!dataModel.author) {
+        return;
+    }
     TipListDataAuthorModel *author = dataModel.author[0];
     _sourceLb.text = author.nick_name;
     _commentLb.text = [NSString stringWithFormat:@"%ld",dataModel.comments_count];

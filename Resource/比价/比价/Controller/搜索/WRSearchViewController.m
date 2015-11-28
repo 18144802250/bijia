@@ -12,6 +12,7 @@
 #import "WRShopListView.h"
 #import "WRShopViewController.h"
 #import "SearchViewModel.h"
+#import "SearchResultModel.h"
 #import "SearchModel.h"
 #import "WRSearchResultViewController.h"
 #import "WRShopPriceViewController.h"
@@ -36,7 +37,7 @@
 @end
 
 static WRSearchViewController *searchVC = nil;
-
+static NSString *lastStr = @"1234567890";
 @implementation WRSearchViewController
 
 - (WRSearchBar *)searchBar {
@@ -45,9 +46,9 @@ static WRSearchViewController *searchVC = nil;
         
         searchBar.placeholder = @"搜一搜，比一比";
 #pragma mark - 当点击键盘右下角搜索时 添加历史记录
-        [searchBar bk_addEventHandler:^(id sender) {
-            //添加返回按钮
-            [self addBackItem];
+        [searchBar bk_addEventHandler:^(WRSearchBar *sender) {
+            //显示取消按钮
+            sender.cancelBtn.hidden = NO;
             WRSearchResultViewController *srVC = [[WRSearchResultViewController alloc] initWithQuest:_searchBar.text];
             srVC.delegate = self;
             
@@ -58,13 +59,7 @@ static WRSearchViewController *searchVC = nil;
             }];
             _srVC = srVC;
             //添加历史记录 并归档
-            for (NSString *str in self.historyArr) {
-                if (_searchBar.text == str) {
-                    return;
-                }
-            }
-            [self.historyArr addObject:_searchBar.text];
-            [WRHistoryTool saveHistory:self.historyArr];
+            [self addHistoryLog:sender.text];
 
         } forControlEvents:UIControlEventEditingDidEndOnExit];
         _searchBar = searchBar;
@@ -151,8 +146,7 @@ static WRSearchViewController *searchVC = nil;
         //先显示商城，再请求搜索链接
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChange:) name:UITextFieldTextDidChangeNotification object:nil];
     }];
-    //添加键盘弹起时 返回原界面
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardGetUp:) name:UIKeyboardWillShowNotification object:nil];
+    
     
 }
 
@@ -160,22 +154,37 @@ static WRSearchViewController *searchVC = nil;
 - (void)addSearchBar
 {
     self.navigationItem.titleView = self.searchBar;
+    [_searchBar.cancelBtn bk_addEventHandler:^(UIButton *sender) {
+        
+        [_srVC.view removeFromSuperview];
+        sender.hidden = YES;
+        
+    } forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - textChange 当搜索栏的值发生改变时
 /** 当搜索框的值发生改变时 发请求*/
 - (void)textChange:(NSNotification*)noti
 {
+    if (_searchBar.text.length < lastStr.length) {
+        if (_searchBar.text.length == 0) {
+            [_srVC.view removeFromSuperview];
+        }
+        
+    }
     self.searchVM.textStr = _searchBar.text;
     [self.searchVM getDataFromNetCompleteHandle:^(NSError *error) {
-        NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:self.historyArr];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:self.historyArr];
 #pragma mark 把搜索请求回来的数据添加到搜索结果数组
-        for (SearchHuigoodsDataModel *strModel in self.searchVM.dataArr) {
-            [arr addObject:strModel.value];
-        }
-        self.searchArr = [arr copy];
-        [self.tableView reloadData];
+            for (SearchHuigoodsDataModel *strModel in self.searchVM.dataArr) {
+                [arr addObject:strModel.value];
+            }
+            self.searchArr = [arr copy];
+            [self.tableView reloadData];
+        });
     }];
+    lastStr = _searchBar.text;
 }
 
 #pragma mark 当搜索详情页出来时，需要添加返回按钮
@@ -189,17 +198,22 @@ static WRSearchViewController *searchVC = nil;
         [_srVC.view removeFromSuperview];
         
         [btn removeFromSuperview];
+        
+        [self.navigationItem hidesBackButton];
+        
     } forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spaceItem.width = -10;
-    self.navigationItem.leftBarButtonItems = @[spaceItem,leftItem];
+//    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    spaceItem.width = -10;
+//    self.navigationItem.leftBarButtonItems = @[spaceItem,leftItem];
+    self.navigationItem.backBarButtonItem = leftItem;
 }
 
-#pragma mark - view加载完成 searchBar获得键盘相应
+#pragma mark - view加载完成
 - (void)viewDidAppear:(BOOL)animated
 {
-    [_searchBar becomeFirstResponder];
+    //添加键盘弹起时 返回原界面
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardGetUp:) name:UIKeyboardWillShowNotification object:nil];
     [_tableView reloadData];
 }
 
@@ -266,11 +280,13 @@ static WRSearchViewController *searchVC = nil;
         return cell;
     } else {
         UITableViewCell * cell = [UITableViewCell new];
-        cell.backgroundColor = [UIColor grayColor];
-        
 #pragma mark -清空历史记录
-        cell.textLabel.text = @"清空历史记录";
-        
+        if (_historyArr.count == 0) {
+        } else {
+            cell.textLabel.text = @"清空历史记录";
+        }
+        cell.backgroundColor = [UIColor grayColor];
+
         return cell;
     }
 }
@@ -281,6 +297,9 @@ static WRSearchViewController *searchVC = nil;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 2) {
+        if (_historyArr.count == 0) {
+            return;
+        }
         [self.historyArr removeAllObjects];
         [WRHistoryTool saveHistory:self.historyArr];
         if (self.historyArr.count == 0) {
@@ -290,8 +309,8 @@ static WRSearchViewController *searchVC = nil;
         return;
     }
     
-    //添加返回按钮
-    [self addBackItem];
+    //添加取消按钮
+    _searchBar.cancelBtn.hidden = NO;
     //点击对应的字符串
     NSString *clickStr = nil;
     if (self.searchArr.count) {
@@ -312,13 +331,19 @@ static WRSearchViewController *searchVC = nil;
     _searchBar.text = clickStr;
     [_searchBar resignFirstResponder];
     
-    //添加历史记录 如果不重复 并归档
-    for (NSString *str in self.historyArr) {
-        if (clickStr == str) {
+    //添加历史记录
+    [self addHistoryLog:clickStr];
+}
+
+#pragma mark - 添加历史记录 如果不重复 归档保存
+- (void)addHistoryLog:(NSString*)log
+{
+    for (NSString *str in _historyArr) {
+        if ([str isEqualToString:log]) {
             return;
         }
     }
-    [self.historyArr addObject:clickStr];
+    [_historyArr addObject:log];
     [WRHistoryTool saveHistory:self.historyArr];
 }
 
@@ -326,7 +351,7 @@ static WRSearchViewController *searchVC = nil;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        CGFloat h = (kWindowW - 30)/2 + 10;
+        CGFloat h = (kWindowW - 30)/3 + 10;
         return h;
     } else {
         return 44;
@@ -337,19 +362,16 @@ static WRSearchViewController *searchVC = nil;
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [_searchBar resignFirstResponder];
-
 }
 
 
-#pragma mark - 点击商城列表按钮 转到商城详情页 添加历史记录
+#pragma mark - 点击商城列表按钮 转到商城详情页
 - (void)didClickedAtBtnTag:(NSInteger)index
 {
     WRShopViewController *vc = [WRShopViewController new];
     ShopDataModel *model = self.shopVM.dataArr[index];
     vc.URL = model.url;
     vc.title = model.name;
-    
-    [self.historyArr addObject:model.name];
     
     [self.navigationController pushViewController:vc animated:NO];
 }
@@ -360,9 +382,7 @@ static WRSearchViewController *searchVC = nil;
     [super viewWillDisappear:animated];
     
     [_searchBar resignFirstResponder];
-    
-    _searchBar.text = @"";  
-    
+    _searchBar.text = @"";
     self.searchArr = nil;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
@@ -378,12 +398,28 @@ static WRSearchViewController *searchVC = nil;
 }
 
 #pragma mark - WRSearchResultViewControllerDelegate 点击Cell 跳转详细页面
-- (void)didClickedAtCellWithID:(NSString *)idStr
+- (void)didClickedAtCellInSRVCWithItemModel:(SearchResultDataInlandModel *)itemModel
 {
-    WRShopPriceViewController *spVC = [[WRShopPriceViewController alloc] initWithID:idStr];
-    spVC.title = @"商家比价";
-    
-    [self.navigationController pushViewController:spVC animated:YES];
+    //如果商家只有1个 那么就没有商家比价 直接跳往商品详情页
+    if (itemModel.merchant_count == 1 && ![itemModel.purchase_url isEqualToString:@""]) {
+        WRShopViewController *vc = [WRShopViewController new];
+        NSString *purUrlStr = itemModel.purchase_url;
+        vc.URL = [NSURL URLWithString:purUrlStr];
+        vc.purchaseURL = [purUrlStr stringByReplacingOccurrencesOfString:@"/proxy?purl=" withString:@""];
+        vc.inlandModel = itemModel;
+        SearchResultDataItemsMerchantModel *merchant = itemModel.merchant;
+        vc.title = merchant.name;
+        vc.siteName = merchant.name;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        WRShopPriceViewController *spVC = [[WRShopPriceViewController alloc] initWithID:itemModel.ID];
+        spVC.title = @"商家比价";
+        
+        [self.navigationController pushViewController:spVC animated:YES];
+    }
 }
 
+
 @end
+
+

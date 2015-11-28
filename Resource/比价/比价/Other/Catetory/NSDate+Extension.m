@@ -12,7 +12,7 @@
 
 - (BOOL)isToday
 {
-    NSCalendar *calendar = [NSCalendar new];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     int unit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
     NSDateComponents *nowCmp = [calendar components:unit fromDate:[NSDate date]];
     NSDateComponents *selfCmp = [calendar components:unit fromDate:self];

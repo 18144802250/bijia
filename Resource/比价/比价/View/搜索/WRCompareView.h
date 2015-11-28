@@ -8,12 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol WRCompareViewDelegate <NSObject>
+
+@optional
+- (void)didClickAtCollectBtnAtWRCompareView;
+
+@end
+
 @class DealsPriceInfoDataModel,SearchDetailDataModel,ShopPriceListView;
 @interface WRCompareView : UIView
 
 + (instancetype)showInRect:(CGRect)frame;
 
 + (void)hide;
+
+@property (nonatomic, strong) id<WRCompareViewDelegate> delegate;
 
 @property (nonatomic, strong) ShopPriceListView *spListView;
 @property (nonatomic, strong) DealsPriceInfoDataModel *piDataModel;

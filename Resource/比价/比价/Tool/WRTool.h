@@ -13,7 +13,7 @@
 
 + (WRTool*)defaultTool;
 
-@property (nonatomic, strong) NSString *timeStr;
+@property (nonatomic, assign) NSInteger lastDays;
 
 @property (nonatomic, assign) CategoryType type;
 

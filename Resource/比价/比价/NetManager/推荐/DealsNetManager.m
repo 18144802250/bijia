@@ -10,6 +10,7 @@
 #import "DealsModel.h"
 #import "DealsDetailModel.h"
 #import "DealsPriceInfoModel.h"
+#import "CommentModel.h"
 #import "NSString+WREncode.h"
 
 @implementation DealsNetManager
@@ -100,6 +101,14 @@
     return [self GET:path paramters:nil completionHandle:^(id responseObj, NSError *error) {
         
         completion([DealsPriceInfoModel mj_objectWithKeyValues:responseObj],error);
+    }];
+}
+
++ (id)getCommentDataWithId:(NSString *)idStr completionHandle:(void (^)(id, NSError *))completion
+{
+    NSString *path = [NSString stringWithFormat:@"http://app.huihui.cn/deal/%@/comments.json?page=1&app_version=3.5&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=xiaomi&appname=deals_app&system_version=4.4.4",idStr];
+    return [self GET:path paramters:nil completionHandle:^(id responseObj, NSError *error) {
+        completion([CommentModel mj_objectWithKeyValues:responseObj],error);
     }];
 }
 

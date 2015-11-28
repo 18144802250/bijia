@@ -52,7 +52,7 @@
 
 /** 提供题目数组 */
 + (NSArray *)itemNames{
-    return @[@"贴士",@"分享图吧"];
+    return @[@"健康贴士",@"分享图吧"];
 }
 /** 提供每个题目对应的控制器的类型。题目和类型数量必须一致 */
 + (NSArray *)viewControllerClasses{

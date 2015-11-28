@@ -26,10 +26,25 @@
     formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en-us"];
     NSDate *pulishDate = [formatter dateFromString:pub_time];
     
-    NSCalendar *calendar = [NSCalendar new];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     int unit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
     
-    _daysFromToday = [calendar components:unit fromDate:pulishDate toDate:[NSDate date] options:0];
+    NSDateComponents *dayCmp = [calendar components:unit fromDate:[self dateWithYMD:pulishDate] toDate:[self dateWithYMD:[NSDate date]] options:0];
+    
+    if (dayCmp.day == [WRTool defaultTool].lastDays) {
+        return;
+    }
+    
+    _daysFromToday = dayCmp.day;
+    [WRTool defaultTool].lastDays = _daysFromToday;
+}
+
+- (NSDate *)dateWithYMD:(NSDate*)date
+{
+    NSDateFormatter *dateFm = [NSDateFormatter new];
+    dateFm.dateFormat = @"yyyy-MM-dd";
+    NSString *selfStr = [dateFm stringFromDate:date];
+    return [dateFm dateFromString:selfStr];
 }
 
 @end
@@ -51,3 +66,6 @@
 @implementation DealsDataItemsModel
 
 @end
+
+
+

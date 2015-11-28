@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, ShareType) {
 + (id)getDataWithType:(ShareType)type Sec:(NSString*)secStr completionHandle:(void(^)(id model,NSError *error))completion;
 
 
-/** 通过ID 获取分享详细 */
-+ (id)getTipDetailDataWithGuideId:(NSString*)idstr completionHandle:(void(^)(id model,NSError *error))completion;
+/** 通过ID和分类 获取分享详细 */
++ (id)getTipDetailDataWithGuideId:(NSString*)idstr type:(ShareType)type completionHandle:(void(^)(id model,NSError *error))completion;
 
 @end

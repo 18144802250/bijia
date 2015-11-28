@@ -8,6 +8,7 @@
 
 #import "ShareLableView.h"
 #import "TipListModel.h"
+#import "DealsModel.h"
 
 @interface ShareLableView ()
 
@@ -101,6 +102,17 @@
     TipListDataAuthorModel *author = dataModel.author[0];
     _nameLb.text = author.nick_name;
     [_headIcon setImageWithURL:author.photo];
+}
+
+- (void)setDdModel:(DealsDataModel *)ddModel
+{
+    _ddModel = ddModel;
+    
+    _titleLb.text = ddModel.title;
+    _subIntroLb.text = ddModel.sub_title;
+    DealsDataUserModel *user = ddModel.user;
+    _nameLb.text = user.nickname;
+    [_headIcon setImageWithURL:user.photo];
 }
 
 @end

@@ -7,8 +7,6 @@
 //
 
 #import "DealsDetailView.h"
-#import "UIView+Extension.h"
-#import "CommentTableView.h"
 #import "PriceView.h"
 #import "DealsDetailModel.h"
 
@@ -17,24 +15,13 @@
 @interface DealsDetailView ()<UIWebViewDelegate>
 /** webView加载内容 */
 @property (nonatomic, strong) UIWebView *contentWebView;
-/** 热门评论 */
-@property (nonatomic, strong) CommentTableView *hotCommentTV;
 
-@property (nonatomic, strong) UIScrollView *scrollView;
 
 @end
 
 @implementation DealsDetailView
 {
     CGFloat _contentH;
-}
-
-- (WRBuyButton *)buy {
-    if(_buy == nil) {
-        _buy = [[WRBuyButton alloc] init];
-        _buy.title = @"买买买";
-    }
-    return _buy;
 }
 
 - (UIScrollView *)scrollView {
@@ -58,20 +45,15 @@
 {
     if (self = [super initWithFrame:frame]) {
         
+        self.hotCommentTV.hidden = NO;
+        
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor whiteColor];
-        
-        [self addSubview:self.buy];
-        [_buy mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(-15);
-            make.centerX.mas_equalTo(0);
-            make.size.mas_equalTo(CGSizeMake(self.width, 38));
-        }];
         
         [self addSubview:self.scrollView];
         [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.mas_equalTo(0);
-            make.bottom.mas_equalTo(_buy.mas_top).mas_equalTo(0);
+            make.bottom.mas_equalTo(-40);
         }];
     }
     return self;
@@ -114,29 +96,27 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     webView.scrollView.bounces = NO;
-    
     NSUInteger count = self.dataModel.hot_comments.count;
     if (count==0) {
         return;
     }
     CGFloat commentTvH = 0;
     if (count < 4) {
-        commentTvH = 44*count + 40;
+        commentTvH = 44*count + 188;
     } else {
-        commentTvH = 44 * 3 + 40;
+        commentTvH = 44 * 3 + 188;
     }
-    CommentTableView *commentTV = [CommentTableView new];
-    [_scrollView addSubview:commentTV];
-    [commentTV mas_makeConstraints:^(MASConstraintMaker *make) {
+
+    [_scrollView addSubview:self.hotCommentTV];
+    [_hotCommentTV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_contentWebView.mas_bottom).mas_equalTo(0);
         make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(commentTvH+50);
+        make.height.mas_equalTo(commentTvH);
     }];
-    commentTV.hotCommentArr = self.dataModel.hot_comments;
-    _hotCommentTV = commentTV;
+    _hotCommentTV.hotCommentArr = self.dataModel.hot_comments;
     
     _contentH = WRWebViewH;
-    _contentH += commentTvH + 50;
+    _contentH += commentTvH;
     _scrollView.contentSize = CGSizeMake(0, _contentH);
     
     

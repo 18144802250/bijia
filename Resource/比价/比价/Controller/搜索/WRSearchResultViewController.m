@@ -114,12 +114,11 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    SearchResultDataItemsModel *itemModel = self.sResultVM.dataArr[indexPath.row];
-    
-    if ([_delegate respondsToSelector:@selector(didClickedAtCellWithID:)]) {
-        [_delegate didClickedAtCellWithID:itemModel.ID];
+    SearchResultDataInlandModel *inlandModel = self.sResultVM.dataArr[indexPath.row];
+
+    if ([_delegate respondsToSelector:@selector(didClickedAtCellInSRVCWithItemModel:)]) {
+        [_delegate didClickedAtCellInSRVCWithItemModel:inlandModel];
     }
-    
 }
 
 @end

@@ -56,7 +56,7 @@
         
         NSTimeInterval sec = [self publishDateWithRow:self.dataArr.count-1].timeIntervalSince1970;
         
-        _secStr = [NSString stringWithFormat:@"%ld000",(NSInteger)sec/10];
+        _secStr = [NSString stringWithFormat:@"%ld",(NSInteger)sec];
     }
     [self getDataFromNetCompleteHandle:completionHandle];
 }
@@ -64,7 +64,7 @@
 - (NSDate*)publishDateWithRow:(NSInteger)row
 {
     NSDateFormatter *formatter = [NSDateFormatter new];//Tue Nov 10 08:30:28 +0800 2015
-    formatter.dateFormat = @"EEE MMM d HH:mm:ss z yyyy";
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en-us"];
 
     TipListDataModel *tipModel = self.dataArr.lastObject;

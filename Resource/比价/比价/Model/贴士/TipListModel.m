@@ -28,6 +28,11 @@
     _title = [title stringByReplacingOccurrencesOfString:@"【晒物园】" withString:@""];
 }
 
+- (void)setCover_image_url:(NSURL *)cover_image_url
+{
+    _cover_image_url = cover_image_url;
+}
+
 @end
 
 

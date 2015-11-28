@@ -15,21 +15,21 @@
 @implementation SearchResultDataModel
 
 + (NSDictionary *)objectClassInArray{
-    return @{@"items" : [SearchResultDataItemsModel class]};
+    return @{@"inland" : [SearchResultDataInlandModel class]};
 }
 
 @end
 
 
-@implementation SearchResultDataItemsModel
+@implementation SearchResultDataInlandModel
 
 - (void)setPrice:(NSString *)price
 {
     _price = [NSString stringWithFormat:@"¥%@",price];
 }
 
-
-
 @end
 
+@implementation SearchResultDataItemsMerchantModel
 
+@end

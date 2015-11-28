@@ -8,23 +8,29 @@
 //
 
 #import "DealsCell.h"
-#import "WRTool.h"
+
+#import "TimeView.h"
 
 @interface DealsCell ()
 
 //* 左侧图片 */
-@property(nonatomic,strong)UIImageView *iconIV;
+@property (nonatomic, strong) UIImageView *iconIV;
 //* 题目标签 */
-@property(nonatomic,strong)UILabel *titleLb;
+@property (nonatomic, strong) UILabel *titleLb;
 //* 来源标签 */
-@property(nonatomic,strong)UILabel *sourceLb;
+@property (nonatomic, strong) UILabel *sourceLb;
 //* 赞标签 */
-@property(nonatomic,strong)UILabel *supportLb;
+@property (nonatomic, strong) UIImageView *commentIV;
+@property (nonatomic, strong) UILabel *supportLb;
 //* 回复数标签 */
-@property(nonatomic,strong)UILabel *commentLb;
+@property (nonatomic, strong) UIImageView *likeIV;
+@property (nonatomic, strong) UILabel *commentLb;
+
+@property (nonatomic, strong) TimeView *timeView;
 
 @end
 
+static NSInteger days = 0;
 @implementation DealsCell
 
 -(UIImageView *)iconIV
@@ -80,6 +86,13 @@
     return _commentLb;
 }
 
+- (TimeView *)timeView {
+    if(_timeView == nil) {
+        _timeView = [[TimeView alloc] init];
+    }
+    return _timeView;
+}
+
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -112,21 +125,21 @@
             make.right.mas_equalTo(-10);
             make.bottomMargin.mas_equalTo(_iconIV.mas_bottomMargin).mas_equalTo(-8);
         }];
-        UIImageView *commentIV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"comment"]];
-        commentIV.frame = CGRectMake(0, 0, 10, 10);
-        [self.contentView addSubview:commentIV];
-        [commentIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        _commentIV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"comment"]];
+        _commentIV.frame = CGRectMake(0, 0, 10, 10);
+        [self.contentView addSubview:_commentIV];
+        [_commentIV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(_commentLb.mas_left).mas_equalTo(-5);
             make.bottomMargin.mas_equalTo(_iconIV.mas_bottomMargin).mas_equalTo(-8);
         }];
         [self.supportLb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(commentIV.mas_left).mas_equalTo(-10);
+            make.right.mas_equalTo(_commentIV.mas_left).mas_equalTo(-10);
             make.bottomMargin.mas_equalTo(_iconIV.mas_bottomMargin).mas_equalTo(-8);
         }];
-        UIImageView *likeIV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"like"]];
-        likeIV.frame = CGRectMake(0, 0, 12, 12);
-        [self.contentView addSubview:likeIV];
-        [likeIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        _likeIV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"like"]];
+        _likeIV.frame = CGRectMake(0, 0, 12, 12);
+        [self.contentView addSubview:_likeIV];
+        [_likeIV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(_supportLb.mas_left).mas_equalTo(-5);
             make.bottomMargin.mas_equalTo(_iconIV.mas_bottomMargin).mas_equalTo(-8);
         }];
@@ -147,44 +160,60 @@
     NSMutableAttributedString *titleAttri = [[NSMutableAttributedString alloc] initWithString:title];
     [titleAttri addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:subRange];
     _titleLb.attributedText = titleAttri;
+    
+    DealsDataMerchantModel *merchantModel = dataModel.merchant;
+    _sourceLb.text = merchantModel.name;
+    if (dataModel.supports_count == 0) {
+        _likeIV.hidden = YES;
+        _supportLb.hidden = YES;
+    } else {
+        _supportLb.text = [NSString stringWithFormat:@"%ld",dataModel.supports_count];
+    }
+    if (dataModel.comments_count == 0) {
+        _commentIV.hidden = YES;
+        _commentLb.hidden = YES;
+    } else {
+        _commentLb.text = [NSString stringWithFormat:@"%ld",dataModel.comments_count];
+    }
+    
+    
     //如果是今天 则为空
-    if ([self timeStrFromToday]) {
-        
+    NSString *timeStr = [self timeStrFromToday];
+
+    if (timeStr != nil) {
         //* 时间标签 */
-        TimeView *timeView = [TimeView new];
-        timeView.text = [self timeStrFromToday];
-        [timeView mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.timeView.text = timeStr;
+        _timeView.hidden = NO;
+        [self.contentView addSubview:self.timeView];
+        [self.timeView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.mas_equalTo(0);
             make.height.mas_equalTo(33);
         }];
         [self.iconIV mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(43);
+            make.top.mas_equalTo(35);
+        }];
+    } else {
+        _timeView.hidden = YES;
+        [self.iconIV mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(10);
         }];
     }
-    DealsDataMerchantModel *merchantModel = dataModel.merchant;
-    _sourceLb.text = merchantModel.name;
-    
-    _supportLb.text = [NSString stringWithFormat:@"%ld",dataModel.supports_count];
-    
-    _commentLb.text = [NSString stringWithFormat:@"%ld",dataModel.comments_count];
 }
 
 /** 计算发布时间距离今天的天数，返回时间字符串 */
 - (NSString *)timeStrFromToday
 {
-    NSDateComponents *cmp = _dataModel.daysFromToday;
     //如果是今天，返回空 如果不是今天 返回发布时间的str
-    if (cmp.day == 0) {
-        return nil;
-    } else {
+    
+    if (_dataModel.daysFromToday > 0 && _dataModel.daysFromToday != days) {
         NSDateFormatter *formatter = [NSDateFormatter new];
         formatter.dateFormat = @"yyyy-MM-dd";
         NSString *dateStr = [formatter stringFromDate:[self publishTimeStrToDate]];
         //保存
-        WRTool *tool = [WRTool defaultTool];
-        tool.timeStr = dateStr;
+        days = _dataModel.daysFromToday;
         return dateStr;
     }
+    return nil;
 }
 
 - (NSDate*)publishTimeStrToDate
@@ -194,4 +223,5 @@
     formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en-us"];
     return [formatter dateFromString:_dataModel.pub_time];
 }
+
 @end

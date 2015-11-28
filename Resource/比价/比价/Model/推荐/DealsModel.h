@@ -18,28 +18,24 @@
 @end
 
 @interface DealsDataModel : BaseModel
+/** idStr */
+@property (nonatomic, copy) NSString *ID;
 /** 浏览数 */
 @property (nonatomic, assign) NSInteger browses_count;
 
 @property (nonatomic, strong) DealsDataMerchantModel *merchant;
 /** 赞 */
 @property (nonatomic, assign) NSInteger supports_count;
-/** 标题 */
-@property (nonatomic, copy) NSString *title;
 /** 发布时间 */
 @property (nonatomic, copy) NSString *pub_time;
 /** 根据判断发布时间，返回与今天相差的天数 */
-@property (nonatomic, assign) NSDateComponents *daysFromToday;
+@property (nonatomic, assign) NSInteger daysFromToday;
 
 @property (nonatomic, copy) NSString *channel;
 
 @property (nonatomic, copy) NSString *editor_tag_image_url;
 
 @property (nonatomic, assign) NSInteger oppositions_count;
-/** 回复数 */
-@property (nonatomic, assign) NSInteger comments_count;
-
-@property (nonatomic, copy) NSString *type;
 
 @property (nonatomic, assign) NSInteger shares_count;
 /** id */
@@ -56,12 +52,26 @@
 @property (nonatomic, copy) NSString *comment;
 
 @property (nonatomic, strong) NSArray<NSString *> *categories;
+/** 类型 */
+@property (nonatomic, copy) NSString *type;
 /** 图片 */
 @property (nonatomic, copy) NSURL *image_url;
 /** 子图片数组 */
 @property (nonatomic, strong) NSArray<DealsDataItemsModel *> *items;
+/** webView标题 */
+@property (nonatomic, copy) NSString *webViewTitle;
+/** 标题 */
+@property (nonatomic, copy) NSString *title;
+/** 页面展示xml */
+@property (nonatomic, copy) NSString *page;
+/** 评论数 */
+@property (nonatomic, assign) NSInteger comments_count;
+
+
 
 @end
+
+
 
 @interface DealsDataUserModel : BaseModel
 
@@ -73,7 +83,7 @@
 
 @property (nonatomic, assign) NSInteger level;
 
-@property (nonatomic, copy) NSString *photo;
+@property (nonatomic, copy) NSURL *photo;
 
 @end
 
@@ -98,4 +108,5 @@
 @property (nonatomic, copy) NSURL *image_url;
 
 @end
+
 

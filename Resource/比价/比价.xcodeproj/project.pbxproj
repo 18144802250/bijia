@@ -35,10 +35,8 @@
 		C35BCC981BFD6BF2005561AF /* WRTipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC971BFD6BF2005561AF /* WRTipViewController.m */; };
 		C35BCC9B1BFD6D0C005561AF /* WRCommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC9A1BFD6D0C005561AF /* WRCommendViewController.m */; };
 		C35BCC9F1BFD786C005561AF /* WRSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCC9E1BFD786C005561AF /* WRSettingViewController.m */; };
-		C35BCCA31BFD7A8A005561AF /* CommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCCA21BFD7A8A005561AF /* CommendViewController.m */; };
 		C35BCCAA1BFDA7B8005561AF /* TipListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCCA91BFDA7B8005561AF /* TipListModel.m */; };
 		C35BCCAE1BFDAAB2005561AF /* GoodlistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCCAD1BFDAAB2005561AF /* GoodlistCell.m */; };
-		C35BCCB91BFDB5DA005561AF /* WRGoodListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCCB81BFDB5DA005561AF /* WRGoodListViewController.m */; };
 		C35BCCC01BFDBC63005561AF /* SharePicNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCCBF1BFDBC63005561AF /* SharePicNetManager.m */; };
 		C35BCCC41BFDC360005561AF /* TipViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCCC31BFDC360005561AF /* TipViewModel.m */; };
 		C35BCCC81BFDF142005561AF /* TipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BCCC71BFDF142005561AF /* TipCell.m */; };
@@ -48,6 +46,8 @@
 		C35C84961BF08602005ED3B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C35C84931BF08602005ED3B9 /* AppDelegate.m */; };
 		C35C84991BF08637005ED3B9 /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = C35C84981BF08637005ED3B9 /* AppDelegate+Category.m */; };
 		C35C84A21BF0B11C005ED3B9 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C35C84A11BF0B11C005ED3B9 /* BaseModel.m */; };
+		C362118E1C09939E00C38544 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C362118D1C09939E00C38544 /* CommentModel.m */; };
+		C36211911C09953300C38544 /* WRCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36211901C09953300C38544 /* WRCommentViewController.m */; };
 		C36928111C04842300E18984 /* WRHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C36928101C04842300E18984 /* WRHistory.m */; };
 		C36928141C04860A00E18984 /* WRHistoryTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C36928131C04860A00E18984 /* WRHistoryTool.m */; };
 		C376DDBB1BF1C46E0027610D /* WRLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C376DDBA1BF1C46E0027610D /* WRLeftViewController.m */; };
@@ -161,14 +161,10 @@
 		C35BCC9A1BFD6D0C005561AF /* WRCommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCommendViewController.m; sourceTree = "<group>"; };
 		C35BCC9D1BFD786C005561AF /* WRSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRSettingViewController.h; sourceTree = "<group>"; };
 		C35BCC9E1BFD786C005561AF /* WRSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRSettingViewController.m; sourceTree = "<group>"; };
-		C35BCCA11BFD7A8A005561AF /* CommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommendViewController.h; sourceTree = "<group>"; };
-		C35BCCA21BFD7A8A005561AF /* CommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommendViewController.m; sourceTree = "<group>"; };
 		C35BCCA81BFDA7B8005561AF /* TipListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipListModel.h; sourceTree = "<group>"; };
 		C35BCCA91BFDA7B8005561AF /* TipListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipListModel.m; sourceTree = "<group>"; };
 		C35BCCAC1BFDAAB2005561AF /* GoodlistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodlistCell.h; sourceTree = "<group>"; };
 		C35BCCAD1BFDAAB2005561AF /* GoodlistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodlistCell.m; sourceTree = "<group>"; };
-		C35BCCB71BFDB5DA005561AF /* WRGoodListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRGoodListViewController.h; sourceTree = "<group>"; };
-		C35BCCB81BFDB5DA005561AF /* WRGoodListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRGoodListViewController.m; sourceTree = "<group>"; };
 		C35BCCBE1BFDBC63005561AF /* SharePicNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePicNetManager.h; sourceTree = "<group>"; };
 		C35BCCBF1BFDBC63005561AF /* SharePicNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePicNetManager.m; sourceTree = "<group>"; };
 		C35BCCC21BFDC360005561AF /* TipViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipViewModel.h; sourceTree = "<group>"; };
@@ -189,6 +185,10 @@
 		C35C84A11BF0B11C005ED3B9 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		C35C84A71BF0B6D4005ED3B9 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C35C84A91BF0B807005ED3B9 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		C362118C1C09939E00C38544 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		C362118D1C09939E00C38544 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
+		C362118F1C09953300C38544 /* WRCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCommentViewController.h; path = "../搜索/WRCommentViewController.h"; sourceTree = "<group>"; };
+		C36211901C09953300C38544 /* WRCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCommentViewController.m; path = "../搜索/WRCommentViewController.m"; sourceTree = "<group>"; };
 		C369280F1C04842300E18984 /* WRHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHistory.h; sourceTree = "<group>"; };
 		C36928101C04842300E18984 /* WRHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHistory.m; sourceTree = "<group>"; };
 		C36928121C04860A00E18984 /* WRHistoryTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHistoryTool.h; sourceTree = "<group>"; };
@@ -426,9 +426,8 @@
 				C35BCC9A1BFD6D0C005561AF /* WRCommendViewController.m */,
 				C35BCC6A1BFD6A31005561AF /* DealsDetailViewController.h */,
 				C35BCC6B1BFD6A31005561AF /* DealsDetailViewController.m */,
-				C35BCCB31BFDB5BA005561AF /* 图show */,
-				C35BCCA11BFD7A8A005561AF /* CommendViewController.h */,
-				C35BCCA21BFD7A8A005561AF /* CommendViewController.m */,
+				C362118F1C09953300C38544 /* WRCommentViewController.h */,
+				C36211901C09953300C38544 /* WRCommentViewController.m */,
 			);
 			path = "推荐";
 			sourceTree = "<group>";
@@ -462,6 +461,8 @@
 				C35BCC7F1BFD6A9C005561AF /* DealsModel.m */,
 				C35BCC801BFD6A9C005561AF /* DealsPriceInfoModel.h */,
 				C35BCC811BFD6A9C005561AF /* DealsPriceInfoModel.m */,
+				C362118C1C09939E00C38544 /* CommentModel.h */,
+				C362118D1C09939E00C38544 /* CommentModel.m */,
 			);
 			path = "推荐";
 			sourceTree = "<group>";
@@ -528,15 +529,6 @@
 				C35BCCAD1BFDAAB2005561AF /* GoodlistCell.m */,
 			);
 			path = GoodList;
-			sourceTree = "<group>";
-		};
-		C35BCCB31BFDB5BA005561AF /* 图show */ = {
-			isa = PBXGroup;
-			children = (
-				C35BCCB71BFDB5DA005561AF /* WRGoodListViewController.h */,
-				C35BCCB81BFDB5DA005561AF /* WRGoodListViewController.m */,
-			);
-			path = "图show";
 			sourceTree = "<group>";
 		};
 		C35BCCBD1BFDBC3B005561AF /* 贴士 */ = {
@@ -997,8 +989,10 @@
 				C37D1D811BFEF7CF00A16E1A /* NSObject+Common.m in Sources */,
 				C31A01071C056169005FF87C /* WRTextFieldTool.m in Sources */,
 				C36928141C04860A00E18984 /* WRHistoryTool.m in Sources */,
+				C362118E1C09939E00C38544 /* CommentModel.m in Sources */,
 				C35BCC981BFD6BF2005561AF /* WRTipViewController.m in Sources */,
 				C35BCCC01BFDBC63005561AF /* SharePicNetManager.m in Sources */,
+				C36211911C09953300C38544 /* WRCommentViewController.m in Sources */,
 				C3F459761BF5CB0E0044850E /* SearchViewModel.m in Sources */,
 				C37D1D841BFEFCC300A16E1A /* TipDetailView.m in Sources */,
 				C3F459601BF5BB160044850E /* WRTitleBarButton.m in Sources */,
@@ -1032,7 +1026,6 @@
 				C35BCC821BFD6A9C005561AF /* DealsDetailModel.m in Sources */,
 				C35BCC681BFD68B6005561AF /* WRTabBarController.m in Sources */,
 				C3E4D3D71C01591700A38DFB /* WRLoginViewController.m in Sources */,
-				C35BCCA31BFD7A8A005561AF /* CommendViewController.m in Sources */,
 				C35BCCCB1BFDF54D005561AF /* ShowPicCell.m in Sources */,
 				C3E4D3E11C01681C00A38DFB /* WRRegisViewController.m in Sources */,
 				C3ADED1B1BF713DD006E00BB /* WRSearchResultViewController.m in Sources */,
@@ -1050,7 +1043,6 @@
 				C3F459801BF5F68D0044850E /* WRShopViewController.m in Sources */,
 				C350A68F1C0306A300CBD138 /* ProfileCollectModel.m in Sources */,
 				C37D1D8D1BFF444A00A16E1A /* WRBuyButton.m in Sources */,
-				C35BCCB91BFDB5DA005561AF /* WRGoodListViewController.m in Sources */,
 				C3F4596A1BF5C0880044850E /* UIImage+Extension.m in Sources */,
 				C3F459671BF5BFA70044850E /* WRSearchBar.m in Sources */,
 				C3E4D3EC1C01BD4800A38DFB /* WRAccount.m in Sources */,

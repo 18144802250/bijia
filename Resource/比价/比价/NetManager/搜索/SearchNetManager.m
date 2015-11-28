@@ -69,8 +69,9 @@
 
 + (id)getSearchResultWithQuest:(NSString *)quest page:(NSInteger)page completionHandle:(void (^)(id, NSError *))completion
 {
+    //http://app.huihui.cn/app/search/inland?page=0&q=%E5%90%B8%E5%B0%98%E5%99%A8&app_version=3.5&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=xiaomi&appname=deals_app&system_version=4.4.4
     quest = [quest stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *path = [NSString stringWithFormat:@"http://app.huihui.cn/m/search.json?q=%@&page=%ld&app_version=3.4.1&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=youdao&appname=deals_app&system_version=4.4.4",quest,page];
+    NSString *path = [NSString stringWithFormat:@"http://app.huihui.cn/app/search/inland?page=%ld&q=%@&app_version=3.5&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=xiaomi&appname=deals_app&system_version=4.4.4",page,quest];
     
     return [self GET:path paramters:nil completionHandle:^(id responseObj, NSError *error) {
         
@@ -80,6 +81,7 @@
 
 + (id)getItemsPriceWithID:(NSString *)idStr completionHandle:(void (^)(id, NSError *))completion
 {
+    
     NSString *path = [NSString stringWithFormat:@"http://app.huihui.cn/m/detail.json?id=%@&app_version=3.4.1&platform=android&device_id=99000629739444&model=HM+NOTE+1S&vendor=youdao&appname=deals_app&system_version=4.4.4",idStr];
     return [self GET:path paramters:nil completionHandle:^(id responseObj, NSError *error) {
         

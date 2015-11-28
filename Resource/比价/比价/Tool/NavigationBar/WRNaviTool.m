@@ -48,11 +48,10 @@
 {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     
-//    [btn setBackgroundImage:[UIImage imageNamed:@"navigationbar_back"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"navi_back"] forState:UIControlStateNormal];
+//    btn.backgroundColor = kNaviTitleColor;
     
-    [btn setTitle:@"返回" forState:UIControlStateNormal];
-    
-    btn.frame = CGRectMake(10, 30, 80, 35);
+    btn.frame = CGRectMake(10, 20, 35, 35);
     
 //    btn.layer.cornerRadius = 35/2;
     

@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SearchResultModel.h"
 
-
+@class SearchResultDataInlandModel;
 @interface SearchResultCell : UITableViewCell
 
-@property (nonatomic, strong) SearchResultDataItemsModel *resultModel;
+@property (nonatomic, strong)SearchResultDataInlandModel  *resultModel;
 
 @end

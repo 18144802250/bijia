@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class TipListDataModel;
+@class DealsDataModel,TipListDataModel;
 @interface ShowPicCell : UITableViewCell
 
-@property (nonatomic, strong) TipListDataModel *dataModel;
+@property (nonatomic, strong) DealsDataModel *dataModel;
+
+@property (nonatomic, strong) TipListDataModel *tlModel;
 
 @end

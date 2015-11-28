@@ -7,6 +7,7 @@
 //
 
 #import "SearchResultCell.h"
+#import "SearchResultModel.h"
 
 @interface SearchResultCell ()
 /** 图片 */
@@ -91,11 +92,11 @@
     return self;
 }
 
-- (void)setResultModel:(SearchResultDataItemsModel *)resultModel
+- (void)setResultModel:(SearchResultDataInlandModel *)resultModel
 {
     _resultModel = resultModel;
     
-    [self.iconIV setImageWithURL:resultModel.image_url];
+    [self.iconIV setImageWithURL:[NSURL URLWithString:resultModel.image_url]];
     self.titleLb.text = resultModel.title;
     self.priceLb.text = resultModel.price;
     self.merchantCountLb.text = [NSString stringWithFormat:@"%ld个商家",resultModel.merchant_count];

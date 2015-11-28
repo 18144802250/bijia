@@ -65,6 +65,11 @@
 
 @property (nonatomic, copy) NSString *digest;
 
+/** 图片链接 */
+@property (nonatomic, copy) NSString *image_url;
+/** 页面展示xml */
+@property (nonatomic, copy) NSString *page;
+
 @end
 
 @interface TipDetailDataSectionListModel : BaseModel

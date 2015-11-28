@@ -11,6 +11,18 @@
 
 @implementation WRSearchBar
 
+- (UIButton *)cancelBtn {
+    if(_cancelBtn == nil) {
+        _cancelBtn = [[UIButton alloc] init];
+        [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+//        [_cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        _cancelBtn.backgroundColor = kNaviTitleColor;
+        _cancelBtn.hidden = YES;
+    }
+    return _cancelBtn;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
@@ -26,6 +38,13 @@
         
         self.leftView = searchIcon;
         self.leftViewMode = UITextFieldViewModeAlways;
+        
+        [self addSubview:self.cancelBtn];
+        [self.cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(0);
+            make.centerY.mas_equalTo(0);
+            make.size.mas_equalTo(CGSizeMake(40, 35));
+        }];
         
     }
     return self;

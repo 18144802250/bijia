@@ -10,4 +10,6 @@
 
 @interface WRSearchBar : UITextField
 
+@property (nonatomic, strong) UIButton *cancelBtn;
+
 @end

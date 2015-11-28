@@ -87,7 +87,7 @@
         return cell;
     } else {
         ShowPicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"show" forIndexPath:indexPath];
-        cell.dataModel = self.tipVM.dataArr[indexPath.row];
+        cell.tlModel = self.tipVM.dataArr[indexPath.row];
         
         return cell;
     }
@@ -110,8 +110,8 @@ kRemoveCellSeparator
     
     TipListDataModel *model = self.tipVM.dataArr[indexPath.row];
     
-    WRTipDetailViewController *tipDetailVC = [[WRTipDetailViewController alloc] initWithGuideId:[NSString stringWithFormat:@"%ld",model.guide_id]];
-    
+    WRTipDetailViewController *tipDetailVC = [[WRTipDetailViewController alloc] initWithGuideId:[NSString stringWithFormat:@"%ld",model.guide_id] type:_type];
+
     [self.navigationController pushViewController:tipDetailVC animated:YES];
 }
 

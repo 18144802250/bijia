@@ -33,7 +33,8 @@
 - (UILabel *)titleLb {
 	if(_titleLb == nil) {
 		_titleLb = [[UILabel alloc] init];
-        _titleLb.font = [UIFont systemFontOfSize:12];
+        _titleLb.font = [UIFont systemFontOfSize:13];
+        _titleLb.textColor = [UIColor whiteColor];
         _titleLb.numberOfLines = 2;
         [self.contentView addSubview:_titleLb];
 	}
@@ -50,7 +51,8 @@
 - (UILabel *)sourLb {
 	if(_sourLb == nil) {
 		_sourLb = [[UILabel alloc] init];
-        _sourLb.font = [UIFont systemFontOfSize:12];
+        _sourLb.font = [UIFont systemFontOfSize:13];
+        _sourLb.textColor = [UIColor whiteColor];
         _sourLb.textAlignment = NSTextAlignmentRight;
         [self.contentView addSubview:_sourLb];
 	}

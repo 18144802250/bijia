@@ -38,4 +38,7 @@ typedef NS_ENUM(NSUInteger, CategoryType) {
 /** 获取国内详细比价信息 */
 + (id)getDealsDataPriceWithPurchaseURL:(NSString*)URL completionHandle:(void (^)(id model,NSError *error))completion;
 
+/** 根据ID获取全部评论 */
++ (id)getCommentDataWithId:(NSString*)idStr completionHandle:(void (^)(id model,NSError *error))completion;
+
 @end

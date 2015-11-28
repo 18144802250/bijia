@@ -42,7 +42,7 @@
             [self.dataArr removeAllObjects];
         }
         
-        [self.dataArr addObjectsFromArray:model.data.items];
+        [self.dataArr addObjectsFromArray:model.data.inland];
         
         completionHandle(error);
     }];
@@ -50,7 +50,7 @@
 
 - (void)refreshDataCompletionHandle:(CompletionHandle)completionHandle
 {
-    _page = 1;
+    _page = 0;
     [self getDataFromNetCompleteHandle:completionHandle];
 }
 

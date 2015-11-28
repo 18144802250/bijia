@@ -21,11 +21,12 @@
 
 @implementation WRTipDetailViewController
 
-- (instancetype)initWithGuideId:(NSString *)idStr
+- (instancetype)initWithGuideId:(NSString *)idStr type:(ShareType)type
 {
     if (self = [super init]) {
         
         _guideId = idStr;
+        _type = type;
         
     }
     return self;
@@ -44,20 +45,43 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"详情";
     
     [self showProgress];
-    [SharePicNetManager getTipDetailDataWithGuideId:_guideId completionHandle:^(TipDetailModel *model, NSError *error) {
+    [SharePicNetManager getTipDetailDataWithGuideId:_guideId type:_type completionHandle:^(TipDetailModel *model, NSError *error) {
         [self hideProgress];
+        switch (_type) {
+            case ShareTypePic:
+            {
+                UIWebView *webView = [UIWebView new];
+                [self.view addSubview:webView];
+                [webView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(0);
+                }];
+                [webView loadHTMLString:model.data.page baseURL:nil];
+                if (_isDealsCome) {
+                    [WRNaviTool addBackItemAtPresentVC:self];
+                }
+                
+                break;
+            }
+            case ShareTypeTip:
+            {
+                TipDetailView *tipDetailView = [TipDetailView new];
+                
+                [self.view addSubview:tipDetailView];
+                [tipDetailView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(0);
+                }];
+                
+                tipDetailView.dataModel = model.data;
+                _tipDetailModel = model.data;
+                break;
+            }
+            default:
+                break;
+        }
         
-        TipDetailView *tipDetailView = [TipDetailView new];
-        
-        [self.view addSubview:tipDetailView];
-        [tipDetailView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(0);
-        }];
-        
-        tipDetailView.dataModel = model.data;
-        _tipDetailModel = model.data;
     }];
     
     

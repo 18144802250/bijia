@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class TipListDataModel;
+@class TipListDataModel,DealsDataModel;
 @interface ShareLableView : UIView
 
 @property (nonatomic, strong) TipListDataModel *dataModel;
+
+@property (nonatomic, strong) DealsDataModel *ddModel;
 
 @end

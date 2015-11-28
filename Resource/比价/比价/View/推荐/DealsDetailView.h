@@ -7,15 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WRBuyButton.h"
+#import "CommentTableView.h"
 
 @class DealsDetailDataModel,DealsPriceInfoDataModel;
 @interface DealsDetailView : UIView
 
-@property (nonatomic, strong) WRBuyButton *buy;
-
 @property (nonatomic, strong) DealsDetailDataModel *dataModel;
 
 @property (nonatomic, strong) DealsPriceInfoDataModel *priceInfoModel;
+
+@property (nonatomic, strong) UIScrollView *scrollView;
+/** 热门评论 */
+@property (nonatomic, strong) CommentTableView *hotCommentTV;
 
 @end

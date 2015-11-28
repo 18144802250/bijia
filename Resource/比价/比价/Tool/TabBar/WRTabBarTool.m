@@ -19,12 +19,10 @@
     UIView *contentView;
     if ( [[vc.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] )
         contentView = [vc.tabBarController.view.subviews objectAtIndex:1];
-        else
-            contentView = [vc.tabBarController.view.subviews objectAtIndex:0];
+    else
+        contentView = [vc.tabBarController.view.subviews objectAtIndex:0];
     contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + vc.tabBarController.tabBar.frame.size.height);
     vc.tabBarController.tabBar.hidden = YES;
-        
-    
 }
 
 + (void)showTabBar:(UIViewController *)vc

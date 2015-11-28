@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class SearchResultDataInlandModel;
 @protocol WRSearchResultViewControllerDelegate <NSObject>
 
 @optional
-- (void)didClickedAtCellWithID:(NSString*)idStr;
+- (void)didClickedAtCellInSRVCWithItemModel:(SearchResultDataInlandModel*)itemModel;
 
 @end
 

@@ -8,12 +8,14 @@
 
 #import "WRCommendViewController.h"
 #import "DealsCell.h"
+#import "ShowPicCell.h"
 #import "DealsViewModel.h"
 #import "WRNaviTool.h"
 #import "WRTool.h"
 #import "DealsDetailViewController.h"
 #import "WRSearchViewController.h"
 #import "WRTitleBarButton.h"
+#import "WRTipDetailViewController.h"
 
 @interface WRCommendViewController () <UITableViewDataSource,UITableViewDelegate>
 
@@ -41,6 +43,7 @@
         _tableView.delegate = self;
         
         [_tableView registerClass:[DealsCell class] forCellReuseIdentifier:@"Cell"];
+        [_tableView registerClass:[ShowPicCell class] forCellReuseIdentifier:@"Good"];
         
     }
     return _tableView;
@@ -108,9 +111,17 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DealsDataModel *model = self.dealsVM.dataArr[indexPath.row];
+    if ([model.type isEqualToString:@"晒物园"]) {
+        ShowPicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Good" forIndexPath:indexPath];
+        
+        cell.dataModel = model;
+        
+        return cell;
+    }
     DealsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    cell.dataModel = self.dealsVM.dataArr[indexPath.row];
+    cell.dataModel = model;
     
     return cell;
 }
@@ -118,9 +129,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DealsDataModel *model = self.dealsVM.dataArr[indexPath.row];
-    NSDateComponents *cmp = model.daysFromToday;
-    
-    return cmp.day == 0?110:145;
+    NSInteger day = model.daysFromToday;
+    //如果是列表数据
+    if ([model.type isEqualToString:@"晒物园"]) {
+//        return kWindowW*(480/720)  + 20;
+        return kWindowW;
+    } else if (day > 0) {
+        return 145;
+    }
+    return 110;
 }
 
 kRemoveCellSeparator
@@ -130,14 +147,15 @@ kRemoveCellSeparator
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     DealsDataModel *model = self.dealsVM.dataArr[indexPath.row];
-    DealsDetailViewController *vc = [[DealsDetailViewController alloc] initWithIdStr:[NSString stringWithFormat:@"%ld",model.content_id]];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [WRTabBarTool showTabBar:self];
+    if ([model.type isEqualToString:@"晒物园"]) {
+        WRTipDetailViewController *tipDetailVC = [[WRTipDetailViewController alloc] initWithGuideId:model.ID type:1];
+        tipDetailVC.isDealsCome = YES;
+        [self presentViewController:tipDetailVC animated:YES completion:nil];
+    } else {
+        DealsDetailViewController *vc = [[DealsDetailViewController alloc] initWithIdStr:   [NSString stringWithFormat:@"%ld",model.content_id]];
+//    [self.navigationController pushViewController:vc animated:YES];
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 @end

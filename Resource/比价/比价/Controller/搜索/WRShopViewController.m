@@ -10,6 +10,7 @@
 
 #import "DealsPriceInfoModel.h"
 #import "SearchDetailModel.h"
+#import "SearchResultModel.h"
 #import "DealsNetManager.h"
 
 #import "WRCover.h"
@@ -19,7 +20,13 @@
 
 #import "WRLoginViewController.h"
 
-@interface WRShopViewController () <UIWebViewDelegate,WRToolBarDelegate,WRCoverDelegate,ShopPriceListViewDelegate>
+#define kURL @"url"
+#define kGoodName @"goodName"
+#define kGoodPrice @"goodPrice"
+#define kPicURL @"picURL"
+#define kSource @"source"
+
+@interface WRShopViewController () <UIWebViewDelegate,WRToolBarDelegate,WRCoverDelegate,ShopPriceListViewDelegate,WRCompareViewDelegate>
 
 @property (nonatomic, strong) UIWebView *webView;
 
@@ -60,6 +67,9 @@
     if (_sdDataModel || _purchaseURL.length>4) {
         [DealsNetManager getDealsDataPriceWithPurchaseURL:_purchaseURL completionHandle:^(DealsPriceInfoModel *model, NSError *error) {
             
+            if ([model.status isEqualToString:@"fail"]) {
+                return;
+            }
             _piDataModel = model.data;
             
             [self.view addSubview:self.toolBar];
@@ -72,7 +82,6 @@
             self.toolBar.shopNum = _sdDataModel.items.count;
         }];
     }
-    
     [_webView loadRequest:[NSURLRequest requestWithURL:self.URL]];
 }
 
@@ -139,12 +148,13 @@
     CGFloat w = kWindowW - 2*10;
     CGFloat h = kWindowH - 2*100;
     WRCompareView *compareView = [WRCompareView showInRect:CGRectMake(10, 100, w, h)];
-
+    compareView.delegate = self;
     compareView.siteName = _siteName;
-    
     compareView.piDataModel = _piDataModel;
     
-    compareView.sdDataModel = _sdDataModel;
+    if (_sdDataModel) {
+        compareView.sdDataModel = _sdDataModel;
+    }
     
     compareView.spListView.delegate = self;
 }
@@ -152,6 +162,13 @@
 #pragma mark - 点击收藏
 - (void)didClickedAtCollectBtn
 {
+    [self isCollected];
+}
+
+#pragma mark - 收藏功能
+- (void)collect
+{
+    
     UIAlertController *alert = nil;
     if ([BmobUser getCurrentUser]) {
         
@@ -162,21 +179,24 @@
             //用户ID
             [collect setObject:[BmobUser getCurrentUser].objectId forKey:WRTableCollectUserId];
             //商品名字
-            [collect setObject:_sdDataModel.title forKey:@"goodName"];
+            NSString *title = _sdDataModel?_sdDataModel.title:_inlandModel.title;
+            [collect setObject:title forKey:kGoodName];
             //商品价格
-            [collect setObject:_itemModel.price forKey:@"goodPrice"];
+            NSString *price = _itemModel?_itemModel.price:_inlandModel.price;
+            [collect setObject:price forKey:kGoodPrice];
             //图片url
-            [collect setObject:[NSString stringWithFormat:@"%@",_sdDataModel.image_url] forKey:@"picURL"];
+            NSString *sdImageURL = [NSString stringWithFormat:@"%@",_sdDataModel.image_url];
+            NSString *imageURLStr = _sdDataModel?sdImageURL:_inlandModel.image_url;
+            [collect setObject:imageURLStr forKey:kPicURL];
             //商家
-            [collect setObject:_siteName forKey:@"source"];
+            [collect setObject:_siteName forKey:kSource];
             //跳转url
-            [collect setObject:[NSString stringWithFormat:@"%@",_URL] forKey:@"url"];
+            [collect setObject:[NSString stringWithFormat:@"%@",_URL] forKey:kURL];
             //异步保存
             [collect saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                 if (isSuccessful) {
                     //创建成功后会返回objectId，updatedAt，createdAt等信息
                     //打印objectId
-                    NSLog(@"objectid :%@",collect.objectId);
                     [self showSuccessMsg:@"收藏成功"];
                     
                 } else if (error){
@@ -205,6 +225,27 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+#pragma mark - 判断是否收藏过 避免重复收藏
+- (void)isCollected
+{
+    //查询该用户已经添加的收藏
+    BmobQuery *bmobQuery = [[BmobQuery alloc] init];
+    NSString *bql = @"select * from Collect where userID = ? and url = ?";
+    NSArray *placeholderArray = @[[BmobUser getCurrentUser].objectId,[NSString stringWithFormat:@"%@",_URL]];
+    
+    [bmobQuery queryInBackgroundWithBQL:bql pvalues:placeholderArray block:^(BQLQueryResult *result, NSError *error) {
+        if (error) {
+
+        } else {
+            if (result.resultsAry.count) {
+                [self showErrorMsg:@"该商品已经静静地躺在收藏夹了～"];
+            } else {
+                [self collect];
+            }
+        }
+    }];
+}
+
 #pragma mark - WRCoverDelegate 点击蒙版
 - (void)didClickedAtCoverView
 {
@@ -226,6 +267,15 @@
 
     [WRCover hide];
     [WRCompareView hide];
+}
+
+#pragma mark -WRCompareViewDelegate 点击收藏
+- (void)didClickAtCollectBtnAtWRCompareView
+{
+    [WRCover hide];
+    [WRCompareView hide];
+    
+    [self isCollected];
 }
 
 @end

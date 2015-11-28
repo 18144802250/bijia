@@ -21,7 +21,6 @@
     if(_whiteBGV == nil) {
         _whiteBGV = [[UIView alloc] init];
         _whiteBGV.backgroundColor = [UIColor whiteColor];
-        _whiteBGV.userInteractionEnabled = YES;
     }
     return _whiteBGV;
 }
@@ -60,6 +59,7 @@
 
 - (void)setText:(NSString *)text
 {
+    _text = text;
     self.textLb.text = text;
 }
 

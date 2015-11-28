@@ -34,7 +34,7 @@
 @interface GoodlistCell ()<UICollectionViewDataSource>
 
 /** 大图 */
-@property (nonatomic, strong) UIButton *headBtn;
+@property (nonatomic, strong) UIImageView *headIV;
 /** 展示图 */
 @property (nonatomic, strong) UICollectionView *showItemCV;
 /** itemModelArray */
@@ -51,12 +51,12 @@
     return _itemsArr;
 }
 
-- (UIButton *)headBtn {
-    if(_headBtn == nil) {
-        _headBtn = [[UIButton alloc] init];
-        [self.contentView addSubview:_headBtn];
+- (UIImageView *)headIV {
+    if(_headIV == nil) {
+        _headIV = [[UIImageView alloc] init];
+        [self.contentView addSubview:_headIV];
     }
-    return _headBtn;
+    return _headIV;
 }
 
 - (UICollectionView *)showItemCV {
@@ -75,7 +75,7 @@
         
         //720*480
         CGFloat headH = kWindowW*(480/720);
-        [self.headBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.headIV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.mas_equalTo(0);
             make.height.mas_equalTo(headH);
         }];
@@ -83,7 +83,7 @@
         CGFloat showItemH = (kWindowW - 80)/3 + 20;
         
         [self.showItemCV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_headBtn.mas_bottom).mas_equalTo(0);
+            make.top.mas_equalTo(_headIV.mas_bottom).mas_equalTo(0);
             make.left.right.mas_equalTo(0);
             make.height.mas_equalTo(showItemH);
         }];
@@ -95,7 +95,10 @@
 {
     _glDataModel = glDataModel;
     
+    [_headIV setImageWithURL:glDataModel.image_url];
     _itemsArr = [glDataModel.items copy];
+    
+    [_showItemCV reloadData];
 }
 
 #pragma mark - collectionView数据源配置

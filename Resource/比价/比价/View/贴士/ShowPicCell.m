@@ -10,6 +10,7 @@
 #import "ShowPicCell.h"
 #import "TipListModel.h"
 #import "ShareLableView.h"
+#import "DealsModel.h"
 
 @interface ShowPicCell ()
 
@@ -58,12 +59,18 @@
     return self;
 }
 
-- (void)setDataModel:(TipListDataModel *)dataModel
+- (void)setDataModel:(DealsDataModel *)dataModel
 {
     _dataModel = dataModel;
-    [_bigIV setImageWithURL:dataModel.cover_image_url];
-    _lableView.dataModel = dataModel;
+    [_bigIV setImageWithURL:dataModel.image_url];
+    _lableView.ddModel = dataModel;
 }
 
+- (void)setTlModel:(TipListDataModel *)tlModel
+{
+    _tlModel = tlModel;
+    [_bigIV setImageWithURL:tlModel.cover_image_url];
+    _lableView.dataModel = tlModel;
+}
 
 @end

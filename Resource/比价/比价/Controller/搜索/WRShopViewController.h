@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class SearchDetailDataModel,SearchDetailDataItemsModel;
+@class SearchDetailDataModel,SearchDetailDataItemsModel,SearchResultDataInlandModel;
 @interface WRShopViewController : UIViewController
 /** 显示在webView的URL */
 @property (nonatomic, strong) NSURL *URL;
@@ -21,5 +21,7 @@
 @property (nonatomic, strong) SearchDetailDataItemsModel *itemModel;
 /**商家名*/
 @property (nonatomic, strong) NSString *siteName;
+/** 如果没有sdDataModel数据，需要传入title收藏和imageUrl */
+@property (nonatomic, strong) SearchResultDataInlandModel *inlandModel;
 
 @end

@@ -1,22 +1,23 @@
 //
-//  CommentTableView.m
+//  WRCommentViewController.m
 //  比价
 //
-//  Created by apple-jd28 on 15/11/20.
+//  Created by apple-jd28 on 15/11/28.
 //  Copyright © 2015年 apple-jd28. All rights reserved.
 //
 
+#import "WRCommentViewController.h"
 #import "CommentTableView.h"
-#import "TipDetailModel.h"
-#import "WRHeadView.h"
+#import "DealsNetManager.h"
+#import "CommentModel.h"
 
-@interface CommentCell : UITableViewCell
+@interface WRCommentCell : UITableViewCell
 
-@property (nonatomic, strong) TipDetailDataHotCommentsModel *commontModel;
+@property (nonatomic, strong) CommentCommentsModel *commontModel;
 
 @end
 
-@interface CommentCell ()
+@interface WRCommentCell ()
 
 @property (nonatomic, strong) UIImageView *icon;
 @property (nonatomic, strong) UILabel *nameLb;
@@ -25,7 +26,7 @@
 
 @end
 
-@implementation CommentCell
+@implementation WRCommentCell
 
 - (UIImageView *)icon {
     if(_icon == nil) {
@@ -50,7 +51,7 @@
     if(_commentLb == nil) {
         _commentLb = [[UILabel alloc] init];
         _commentLb.font = [UIFont systemFontOfSize:14];
-        _commentLb.numberOfLines = 1;
+        _commentLb.numberOfLines = 0;
     }
     return _commentLb;
 }
@@ -101,11 +102,11 @@
     return self;
 }
 
-- (void)setCommontModel:(TipDetailDataHotCommentsModel *)commontModel
+- (void)setCommontModel:(CommentCommentsModel *)commontModel
 {
     _commontModel = commontModel;
     
-    DealsDetailDataUserModel *userModel = commontModel.user;
+    CommentDataUserModel *userModel = commontModel.user;
     
     [_icon setImageWithURL:[NSURL URLWithString:userModel.photo] placeholderImage:[UIImage imageNamed:@"success"]];
     
@@ -118,97 +119,78 @@
 
 @end
 
-@interface CommentTableView ()<UITableViewDataSource,UITableViewDelegate>
+@interface WRCommentViewController () <UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, strong) WRHeadView *headView;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *commenArr;
+
 @end
 
-@implementation CommentTableView
+@implementation WRCommentViewController
 
-- (WRHeadView *)headView {
-    if(_headView == nil) {
-        _headView = [[WRHeadView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, 40)];
+- (instancetype)initWithID:(NSString *)idStr
+{
+    if (self = [super init]) {
+        
+        _idStr = idStr;
     }
-    return _headView;
+    return self;
+}
+
+/** 预防init */
+- (instancetype)init
+{
+    if (self = [super init]) {
+        
+        NSAssert1(NO, @"%s 请使用initWithID初始化", __FUNCTION__);
+    }
+    return self;
 }
 
 - (UITableView *)tableView {
     if(_tableView == nil) {
         _tableView = [[UITableView alloc] init];
-        self.headView.text = @"热门评论";
-        _tableView.tableHeaderView = _headView;
-        _tableView.bounces = NO;
+//        _tableView.bounces = NO;
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.rowHeight = 55;
-        [_tableView registerClass:[CommentCell class] forCellReuseIdentifier:@"Cell"];
+        _tableView.estimatedRowHeight = UITableViewRowAnimationAutomatic;
+        [_tableView registerClass:[WRCommentCell class] forCellReuseIdentifier:@"Cell"];
     }
     return _tableView;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    if (self = [super initWithFrame:frame]) {
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    
+    [self.view addSubview:self.tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
+    
+    [DealsNetManager getCommentDataWithId:_idStr completionHandle:^(CommentModel *model, NSError *error) {
         
-        self.userInteractionEnabled = YES;
-        
-        [self addSubview:self.tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(0);
-        }];
-    }
-    return self;
+        self.commenArr = model.data.comments;
+        [_tableView reloadData];
+    }];
+    
 }
 
-- (void)setHotCommentArr:(NSArray *)hotCommentArr
-{
-    _hotCommentArr = hotCommentArr;
-    
-    if (hotCommentArr.count == 3) {
-        UIButton *btn = [UIButton new];
-        [btn setTitle:@"点击查看更多评论" forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:15];
-        btn.backgroundColor = [UIColor lightGrayColor];
-        [btn bk_addEventHandler:^(id sender) {
-            
-            if ([_delegate respondsToSelector:@selector(didClickedAtMoreCommentBtn)]) {
-                [_delegate didClickedAtMoreCommentBtn];
-            }
-        } forControlEvents:UIControlEventTouchUpInside];
-        btn.frame = CGRectMake(0, 0, 100, 35);
-        _tableView.tableFooterView = btn;
-    }
-    
-    [_tableView reloadData];
-}
-
+#pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSUInteger count = self.hotCommentArr.count;
-    return count;
+    return self.commenArr.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 10;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 10;
-}
-
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    cell.commontModel = self.hotCommentArr[indexPath.row];
+    WRCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    cell.commontModel = self.commenArr[indexPath.row];
+    
     return cell;
 }
-
-
-
-
 
 @end

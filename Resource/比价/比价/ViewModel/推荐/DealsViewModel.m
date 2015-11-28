@@ -16,8 +16,6 @@
 
 @implementation DealsViewModel
 
-
-
 - (instancetype)initWithType:(CategoryType)type
 {
     if (self = [super init]) {
@@ -53,7 +51,6 @@
         completionHandle(error);
     }];
 }
-
 
 - (void)refreshDataCompletionHandle:(CompletionHandle)completionHandle
 {
