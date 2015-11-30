@@ -39,16 +39,16 @@
         [vc dismissViewControllerAnimated:YES completion:nil];
     } forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spaceItem.width = -10;
-    vc.navigationItem.leftBarButtonItems = @[spaceItem,leftItem];
+//    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    spaceItem.width = -10;
+    vc.navigationItem.backBarButtonItem = leftItem;
 }
 
 + (void)addBackItemAtPresentVC:(UIViewController *)vc
 {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    [btn setBackgroundImage:[UIImage imageNamed:@"navi_back"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
 //    btn.backgroundColor = kNaviTitleColor;
     
     btn.frame = CGRectMake(10, 20, 35, 35);

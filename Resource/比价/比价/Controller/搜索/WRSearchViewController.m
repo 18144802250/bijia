@@ -49,6 +49,10 @@ static NSString *lastStr = @"1234567890";
         [searchBar bk_addEventHandler:^(WRSearchBar *sender) {
             //显示取消按钮
             sender.cancelBtn.hidden = NO;
+            //先把之前的remove
+            if (_srVC) {
+                [_srVC.view removeFromSuperview];
+            }
             WRSearchResultViewController *srVC = [[WRSearchResultViewController alloc] initWithQuest:_searchBar.text];
             srVC.delegate = self;
             
@@ -212,6 +216,7 @@ static NSString *lastStr = @"1234567890";
 #pragma mark - view加载完成
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     //添加键盘弹起时 返回原界面
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardGetUp:) name:UIKeyboardWillShowNotification object:nil];
     [_tableView reloadData];
@@ -319,6 +324,11 @@ static NSString *lastStr = @"1234567890";
         clickStr = self.historyArr[indexPath.row];
     }
     
+    //先把之前的remove
+    if (_srVC) {
+        [_srVC.view removeFromSuperview];
+    }
+    
     WRSearchResultViewController *srVC = [[WRSearchResultViewController alloc] initWithQuest:clickStr];
     
     srVC.delegate = self;
@@ -351,7 +361,7 @@ static NSString *lastStr = @"1234567890";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        CGFloat h = (kWindowW - 30)/3 + 10;
+        CGFloat h = (kWindowW - 30)/3 + 20;
         return h;
     } else {
         return 44;
@@ -404,7 +414,7 @@ static NSString *lastStr = @"1234567890";
     if (itemModel.merchant_count == 1 && ![itemModel.purchase_url isEqualToString:@""]) {
         WRShopViewController *vc = [WRShopViewController new];
         NSString *purUrlStr = itemModel.purchase_url;
-        vc.URL = [NSURL URLWithString:purUrlStr];
+        vc.URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://app.huihui.cn%@",purUrlStr]];
         vc.purchaseURL = [purUrlStr stringByReplacingOccurrencesOfString:@"/proxy?purl=" withString:@""];
         vc.inlandModel = itemModel;
         SearchResultDataItemsMerchantModel *merchant = itemModel.merchant;

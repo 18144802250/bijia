@@ -30,5 +30,11 @@
 
 @implementation ProfileCollectDataBmobModel
 
+- (NSString *)goodPrice
+{
+    
+    return [NSString stringWithFormat:@"%@",_goodPrice];
+
+}
 
 @end

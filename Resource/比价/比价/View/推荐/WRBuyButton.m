@@ -45,7 +45,6 @@
         }];
         
         [_buyBtn bk_addEventHandler:^(id sender) {
-            DDLogVerbose(@"1111");
             if ([_delegate respondsToSelector:@selector(didClickedAtBuyBtn:)]) {
                 [_delegate didClickedAtBuyBtn:_buyBtn];
             }

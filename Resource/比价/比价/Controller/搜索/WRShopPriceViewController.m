@@ -72,6 +72,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [WRNaviTool addBackItemAtVC:self];
     //添加视图
     [self addSubView];
     
@@ -105,11 +106,12 @@
 - (void)didClickAtCellIndex:(NSInteger)index
 {
     WRShopViewController *vc = [WRShopViewController new];
+    [WRNaviTool addBackItemAtVC:vc];
     
     SearchDetailDataItemsModel *itemModel = _resultModel.items[index];
     NSString *purUrlStr = itemModel.purchase_url;
     vc.itemModel = itemModel;
-    vc.URL = [NSURL URLWithString:purUrlStr];
+    vc.URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://app.huihui.cn%@",purUrlStr]];
     vc.purchaseURL = [purUrlStr stringByReplacingOccurrencesOfString:@"/proxy?purl=" withString:@""];
     vc.siteName = itemModel.site_name;
     vc.sdDataModel = _resultModel;

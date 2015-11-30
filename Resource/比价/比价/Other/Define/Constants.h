@@ -15,7 +15,7 @@
 /** 通过RGB设置颜色 */
 #define kRGBColor(R,G,B)        [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.0]
 /** 导航栏题目文字颜色 */
-#define kNaviTitleColor  kRGBColor(40, 137, 59)
+#define kNaviTitleColor  kRGBColor(69, 159, 110)
 
 #define Keywindow [UIApplication sharedApplication].keyWindow
 /** 微博请求账号信息的归档地址 */

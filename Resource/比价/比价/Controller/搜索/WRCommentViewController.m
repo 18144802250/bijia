@@ -77,23 +77,23 @@
         
         [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(0);
-            make.size.mas_equalTo(CGSizeMake(38, 38));
+            make.size.mas_equalTo(CGSizeMake(45, 45));
             make.left.mas_equalTo(10);
         }];
         
         [self.nameLb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.topMargin.mas_equalTo(_icon.mas_topMargin).mas_equalTo(0);
+            make.topMargin.mas_equalTo(10);
             make.left.mas_equalTo(_icon.mas_right).mas_equalTo(10);
             
         }];
         
         [self.timeLb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.topMargin.mas_equalTo(_icon.mas_topMargin).mas_equalTo(0);
+            make.topMargin.mas_equalTo(10);
             make.right.mas_equalTo(-10);
         }];
         
         [self.commentLb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottomMargin.mas_equalTo(_icon.mas_bottomMargin).mas_equalTo(3);
+            make.top.mas_equalTo(_nameLb.mas_bottom).mas_equalTo(0);
             make.left.mas_equalTo(_icon.mas_right).mas_equalTo(10);
             make.right.mas_equalTo(-10);
         }];
@@ -124,6 +124,8 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *commenArr;
 
+@property (nonatomic, strong) UIView *naviView;
+
 @end
 
 @implementation WRCommentViewController
@@ -153,7 +155,7 @@
 //        _tableView.bounces = NO;
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.estimatedRowHeight = UITableViewRowAnimationAutomatic;
+        _tableView.rowHeight = 88;
         [_tableView registerClass:[WRCommentCell class] forCellReuseIdentifier:@"Cell"];
     }
     return _tableView;
@@ -164,10 +166,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self addMyNaviView];
     
     [self.view addSubview:self.tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
+        make.edges.mas_equalTo(UIEdgeInsetsMake(64, 0, 0, 0));
     }];
     
     [DealsNetManager getCommentDataWithId:_idStr completionHandle:^(CommentModel *model, NSError *error) {
@@ -178,6 +181,30 @@
     
 }
 
+#define mark - 添加自定义导航视图
+- (void)addMyNaviView
+{
+    _naviView = [UIView new];
+    _naviView.backgroundColor = kNaviTitleColor;
+    [self.view addSubview:_naviView];
+    [_naviView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.height.mas_equalTo(64);
+    }];
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn bk_addEventHandler:^(id sender) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [_naviView addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(-5);
+        make.left.mas_equalTo(10);
+        make.size.mas_equalTo(CGSizeMake(35, 35));
+    }];
+    
+}
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

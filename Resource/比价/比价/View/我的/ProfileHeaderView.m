@@ -69,8 +69,9 @@
 - (UIButton *)setNickNameBtn {
     if(_setNickNameBtn == nil) {
         _setNickNameBtn = [[UIButton alloc] init];
-        [_setNickNameBtn setTitle:@"设置呢名" forState:UIControlStateNormal];
-        _setNickNameBtn.titleLabel.backgroundColor = kNaviTitleColor;
+//        [_setNickNameBtn setTitle:@"设置呢名" forState:UIControlStateNormal];
+//        _setNickNameBtn.titleLabel.backgroundColor = kNaviTitleColor;
+        [_setNickNameBtn setImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
         _setNickNameBtn.hidden = YES;
         [_setNickNameBtn bk_addEventHandler:^(id sender) {
             if ([_delegate respondsToSelector:@selector(didClickedAtSetNickNameBtn:)]) {

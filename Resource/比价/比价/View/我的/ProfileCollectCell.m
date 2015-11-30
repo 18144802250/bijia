@@ -34,7 +34,6 @@
 	if(_titleLb == nil) {
 		_titleLb = [[UILabel alloc] init];
         _titleLb.font = [UIFont systemFontOfSize:13];
-        _titleLb.textColor = [UIColor whiteColor];
         _titleLb.numberOfLines = 2;
         [self.contentView addSubview:_titleLb];
 	}
@@ -43,7 +42,7 @@
 - (UILabel *)priceLb {
     if(_priceLb == nil) {
         _priceLb = [[UILabel alloc] init];
-        _priceLb.backgroundColor = [UIColor whiteColor];
+        _priceLb.textColor = [UIColor redColor];
     }
     return _priceLb;
 }
@@ -53,6 +52,7 @@
 		_sourLb = [[UILabel alloc] init];
         _sourLb.font = [UIFont systemFontOfSize:13];
         _sourLb.textColor = [UIColor whiteColor];
+        _sourLb.backgroundColor = kNaviTitleColor;
         _sourLb.textAlignment = NSTextAlignmentRight;
         [self.contentView addSubview:_sourLb];
 	}
